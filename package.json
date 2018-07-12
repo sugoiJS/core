@@ -1,0 +1,37 @@
+{
+  "name": "@sugoi/framework",
+  "version": "1.0.0",
+  "description": "sugoi framework package",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "..\\node_modules\\.bin\\typedoc --out ..\\dist\\docs\\core --excludeNotExported --excludeProtected --excludePrivate --readme .\\README.md --mode modules --hideGenerator",
+    "update:patch": "rmdir /S dist && tsc && npm version patch && npm publish && npm run docs",
+    "update:minor": "rmdir /S dist && tsc && npm version minor && npm publish && npm run docs",
+    "update:major": "rmdir /S dist && tsc && npm version major && npm publish && npm run docs"
+  },
+  "keywords": [
+    "framework",
+    "orm",
+    "decorators",
+    "@sugoi",
+    "sugoi"
+  ],
+  "files": [
+    "dist/**/*"
+  ],
+  "author": "Orel Balilti",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/orelba93/sugoi-framework#readme",
+  "dependencies": {
+    "inversify": "^4.11.1",
+    "inversify-express-utils": "^5.2.2",
+    "reflect-metadata": "^0.1.12",
+    "rxjs": "^5.5.6"
+  },
+  "devDependencies": {
+    "typedoc": "^0.11.1",
+    "typescript": "^2.9.2"
+  }
+}
