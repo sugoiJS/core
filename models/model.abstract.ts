@@ -1,4 +1,4 @@
-import {CONNECTION_STATUS, ModelException, Exceptions} from "../index";
+import {Final, CONNECTION_STATUS, ModelException, Exceptions} from "../index";
 import {Observable} from "rxjs/Observable";
 
 
@@ -13,6 +13,7 @@ export abstract class ModelAbstract {
 
     }
 
+    @Final()
     public static find<T=any>(query: any = {}, options: any = {}): Observable<Array<T>> {
         const that = this;
         query = ModelAbstract.castStringQuery(query);
@@ -27,6 +28,7 @@ export abstract class ModelAbstract {
     }
 
 
+    @Final()
     public static findOne<T=any>(query: any = {}, options: any = {}): Observable<T> {
         options.limit = 1;
         return this.find<T>(query, options).map(res => res ? res[0] : null);
@@ -37,6 +39,7 @@ export abstract class ModelAbstract {
         return Observable.throw(error)
     };
 
+    @Final()
     public save(options: any | string = {}): Observable<any> {
         this.beforeValidate();
         let valid;
@@ -52,12 +55,14 @@ export abstract class ModelAbstract {
 
     protected abstract saveEmitter(options): Promise<any>;
 
+    @Final()
     protected beforeValidate() {
-        if ('SugBeforeValidate' in (this as any)) {
-            (<any>this).SugBeforeValidate();
+        if ('sugBeforeValidate' in (this as any)) {
+            (<any>this).sugBeforeValidate();
         }
     }
 
+    @Final()
     public validate(): any | true {
         if ('sugValidate' in (this as any)) {
             const validate = (<any>this).sugValidate();
@@ -65,18 +70,21 @@ export abstract class ModelAbstract {
         } else return true;
     };
 
+    @Final()
     protected beforeSave(): void {
         if ("sugBeforeSave" in (this as any)) {
             (<any>this).sugBeforeSave();
         }
     };
 
+    @Final()
     protected afterSave(): void {
         if ('sugAfterSave' in (this as any)) {
             (<any>this).sugAfterSave();
         }
     };
 
+    @Final()
     public update(options: any | string = {}): Observable<any> {
         this.beforeValidate();
         let valid;
@@ -92,27 +100,30 @@ export abstract class ModelAbstract {
 
     protected abstract updateEmitter(options): Promise<any>;
 
+    @Final()
     public beforeUpdate(): void {
         if ('sugBeforeUpdate' in (this as any))
             (<any>this).sugBeforeUpdate()
     };
 
+    @Final()
     public afterUpdate(): void {
         if ('sugAfterUpdate' in (this as any)) {
             (<any>this).sugAfterUpdate();
         }
     };
 
-    protected abstract removeEmitter(): Promise<any>;
+    protected abstract removeEmitter(query:any): Promise<any>;
 
-    public remove(query: any = {}): Observable<any> {
-        const observable = Observable.fromPromise(this.removeEmitter())
+    @Final()
+    public remove(query: any): Observable<any> {
+        const observable = Observable.fromPromise(this.removeEmitter(query))
             .publish();
         observable.connect();
         return observable;
     }
 
-    protected static clone<T>(classIns: any, data: any): T {
+    public static clone<T>(classIns: any, data: any): T {
         const func = function () {
         };
         func.prototype = classIns.prototype;

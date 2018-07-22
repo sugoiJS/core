@@ -1,6 +1,6 @@
 # @Sugoi\core
 
-![Sugoi logo](http://sugoijs.com/assets/images/logo_inverse.png)
+![Sugoi logo](../assets/logo_inverse.png)
 
 
 ## Introduction

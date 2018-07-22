@@ -1,20 +1,20 @@
 {
-  "name": "@sugoi/framework",
-  "version": "1.0.0",
-  "description": "sugoi framework package",
+  "name": "@sugoi/core",
+  "version": "1.0.8beta-5",
+  "description": "sugoi core package",
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docs": "..\\node_modules\\.bin\\typedoc --out ..\\dist\\docs\\core --excludeNotExported --excludeProtected --excludePrivate --readme .\\README.md --mode modules --hideGenerator",
+    "docs": "..\\node_modules\\.bin\\typedoc --out ..\\dist\\docs\\core --json dist\\docs\\main.json --ignoreCompilerErrors --excludeNotExported --excludeProtected --excludePrivate --readme .\\README.md --mode file --hideGenerator --gitRevision '1.0.0' --externalPattern node_modules/* --excludeExternals ",
     "update:patch": "rmdir /S dist && tsc && npm version patch && npm publish && npm run docs",
     "update:minor": "rmdir /S dist && tsc && npm version minor && npm publish && npm run docs",
     "update:major": "rmdir /S dist && tsc && npm version major && npm publish && npm run docs"
   },
   "keywords": [
-    "framework",
     "orm",
     "decorators",
+    "annotations",
     "@sugoi",
     "sugoi"
   ],
@@ -23,7 +23,7 @@
   ],
   "author": "Orel Balilti",
   "license": "MIT",
-  "homepage": "https://bitbucket.org/orelba93/sugoi-framework#readme",
+  "homepage": "sugoijs.com",
   "dependencies": {
     "inversify": "^4.11.1",
     "inversify-express-utils": "^5.2.2",
