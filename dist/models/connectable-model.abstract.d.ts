@@ -1,19 +1,19 @@
 import { ModelAbstract } from "./model.abstract";
 import { Connection } from "../classes/connection.class";
-import { Observable } from "rxjs/Observable";
 import { IConnectionConfig } from "../interfaces/connection-config.interface";
 export declare abstract class ConnectableModel extends ModelAbstract {
     protected static connections: Map<string, Connection>;
     protected static connectionName: string;
+    protected static ConnectionType: typeof Connection;
     constructor();
-    static setConnection(configData: IConnectionConfig, connectionName?: string): void;
+    static setConnection(configData: IConnectionConfig, connectionName?: string): Promise<any>;
     static getConnection(connectionName?: string): Connection;
-    static connect(connectionName?: string): Observable<any>;
+    static connect(connectionName?: string): Promise<any>;
     /**
      * Connect to service and return connection for further use
      * @param {Connection} connection
-     * @returns {Observable<any>} - connection item
+     * @returns {Promise<any>} - connection item
      */
-    static connectEmitter(connection: Connection): Observable<any>;
+    static connectEmitter(connection: Connection): Promise<any>;
     static disconnect(connectionName: string): void;
 }

@@ -27,11 +27,11 @@ export class Connection implements IConnectionConfig {
     }
 
     public static builder(hostName: string, db: string, port?: number) {
-        return new Connection(hostName, db, port);
+        return new this(hostName, db, port);
     }
 
     public static clone(config: IConnectionConfig): Connection {
-        return Object.assign(Connection.builder(null, null), config);
+        return Object.assign(this.builder(null, null), config);
     }
 
     public setCredentials(user: string, password: string) {
@@ -58,20 +58,20 @@ export class Connection implements IConnectionConfig {
         return this.status === CONNECTION_STATUS.CONNECTED;
     }
 
-    public getConnectionString():string {
-        throw new GenericException(Exceptions.NOT_IMPLEMENTED.message, Exceptions.NOT_IMPLEMENTED.code, "getConnectionString");
+    public getConnectionString(): string {
+        throw new GenericException(Exceptions.NOT_IMPLEMENTED.message, Exceptions.NOT_IMPLEMENTED.code, ["getConnectionString", "please override the function by your connection implementation"]);
     }
 
-    public disconnect():Promise<any>{
+    public disconnect(): Promise<any> {
         this.setStatus(CONNECTION_STATUS.DISCONNECTED);
         return Promise.resolve(null);
     }
 
-    public setConnection(connection){
+    public setConnection(connection) {
         this.connection = connection;
     }
 
-    public getConnection(){
+    public getConnection() {
         return this.connection
     }
 }

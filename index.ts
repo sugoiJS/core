@@ -18,9 +18,6 @@ export {ConnectableModel} from "./models/connectable-model.abstract";
 
 export {CONNECTION_STATUS} from "./constants/connection-status.constant";
 
-
-export {Final} from './decorators/final.decorator';
-
 import "rxjs";
 
 import 'reflect-metadata';

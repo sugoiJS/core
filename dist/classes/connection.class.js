@@ -21,12 +21,11 @@ var Connection = /** @class */ (function () {
         this.status = connection_status_constant_1.CONNECTION_STATUS.DISCONNECTED;
         this.connectionName = this.db;
     }
-    Connection_1 = Connection;
     Connection.builder = function (hostName, db, port) {
-        return new Connection_1(hostName, db, port);
+        return new this(hostName, db, port);
     };
     Connection.clone = function (config) {
-        return Object.assign(Connection_1.builder(null, null), config);
+        return Object.assign(this.builder(null, null), config);
     };
     Connection.prototype.setCredentials = function (user, password) {
         this.user = user;
@@ -49,7 +48,7 @@ var Connection = /** @class */ (function () {
         return this.status === connection_status_constant_1.CONNECTION_STATUS.CONNECTED;
     };
     Connection.prototype.getConnectionString = function () {
-        throw new generic_exception_1.GenericException(exceptions_constant_1.Exceptions.NOT_IMPLEMENTED.message, exceptions_constant_1.Exceptions.NOT_IMPLEMENTED.code, "getConnectionString");
+        throw new generic_exception_1.GenericException(exceptions_constant_1.Exceptions.NOT_IMPLEMENTED.message, exceptions_constant_1.Exceptions.NOT_IMPLEMENTED.code, ["getConnectionString", "please override the function by your connection implementation"]);
     };
     Connection.prototype.disconnect = function () {
         this.setStatus(connection_status_constant_1.CONNECTION_STATUS.DISCONNECTED);
@@ -61,8 +60,7 @@ var Connection = /** @class */ (function () {
     Connection.prototype.getConnection = function () {
         return this.connection;
     };
-    var Connection_1;
-    Connection = Connection_1 = __decorate([
+    Connection = __decorate([
         inversify_1.injectable(),
         __metadata("design:paramtypes", [String, String, Number])
     ], Connection);

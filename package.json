@@ -1,15 +1,16 @@
 {
   "name": "@sugoi/core",
-  "version": "1.0.8beta-5",
+  "version": "1.2.0",
   "description": "sugoi core package",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "docs": "..\\node_modules\\.bin\\typedoc --out ..\\dist\\docs\\core --json dist\\docs\\main.json --ignoreCompilerErrors --excludeNotExported --excludeProtected --excludePrivate --readme .\\README.md --mode file --hideGenerator --gitRevision '1.0.0' --externalPattern node_modules/* --excludeExternals ",
-    "update:patch": "rmdir /S dist && tsc && npm version patch && npm publish && npm run docs",
-    "update:minor": "rmdir /S dist && tsc && npm version minor && npm publish && npm run docs",
-    "update:major": "rmdir /S dist && tsc && npm version major && npm publish && npm run docs"
+    "update:patch": " npm run build && npm version patch && npm publish && npm run docs",
+    "update:minor": " npm run build && npm version minor && npm publish && npm run docs",
+    "update:major": " npm run build && npm version major && npm publish && npm run docs",
+    "build": "rmdir /S dist && tsc"
   },
   "keywords": [
     "orm",
@@ -26,12 +27,9 @@
   "homepage": "sugoijs.com",
   "dependencies": {
     "inversify": "^4.11.1",
-    "inversify-express-utils": "^5.2.2",
-    "reflect-metadata": "^0.1.12",
-    "rxjs": "^5.5.6"
+    "reflect-metadata": "^0.1.12"
   },
   "devDependencies": {
-    "typedoc": "^0.11.1",
     "typescript": "^2.9.2"
   }
 }

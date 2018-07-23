@@ -1,8 +1,6 @@
 import {ModelAbstract} from "./model.abstract";
 import {Connection} from "../classes/connection.class";
 import {Exceptions} from "../constants/exceptions.constant";
-import {Observable} from "rxjs/Observable";
-import {map} from "rxjs/operators";
 import {CONNECTION_STATUS} from "../constants/connection-status.constant";
 import {GenericException} from "../exceptions/generic.exception";
 import {IConnectionConfig} from "../interfaces/connection-config.interface";
@@ -12,14 +10,17 @@ export abstract class ConnectableModel extends ModelAbstract {
 
     protected static connectionName: string = "default";
 
+    protected static ConnectionType: typeof Connection = Connection;
+
     constructor() {
         super()
     }
 
-    public static setConnection(configData: IConnectionConfig, connectionName: string = "default") {
+    public static setConnection(configData: IConnectionConfig, connectionName: string = "default"):Promise<any> {
         configData.connectionName = connectionName;
-        this.connections.set(connectionName, Connection.clone(configData));
-        this.connect(connectionName);
+        const connection = this.ConnectionType.clone(configData);
+        this.connections.set(connectionName, connection);
+        return this.connect(connectionName);
 
     }
 
@@ -29,32 +30,36 @@ export abstract class ConnectableModel extends ModelAbstract {
             : null;
     }
 
-    public static connect(connectionName:string = this.connectionName): Observable<any> {
+    public static connect(connectionName: string = this.connectionName): Promise<any> {
         const connection = this.connections.get(ConnectableModel.connectionName);
         if (!connection) {
             throw new GenericException(Exceptions.CONFIGURATION_MISSING.message, Exceptions.CONFIGURATION_MISSING.code);
         }
 
         if (connection.isConnected()) {
-            return Observable.of(connection.connection);
+            return Promise.resolve(connection.connection);
         } else {
             return this.connectEmitter(connection)
-                .pipe(
-                    map((connectionItem) => {
-                        connection.setStatus(CONNECTION_STATUS.CONNECTED);
-                        connection.setConnection(connectionItem);
-                        return connectionItem;
-                    })
-                );
+                .then((connectionItem) => {
+                    connection.setConnection(connectionItem);
+                    connection.setStatus(CONNECTION_STATUS.CONNECTED);
+                    return connectionItem;
+                })
+                .catch(err => {
+                    console.error(err);
+                    connection.setStatus(CONNECTION_STATUS.DISCONNECTED);
+                    throw err;
+                });
+
         }
     }
 
     /**
      * Connect to service and return connection for further use
      * @param {Connection} connection
-     * @returns {Observable<any>} - connection item
+     * @returns {Promise<any>} - connection item
      */
-    public static connectEmitter(connection: Connection): Observable<any> {
+    public static connectEmitter(connection: Connection): Promise<any> {
         throw new GenericException(Exceptions.NOT_IMPLEMENTED.message, Exceptions.NOT_IMPLEMENTED.code, "connectEmitter");
     }
 

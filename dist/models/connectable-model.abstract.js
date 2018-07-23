@@ -13,8 +13,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var model_abstract_1 = require("./model.abstract");
 var connection_class_1 = require("../classes/connection.class");
 var exceptions_constant_1 = require("../constants/exceptions.constant");
-var Observable_1 = require("rxjs/Observable");
-var operators_1 = require("rxjs/operators");
 var connection_status_constant_1 = require("../constants/connection-status.constant");
 var generic_exception_1 = require("../exceptions/generic.exception");
 var ConnectableModel = /** @class */ (function (_super) {
@@ -25,8 +23,9 @@ var ConnectableModel = /** @class */ (function (_super) {
     ConnectableModel.setConnection = function (configData, connectionName) {
         if (connectionName === void 0) { connectionName = "default"; }
         configData.connectionName = connectionName;
-        this.connections.set(connectionName, connection_class_1.Connection.clone(configData));
-        this.connect(connectionName);
+        var connection = this.ConnectionType.clone(configData);
+        this.connections.set(connectionName, connection);
+        return this.connect(connectionName);
     };
     ConnectableModel.getConnection = function (connectionName) {
         if (connectionName === void 0) { connectionName = "default"; }
@@ -41,21 +40,26 @@ var ConnectableModel = /** @class */ (function (_super) {
             throw new generic_exception_1.GenericException(exceptions_constant_1.Exceptions.CONFIGURATION_MISSING.message, exceptions_constant_1.Exceptions.CONFIGURATION_MISSING.code);
         }
         if (connection.isConnected()) {
-            return Observable_1.Observable.of(connection.connection);
+            return Promise.resolve(connection.connection);
         }
         else {
             return this.connectEmitter(connection)
-                .pipe(operators_1.map(function (connectionItem) {
-                connection.setStatus(connection_status_constant_1.CONNECTION_STATUS.CONNECTED);
+                .then(function (connectionItem) {
                 connection.setConnection(connectionItem);
+                connection.setStatus(connection_status_constant_1.CONNECTION_STATUS.CONNECTED);
                 return connectionItem;
-            }));
+            })
+                .catch(function (err) {
+                console.error(err);
+                connection.setStatus(connection_status_constant_1.CONNECTION_STATUS.DISCONNECTED);
+                throw err;
+            });
         }
     };
     /**
      * Connect to service and return connection for further use
      * @param {Connection} connection
-     * @returns {Observable<any>} - connection item
+     * @returns {Promise<any>} - connection item
      */
     ConnectableModel.connectEmitter = function (connection) {
         throw new generic_exception_1.GenericException(exceptions_constant_1.Exceptions.NOT_IMPLEMENTED.message, exceptions_constant_1.Exceptions.NOT_IMPLEMENTED.code, "connectEmitter");
@@ -67,6 +71,7 @@ var ConnectableModel = /** @class */ (function (_super) {
     };
     ConnectableModel.connections = new Map();
     ConnectableModel.connectionName = "default";
+    ConnectableModel.ConnectionType = connection_class_1.Connection;
     return ConnectableModel;
 }(model_abstract_1.ModelAbstract));
 exports.ConnectableModel = ConnectableModel;

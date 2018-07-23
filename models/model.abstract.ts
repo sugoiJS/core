@@ -1,5 +1,4 @@
-import {Final, CONNECTION_STATUS, ModelException, Exceptions} from "../index";
-import {Observable} from "rxjs/Observable";
+import {CONNECTION_STATUS, ModelException, Exceptions} from "../index";
 
 
 export abstract class ModelAbstract {
@@ -13,12 +12,11 @@ export abstract class ModelAbstract {
 
     }
 
-    @Final()
-    public static find<T=any>(query: any = {}, options: any = {}): Observable<Array<T>> {
+    public static find<T=any>(query: any = {}, options: any = {}): Promise<Array<T>> {
         const that = this;
         query = ModelAbstract.castStringQuery(query);
         return that.findEmitter(query, options)
-            .map((res: Array<T>) => {
+            .then((res: Array<T>) => {
                 res = res.map((collection) => {
                     return that.clone(that, collection);
                 });
@@ -28,41 +26,37 @@ export abstract class ModelAbstract {
     }
 
 
-    @Final()
-    public static findOne<T=any>(query: any = {}, options: any = {}): Observable<T> {
+    public static findOne<T=any>(query: any = {}, options: any = {}): Promise<T> {
         options.limit = 1;
-        return this.find<T>(query, options).map(res => res ? res[0] : null);
+        return this.find<T>(query, options)
+            .then(res => res ? res[0] : null);
     }
 
-    protected static findEmitter(query: any, options?: any): Observable<object> {
-        const error = new ModelException(Exceptions.NOT_IMPLEMENTED.message, Exceptions.NOT_IMPLEMENTED.code, "Find Emitter " + this.constructor.name);
-        return Observable.throw(error)
+    protected static findEmitter(query: any, options?: any): Promise<any> {
+        throw new ModelException(Exceptions.NOT_IMPLEMENTED.message, Exceptions.NOT_IMPLEMENTED.code, "Find Emitter " + this.constructor.name);
     };
 
-    @Final()
-    public save(options: any | string = {}): Observable<any> {
+    public save(options: any | string = {}): Promise<any> {
         this.beforeValidate();
         let valid;
         if ((valid = this.validate()) !== true)
             throw new ModelException(Exceptions.INVALID.message, Exceptions.INVALID.code, valid);
         this.beforeSave();
-        const observable = Observable.fromPromise(this.saveEmitter(options))
-            .do(() => this.afterSave())
-            .publish();
-        observable.connect();
-        return observable;
+        return this.saveEmitter(options)
+            .then((savedData) => {
+                this.afterSave();
+                return savedData;
+            })
     }
 
     protected abstract saveEmitter(options): Promise<any>;
 
-    @Final()
     protected beforeValidate() {
         if ('sugBeforeValidate' in (this as any)) {
             (<any>this).sugBeforeValidate();
         }
     }
 
-    @Final()
     public validate(): any | true {
         if ('sugValidate' in (this as any)) {
             const validate = (<any>this).sugValidate();
@@ -70,43 +64,38 @@ export abstract class ModelAbstract {
         } else return true;
     };
 
-    @Final()
     protected beforeSave(): void {
         if ("sugBeforeSave" in (this as any)) {
             (<any>this).sugBeforeSave();
         }
     };
 
-    @Final()
     protected afterSave(): void {
         if ('sugAfterSave' in (this as any)) {
             (<any>this).sugAfterSave();
         }
     };
 
-    @Final()
-    public update(options: any | string = {}): Observable<any> {
+    public update(options: any | string = {}): Promise<any> {
         this.beforeValidate();
         let valid;
         if ((valid = this.validate()) !== true)
             throw new ModelException(Exceptions.INVALID.message, Exceptions.INVALID.code, valid);
         this.beforeUpdate();
-        const observable = Observable.fromPromise(this.updateEmitter(options))
-            .do(() => this.afterUpdate())
-            .publish();
-        observable.connect();
-        return observable;
+        return this.updateEmitter(options)
+            .then((updatedData) => {
+                this.afterUpdate();
+                return updatedData;
+            });
     }
 
     protected abstract updateEmitter(options): Promise<any>;
 
-    @Final()
     public beforeUpdate(): void {
         if ('sugBeforeUpdate' in (this as any))
             (<any>this).sugBeforeUpdate()
     };
 
-    @Final()
     public afterUpdate(): void {
         if ('sugAfterUpdate' in (this as any)) {
             (<any>this).sugAfterUpdate();
@@ -115,12 +104,8 @@ export abstract class ModelAbstract {
 
     protected abstract removeEmitter(query:any): Promise<any>;
 
-    @Final()
-    public remove(query: any): Observable<any> {
-        const observable = Observable.fromPromise(this.removeEmitter(query))
-            .publish();
-        observable.connect();
-        return observable;
+    public remove(query: any): Promise<any> {
+        return this.removeEmitter(query);
     }
 
     public static clone<T>(classIns: any, data: any): T {
@@ -134,11 +119,10 @@ export abstract class ModelAbstract {
         return temp as T;
     }
 
-    protected static castStringQuery(query: string | object) {
+    protected static castStringQuery(query: string | any) {
         if (typeof query === "string") {
             query = {id: query};
         }
         return query
-
     }
 }

@@ -23,8 +23,6 @@ var connectable_model_abstract_1 = require("./models/connectable-model.abstract"
 exports.ConnectableModel = connectable_model_abstract_1.ConnectableModel;
 var connection_status_constant_1 = require("./constants/connection-status.constant");
 exports.CONNECTION_STATUS = connection_status_constant_1.CONNECTION_STATUS;
-var final_decorator_1 = require("./decorators/final.decorator");
-exports.Final = final_decorator_1.Final;
 require("rxjs");
 require("reflect-metadata");
 __export(require("./inversify/index"));
