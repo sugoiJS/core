@@ -36,73 +36,88 @@ export abstract class ModelAbstract {
         throw new ModelException(Exceptions.NOT_IMPLEMENTED.message, Exceptions.NOT_IMPLEMENTED.code, "Find Emitter " + this.constructor.name);
     };
 
-    public save(options: any | string = {}): Promise<any> {
-        this.beforeValidate();
-        let valid;
-        if ((valid = this.validate()) !== true)
-            throw new ModelException(Exceptions.INVALID.message, Exceptions.INVALID.code, valid);
-        this.beforeSave();
+    public async save(options: any | string = {}): Promise<any> {
+        await this.beforeValidate().then(() => {
+            return this.validate();
+        }).then((valid) => {
+            if (valid !== true)
+                throw new ModelException(Exceptions.INVALID.message, Exceptions.INVALID.code, valid);
+        });
+        await this.beforeSave();
+        let savedData;
         return this.saveEmitter(options)
-            .then((savedData) => {
-                this.afterSave();
+            .then((_savedData) => {
+                savedData = _savedData;
+                return this.afterSave();
+            })
+            .then(()=>{
                 return savedData;
             })
     }
 
     protected abstract saveEmitter(options): Promise<any>;
 
-    protected beforeValidate() {
-        if ('sugBeforeValidate' in (this as any)) {
-            (<any>this).sugBeforeValidate();
-        }
+    protected beforeValidate(): Promise<void> {
+        return 'sugBeforeValidate' in (this as any)
+            ? (<any>this).sugBeforeValidate()
+            : Promise.resolve();
     }
 
-    public validate(): any | true {
-        if ('sugValidate' in (this as any)) {
-            const validate = (<any>this).sugValidate();
-            return (validate === null || validate === undefined) ? true : validate;
-        } else return true;
+    public validate(): Promise<string | boolean> {
+        return 'sugValidate' in (this as any)
+            ? (<any>this).sugValidate().then(valid => (valid === null || valid === undefined) ? true : valid)
+            : Promise.resolve(true);
     };
 
-    protected beforeSave(): void {
-        if ("sugBeforeSave" in (this as any)) {
-            (<any>this).sugBeforeSave();
-        }
+    protected beforeSave(): Promise<void> {
+        return "sugBeforeSave" in (this as any)
+            ? (<any>this).sugBeforeSave()
+            : Promise.resolve();
     };
 
-    protected afterSave(): void {
-        if ('sugAfterSave' in (this as any)) {
-            (<any>this).sugAfterSave();
-        }
+    protected afterSave(): Promise<void> {
+        return 'sugAfterSave' in (this as any)
+            ? (<any>this).sugAfterSave()
+            : Promise.resolve();
     };
 
-    public update(options: any | string = {}): Promise<any> {
-        this.beforeValidate();
-        let valid;
-        if ((valid = this.validate()) !== true)
-            throw new ModelException(Exceptions.INVALID.message, Exceptions.INVALID.code, valid);
-        this.beforeUpdate();
+    public async update(options: any | string = {}): Promise<any> {
+        await this.beforeValidate()
+            .then(() => {
+                return this.validate();
+            })
+            .then((valid) => {
+                if (valid !== true)
+                    throw new ModelException(Exceptions.INVALID.message, Exceptions.INVALID.code, valid);
+            });
+
+        await this.beforeUpdate();
+        let updatedData;
         return this.updateEmitter(options)
-            .then((updatedData) => {
-                this.afterUpdate();
+            .then((_updatedData) => {
+                updatedData = _updatedData;
+                return this.afterUpdate();
+            })
+            .then(() => {
                 return updatedData;
             });
     }
 
     protected abstract updateEmitter(options): Promise<any>;
 
-    public beforeUpdate(): void {
-        if ('sugBeforeUpdate' in (this as any))
-            (<any>this).sugBeforeUpdate()
+    public beforeUpdate(): Promise<void> {
+        return 'sugBeforeUpdate' in (this as any)
+            ? (<any>this).sugBeforeUpdate()
+            : Promise.resolve();
     };
 
-    public afterUpdate(): void {
-        if ('sugAfterUpdate' in (this as any)) {
-            (<any>this).sugAfterUpdate();
-        }
+    public afterUpdate(): Promise<void> {
+        return 'sugAfterUpdate' in (this as any)
+            ? (<any>this).sugAfterUpdate()
+            : Promise.resolve();
     };
 
-    protected abstract removeEmitter(query:any): Promise<any>;
+    protected abstract removeEmitter(query: any): Promise<any>;
 
     public remove(query: any): Promise<any> {
         return this.removeEmitter(query);
