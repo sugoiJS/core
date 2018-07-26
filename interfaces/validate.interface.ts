@@ -4,5 +4,5 @@ export interface IValidate{
      * returned value use as error message data
      * @returns {boolean | string}
      */
-    sugValidate:()=>boolean|null|string
+    sugValidate():Promise<boolean|string>
 }

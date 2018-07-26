@@ -1,3 +1,3 @@
 export interface IBeforeSave{
-    sugBeforeSave:()=>void;
+    sugBeforeSave():Promise<any>
 }

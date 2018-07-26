@@ -1,3 +1,3 @@
 export interface IAfterUpdate{
-    sugAfterUpdate:()=>void
+    sugAfterUpdate():Promise<any>
 }
