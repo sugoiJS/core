@@ -1,3 +1,3 @@
 export interface IBeforeValidate{
-    sugBeforeValidate():Promise<any>
+    sugBeforeValidate():Promise<any> | void
 }

@@ -59,7 +59,7 @@ export abstract class ModelAbstract {
 
     protected abstract saveEmitter(options): Promise<any>;
 
-    protected beforeValidate(): Promise<void>|void {
+    protected beforeValidate(): Promise<void> {
         return 'sugBeforeValidate' in (this as any)
             ? (<any>this).sugBeforeValidate() || Promise.resolve()
             : Promise.resolve();
