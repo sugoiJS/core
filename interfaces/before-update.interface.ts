@@ -1,3 +1,3 @@
 export interface IBeforeUpdate{
-    sugBeforeUpdate():Promise<any>
+    sugBeforeUpdate():Promise<any>|void
 }

@@ -59,9 +59,9 @@ export abstract class ModelAbstract {
 
     protected abstract saveEmitter(options): Promise<any>;
 
-    protected beforeValidate(): Promise<void> {
+    protected beforeValidate(): Promise<void>|void {
         return 'sugBeforeValidate' in (this as any)
-            ? (<any>this).sugBeforeValidate()
+            ? (<any>this).sugBeforeValidate() || Promise.resolve()
             : Promise.resolve();
     }
 
@@ -73,13 +73,13 @@ export abstract class ModelAbstract {
 
     protected beforeSave(): Promise<void> {
         return "sugBeforeSave" in (this as any)
-            ? (<any>this).sugBeforeSave()
+            ? (<any>this).sugBeforeSave()|| Promise.resolve()
             : Promise.resolve();
     };
 
     protected afterSave(): Promise<void> {
         return 'sugAfterSave' in (this as any)
-            ? (<any>this).sugAfterSave()
+            ? (<any>this).sugAfterSave()|| Promise.resolve()
             : Promise.resolve();
     };
 
@@ -108,13 +108,13 @@ export abstract class ModelAbstract {
 
     public beforeUpdate(): Promise<void> {
         return 'sugBeforeUpdate' in (this as any)
-            ? (<any>this).sugBeforeUpdate()
+            ? (<any>this).sugBeforeUpdate()|| Promise.resolve()
             : Promise.resolve();
     };
 
     public afterUpdate(): Promise<void> {
         return 'sugAfterUpdate' in (this as any)
-            ? (<any>this).sugAfterUpdate()
+            ? (<any>this).sugAfterUpdate() || Promise.resolve()
             : Promise.resolve();
     };
 

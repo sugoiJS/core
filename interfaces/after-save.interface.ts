@@ -1,3 +1,3 @@
 export interface IAfterSave {
-    sugAfterSave():Promise<any>
+    sugAfterSave():Promise<any> | void
 }
