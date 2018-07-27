@@ -1,4 +1,4 @@
-import {CONNECTION_STATUS, ModelException, Exceptions} from "../index";
+import {CONNECTION_STATUS, SugModelException, Exceptions} from "../index";
 
 
 export abstract class ModelAbstract {
@@ -33,24 +33,26 @@ export abstract class ModelAbstract {
     }
 
     protected static findEmitter(query: any, options?: any): Promise<any> {
-        throw new ModelException(Exceptions.NOT_IMPLEMENTED.message, Exceptions.NOT_IMPLEMENTED.code, "Find Emitter " + this.constructor.name);
+        throw new SugModelException(Exceptions.NOT_IMPLEMENTED.message, Exceptions.NOT_IMPLEMENTED.code, "Find Emitter " + this.constructor.name);
     };
 
     public async save(options: any | string = {}): Promise<any> {
-        await this.beforeValidate().then(() => {
-            return this.validate();
-        }).then((valid) => {
-            if (valid !== true)
-                throw new ModelException(Exceptions.INVALID.message, Exceptions.INVALID.code, valid);
-        });
-        await this.beforeSave();
         let savedData;
-        return this.saveEmitter(options)
+        return await this.beforeValidate()
+            .then(() => {
+                return this.validate();
+            })
+            .then((valid) => {
+                if (valid !== true)
+                    throw new SugModelException(Exceptions.INVALID.message, Exceptions.INVALID.code, valid);
+            })
+            .then(() => this.beforeSave())
+            .then(() => this.saveEmitter(options))
             .then((_savedData) => {
                 savedData = _savedData;
                 return this.afterSave();
             })
-            .then(()=>{
+            .then(() => {
                 return savedData;
             })
     }
@@ -65,7 +67,7 @@ export abstract class ModelAbstract {
 
     public validate(): Promise<string | boolean> {
         return 'sugValidate' in (this as any)
-            ? (<any>this).sugValidate().then(valid => (valid === null || valid === undefined) ? true : valid)
+            ? (<any>this).sugValidate().then(valid => (valid === null || valid === undefined) ? true : !!valid)
             : Promise.resolve(true);
     };
 
@@ -82,18 +84,17 @@ export abstract class ModelAbstract {
     };
 
     public async update(options: any | string = {}): Promise<any> {
-        await this.beforeValidate()
+        let updatedData;
+        return await this.beforeValidate()
             .then(() => {
                 return this.validate();
             })
             .then((valid) => {
                 if (valid !== true)
-                    throw new ModelException(Exceptions.INVALID.message, Exceptions.INVALID.code, valid);
-            });
-
-        await this.beforeUpdate();
-        let updatedData;
-        return this.updateEmitter(options)
+                    throw new SugModelException(Exceptions.INVALID.message, Exceptions.INVALID.code, valid);
+            })
+            .then(() => this.beforeUpdate())
+            .then(() => this.updateEmitter(options))
             .then((_updatedData) => {
                 updatedData = _updatedData;
                 return this.afterUpdate();
