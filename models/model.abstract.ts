@@ -1,4 +1,4 @@
-import {CONNECTION_STATUS, SugModelException, Exceptions} from "../index";
+import {CONNECTION_STATUS, SugoiModelException, Exceptions} from "../index";
 
 
 export abstract class ModelAbstract {
@@ -33,7 +33,7 @@ export abstract class ModelAbstract {
     }
 
     protected static findEmitter(query: any, options?: any): Promise<any> {
-        throw new SugModelException(Exceptions.NOT_IMPLEMENTED.message, Exceptions.NOT_IMPLEMENTED.code, "Find Emitter " + this.constructor.name);
+        throw new SugoiModelException(Exceptions.NOT_IMPLEMENTED.message, Exceptions.NOT_IMPLEMENTED.code, "Find Emitter " + this.constructor.name);
     };
 
     public async save(options: any | string = {}): Promise<any> {
@@ -44,7 +44,7 @@ export abstract class ModelAbstract {
             })
             .then((valid) => {
                 if (valid !== true)
-                    throw new SugModelException(Exceptions.INVALID.message, Exceptions.INVALID.code, valid);
+                    throw new SugoiModelException(Exceptions.INVALID.message, Exceptions.INVALID.code, valid);
             })
             .then(() => this.beforeSave())
             .then(() => this.saveEmitter(options))
@@ -67,7 +67,7 @@ export abstract class ModelAbstract {
 
     public validate(): Promise<string | boolean> {
         return 'sugValidate' in (this as any)
-            ? (<any>this).sugValidate().then(valid => (valid === null || valid === undefined) ? true : !!valid)
+            ? (<any>this).sugValidate().then(valid => (valid === undefined) ? true : !!valid)
             : Promise.resolve(true);
     };
 
@@ -91,7 +91,7 @@ export abstract class ModelAbstract {
             })
             .then((valid) => {
                 if (valid !== true)
-                    throw new SugModelException(Exceptions.INVALID.message, Exceptions.INVALID.code, valid);
+                    throw new SugoiModelException(Exceptions.INVALID.message, Exceptions.INVALID.code, valid);
             })
             .then(() => this.beforeUpdate())
             .then(() => this.updateEmitter(options))

@@ -6,7 +6,7 @@ export {GenericException} from "./exceptions/generic.exception";
 
 export {ContainerService} from "./services/container.service";
 
-export {SugModelException} from "./exceptions/model.exception";
+export {SugoiModelException} from "./exceptions/model.exception";
 
 export {ContainerRepo} from "./classes/container-repo.class";
 
