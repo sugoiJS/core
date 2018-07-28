@@ -57,7 +57,7 @@ export abstract class ModelAbstract {
             })
     }
 
-    protected abstract saveEmitter(options): Promise<any>;
+    protected abstract saveEmitter(options?): Promise<any>;
 
     protected beforeValidate(): Promise<void> {
         return 'sugBeforeValidate' in (this as any)
@@ -104,7 +104,7 @@ export abstract class ModelAbstract {
             });
     }
 
-    protected abstract updateEmitter(options): Promise<any>;
+    protected abstract updateEmitter(options?): Promise<any>;
 
     public beforeUpdate(): Promise<void> {
         return 'sugBeforeUpdate' in (this as any)
@@ -118,7 +118,7 @@ export abstract class ModelAbstract {
             : Promise.resolve();
     };
 
-    protected abstract removeEmitter(query: any): Promise<any>;
+    protected abstract removeEmitter(query?: any): Promise<any>;
 
     public remove(query: any): Promise<any> {
         return this.removeEmitter(query);
