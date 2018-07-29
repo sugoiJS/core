@@ -126,8 +126,38 @@ Sugoi ORM use known lifecycle hooks which can implemented by interfaces:
 
 #### Container
 
-#### Exceptions
+Sugoi re-export [Inversify container class](https://github.com/inversify/InversifyJS/blob/master/wiki/container_api.md)
+for support singleton injectable services.
 
+By using Containers you can achieve solutions for singleton service for request\application liftime.
+
+
+#### Exceptions
+Sugoi provides base abstract exception(error) class which can be extend and use for exception check
+
+    SugoiError:{
+        code:number,
+        message:string,
+        data:Array<any>
+    }
+
+Feel free to extend this class for identify you error by:
+
+    switch(err.constructor.name){
+        case "MySugoiError":
+            //handled error
+            break;
+        default:
+            throw err;
+    }
+
+Or by:
+
+    if( err instanceof MySugoiError){
+        //handled error
+    }else{
+        throw err;
+    }
 
 ## Documentation
 
