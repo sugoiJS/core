@@ -18,12 +18,12 @@ As all of the "Sugoi" modules, this module is stand alone and can act without ot
 
 Sugoi core module contain ready to extend ORM Models of two types:
 
-##### 1. Connectable Model
+### 1. Connectable Model
 
 Models of this type have direct connection to the storage unit,
-most common usage for TCP connection
+most common usage is for TCP connection.
 
-Example by @sugoi/mongodb package implementation:
+Example by the @sugoi/mongodb package implementation:
 
     import {Connection,ConnectableModel} from "@sugoi/core";
 
@@ -46,7 +46,7 @@ Example by @sugoi/mongodb package implementation:
             }
     }
 
-##### 2. RESTFUL Model
+### 2. RESTFUL Model
 
 Models of this type does not have direct connection to the storage unit,
 communication done by single request which get closed as soon it completed.
@@ -64,11 +64,11 @@ Example:
     }
 
 
-#### CRUD Implementation
+### CRUD Implementation
 
 For support CRUD you able to implement your logic under each of the CRUD emitters:
 
-##### 1. SaveEmitter
+#### 1. SaveEmitter
 
     public saveEmitter(options:any = {}): Promise<any> {
             return rp({
@@ -79,7 +79,7 @@ For support CRUD you able to implement your logic under each of the CRUD emitter
             })
     }
 
-##### 2. FindEmitter
+#### 2. FindEmitter
 
     protected static findEmitter(query: any, options = {}): Promise<any> {
             return rp({
@@ -90,7 +90,7 @@ For support CRUD you able to implement your logic under each of the CRUD emitter
             })
     }
 
-##### 3. UpdateEmitter
+#### 3. UpdateEmitter
 
     public updateEmitter(options:any = {}): Promise<any> {
             return rp({
@@ -101,7 +101,7 @@ For support CRUD you able to implement your logic under each of the CRUD emitter
             })
     }
 
-##### 4. RemoveEmitter
+#### 4. RemoveEmitter
 
     protected removeEmitter(query = {}): Promise<any> {
             return rp({
@@ -115,7 +115,7 @@ For support CRUD you able to implement your logic under each of the CRUD emitter
 
 #### Lifecycle Hooks
 
-Sugoi ORM use known lifecycle hooks which can implemented by interfaces:
+Sugoi ORM use predefined lifecycle hooks which can implemented by interfaces:
 
 1. IBeforeValidate
 2. IValidate
@@ -125,7 +125,7 @@ Sugoi ORM use known lifecycle hooks which can implemented by interfaces:
 
 ![Sugoi logo](https://www.sugoijs.com/assets/lifecycle.png)
 
-#### Container
+## Container
 
 Sugoi re-export [Inversify container class](https://github.com/inversify/InversifyJS/blob/master/wiki/container_api.md)
 for support singleton injectable services.
@@ -133,16 +133,17 @@ for support singleton injectable services.
 By using Containers you can achieve solutions for singleton service for request\application liftime.
 
 
-#### Exceptions
-Sugoi provides base abstract exception(error) class which can be extend and use for exception check
+## Exceptions
+
+Sugoi provides base abstract exception(error) class which can be extend and use for exception handling
 
     SugoiError:{
-        code:number,
-        message:string,
-        data:Array<any>
+        code:number;
+        message:string;
+        data:Array<any>;
     }
 
-Feel free to extend this class for identify you error by:
+Feel free to extend this class for identify your own error by:
 
     switch(err.constructor.name){
         case "MySugoiError":
