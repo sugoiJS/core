@@ -21,7 +21,7 @@ Sugoi core module contain ready to extend ORM Models of two types:
 ##### 1. Connectable Model
 
 Models of this type have direct connection to the storage unit,
-most common usage for DBs connection
+most common usage for TCP connection
 
 Example by @sugoi/mongodb package implementation:
 
@@ -49,7 +49,8 @@ Example by @sugoi/mongodb package implementation:
 ##### 2. RESTFUL Model
 
 Models of this type does not have direct connection to the storage unit,
-communication done by single request which get close as soon it's completed,
+communication done by single request which get closed as soon it completed.
+
 Common usage is restful requests.
 
 Example:
@@ -57,7 +58,7 @@ Example:
     export class MicroServiceModel extends ModelAbstract{
 
         constructor(){
-            super();;
+            super();
         }
 
     }
