@@ -14,6 +14,8 @@ As all of the "Sugoi" modules, this module is stand alone and can act without ot
 
 > npm install --save @sugoi/core
 
+On your main application file import ReflectMetaData
+
 ## ORM
 
 Sugoi core module contain ready to extend ORM Models of two types:

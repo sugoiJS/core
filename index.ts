@@ -18,9 +18,9 @@ export {ConnectableModel} from "./models/connectable-model.abstract";
 
 export {CONNECTION_STATUS} from "./constants/connection-status.constant";
 
-import "rxjs";
-
 import 'reflect-metadata';
+
+export * from 'reflect-metadata';
 
 export * from './interfaces'
 export * from "./inversify/index";
