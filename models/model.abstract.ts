@@ -1,4 +1,4 @@
-import {CONNECTION_STATUS, SugoiModelException, Exceptions} from "../index";
+import {CONNECTION_STATUS, SugoiModelException, EXCEPTIONS} from "../index";
 
 
 export abstract class ModelAbstract {
@@ -33,7 +33,7 @@ export abstract class ModelAbstract {
     }
 
     protected static findEmitter(query: any, options?: any): Promise<any> {
-        throw new SugoiModelException(Exceptions.NOT_IMPLEMENTED.message, Exceptions.NOT_IMPLEMENTED.code, "Find Emitter " + this.constructor.name);
+        throw new SugoiModelException(EXCEPTIONS.NOT_IMPLEMENTED.message, EXCEPTIONS.NOT_IMPLEMENTED.code, "Find Emitter " + this.constructor.name);
     };
 
     public async save(options: any | string = {}): Promise<any> {
@@ -44,7 +44,7 @@ export abstract class ModelAbstract {
             })
             .then((valid) => {
                 if (valid !== true)
-                    throw new SugoiModelException(Exceptions.INVALID.message, Exceptions.INVALID.code, valid);
+                    throw new SugoiModelException(EXCEPTIONS.INVALID.message, EXCEPTIONS.INVALID.code, valid);
             })
             .then(() => this.beforeSave())
             .then(() => this.saveEmitter(options))
@@ -76,7 +76,6 @@ export abstract class ModelAbstract {
             ? (<any>this).sugBeforeSave()|| Promise.resolve()
             : Promise.resolve();
     };
-
     protected afterSave(): Promise<void> {
         return 'sugAfterSave' in (this as any)
             ? (<any>this).sugAfterSave()|| Promise.resolve()
@@ -91,7 +90,7 @@ export abstract class ModelAbstract {
             })
             .then((valid) => {
                 if (valid !== true)
-                    throw new SugoiModelException(Exceptions.INVALID.message, Exceptions.INVALID.code, valid);
+                    throw new SugoiModelException(EXCEPTIONS.INVALID.message, EXCEPTIONS.INVALID.code, valid);
             })
             .then(() => this.beforeUpdate())
             .then(() => this.updateEmitter(options))

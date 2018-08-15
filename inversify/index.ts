@@ -3,5 +3,6 @@ export {Container,
         decorate,
         optional,
         inject,
+        interfaces,
         LazyServiceIdentifer} from "inversify";
 

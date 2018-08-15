@@ -4,7 +4,7 @@ import {ContainerRepo} from "../index";
 export class ContainerService {
     private static container: Container = new Container({ defaultScope: "Singleton" ,autoBindInjectable: true });
 
-    public static registerContainer(...repos: Array<ContainerRepo>): Container {
+    public static register(...repos: Array<ContainerRepo>): Container {
         repos.forEach(repo => {
             ContainerService.container.bind(repo.symbol).to(repo.dep);
         });
@@ -12,8 +12,12 @@ export class ContainerService {
         return ContainerService.container;
     }
 
-    public static getRepo(Class:interfaces.ServiceIdentifier<any>) {
-        return ContainerService.container.get(Class);
+    public static inject<T = any>(Class:interfaces.ServiceIdentifier<T>):T {
+        return ContainerService.container.get(Class) as T;
 
+    }
+
+    public static unregister(identifier:interfaces.ServiceIdentifier<any>){
+        this.container.unbind(identifier);
     }
 }

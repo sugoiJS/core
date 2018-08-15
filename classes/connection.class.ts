@@ -1,7 +1,7 @@
 import {IConnectionConfig} from "../interfaces/connection-config.interface";
 import {injectable} from "inversify";
 import {CONNECTION_STATUS} from "../constants/connection-status.constant";
-import {Exceptions} from "../constants/exceptions.constant";
+import {EXCEPTIONS} from "../constants/exceptions.constant";
 import {GenericException} from "../exceptions/generic.exception";
 
 
@@ -59,7 +59,7 @@ export class Connection implements IConnectionConfig {
     }
 
     public getConnectionString(): string {
-        throw new GenericException(Exceptions.NOT_IMPLEMENTED.message, Exceptions.NOT_IMPLEMENTED.code, ["getConnectionString", "please override the function by your connection implementation"]);
+        throw new GenericException(EXCEPTIONS.NOT_IMPLEMENTED.message, EXCEPTIONS.NOT_IMPLEMENTED.code, ["getConnectionString", "please override the function by your connection implementation"]);
     }
 
     public disconnect(): Promise<any> {

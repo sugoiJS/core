@@ -1,6 +1,6 @@
 import {ModelAbstract} from "./model.abstract";
 import {Connection} from "../classes/connection.class";
-import {Exceptions} from "../constants/exceptions.constant";
+import {EXCEPTIONS} from "../constants/exceptions.constant";
 import {CONNECTION_STATUS} from "../constants/connection-status.constant";
 import {GenericException} from "../exceptions/generic.exception";
 import {IConnectionConfig} from "../interfaces/connection-config.interface";
@@ -33,7 +33,7 @@ export abstract class ConnectableModel extends ModelAbstract {
     public static connect(connectionName: string = this.connectionName): Promise<any> {
         const connection = this.connections.get(ConnectableModel.connectionName);
         if (!connection) {
-            throw new GenericException(Exceptions.CONFIGURATION_MISSING.message, Exceptions.CONFIGURATION_MISSING.code);
+            throw new GenericException(EXCEPTIONS.CONFIGURATION_MISSING.message, EXCEPTIONS.CONFIGURATION_MISSING.code);
         }
 
         if (connection.isConnected()) {
@@ -60,7 +60,7 @@ export abstract class ConnectableModel extends ModelAbstract {
      * @returns {Promise<any>} - connection item
      */
     public static connectEmitter(connection: Connection): Promise<any> {
-        throw new GenericException(Exceptions.NOT_IMPLEMENTED.message, Exceptions.NOT_IMPLEMENTED.code, "connectEmitter");
+        throw new GenericException(EXCEPTIONS.NOT_IMPLEMENTED.message, EXCEPTIONS.NOT_IMPLEMENTED.code, "connectEmitter");
     }
 
     public static disconnect(connectionName: string) {
