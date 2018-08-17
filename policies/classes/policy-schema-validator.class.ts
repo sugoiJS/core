@@ -1,49 +1,65 @@
-import {IPolicySchemaValidator} from "../interfaces/policy-schema-validator.interface";
+import {IPolicySchemaValidator, IValidationResult} from "../interfaces/policy-schema-validator.interface";
 import {TComparableValue} from "../interfaces/compareable-value.interface";
 
 export class PolicySchemaValidator<T=any> implements IPolicySchemaValidator {
     constructor(public validateValue: T,
-                public schema: {[prop:string]:TComparableValue<T>}) {
+                public schema: { [prop: string]: TComparableValue<T> }) {
     }
 
-    public validate(): boolean {
-        return this.check(this.validateValue, this.schema);
+    public validate(): IValidationResult {
+        let validationResult = {
+            valid: true,
+            invalidValue: null,
+            expectedValue: null
+        };
+        this.check(this.validateValue, this.schema, validationResult);
+        return validationResult;
     }
 
-    private check(validateItem: any, schemaItem: any) {
-        let valid = true;
-        for (let key in validateItem) {
-            if (!(validateItem[key] && schemaItem[key] && schemaItem[key].mandatory)) {
-                valid = false;
+
+    private check(validateItem: any, schemaItem: { [prop: string]: TComparableValue }, validationResult: IValidationResult = {
+        valid: true,
+        invalidValue: null,
+        expectedValue: null
+    }): IValidationResult {
+
+        for (let key in schemaItem) {
+            if (validateItem[key] == undefined && schemaItem[key] && schemaItem[key].mandatory) {
+                validationResult.valid = false;
                 break;
             }
-            else if ((Array.isArray(schemaItem[key])) || (schemaItem[key] && typeof schemaItem[key] === "object")) {
-                valid = this.check(validateItem[key],schemaItem[key])
+            else if (Array.isArray(validateItem[key])) {
+                validateItem[key].every(item => this.check(item, schemaItem[key].valueType,validationResult).valid)
             }
-            else{
-                this.checkValue(this.validateValue[key],schemaItem[key]);
+            else if (validateItem[key] && typeof validateItem[key] === "object") {
+                this.check(validateItem[key], schemaItem[key].valueType,validationResult);
             }
-            if(!valid){break}
+            else {
+                validationResult.valid = this.checkValue(validateItem[key], schemaItem[key]);
+            }
+            if (!validationResult.valid) {
+                validationResult.invalidValue = validateItem[key];
+                validationResult.expectedValue = schemaItem[key];
+                break;
+            }
         }
-        return valid;
+        return validationResult;
     }
 
-    private checkValue(value:any, schema:TComparableValue){
-        let val,valid = true;
-        switch(schema.valueType as string){
+    private checkValue(value: any, schema: TComparableValue) {
+        if (!schema) return false;
+        let valid = true;
+        switch (schema.valueType as string) {
             case "number":
-                val = parseInt(value);
-                if(val.toString()=== NaN.toString()){
-                    valid = false;
-                }
+                valid = !isNaN(value) && typeof value !== "boolean";
                 break;
             case "string":
-                if(typeof val !== "string"){
-                    valid = false;
-                }
+                valid = typeof value === "string";
                 break;
             case "boolean":
-                if(typeof val !== "string"){
+                try {
+                    valid = typeof JSON.parse(value) === "boolean";
+                } catch (e) {
                     valid = false;
                 }
                 break;

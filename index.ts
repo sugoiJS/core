@@ -1,3 +1,8 @@
+import 'reflect-metadata';
+
+import {Policy,UsePolicy,ValidateSchemaPolicy} from "./policies/decorators/policy.decorator";
+
+import {ValidateSchema, ValidateSchemaUtil} from "./policies/utils/validate-schema.util";
 
 export {EXCEPTIONS} from "./constants/exceptions.constant";
 
@@ -23,8 +28,9 @@ export {Policy,UsePolicy,ValidateSchemaPolicy} from "./policies/decorators/polic
 
 export {TPolicy} from "./policies/classes/policy-item.class";
 
+export {PolicySchemaValidator} from "./policies/classes/policy-schema-validator.class";
 
-import 'reflect-metadata';
+export {ValidateSchema, ValidateSchemaUtil} from "./policies/utils/validate-schema.util";
 
 export * from 'reflect-metadata';
 

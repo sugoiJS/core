@@ -27,13 +27,15 @@ const Policy = function (policyId?: string) {
  * Apply policy on decorated function.
  * The policy got selected by the policyId
  *
- * @param {string} policyId
+ * @param {string|Function} policy
  * @param {number} failedResponseCode
  * @param policyMeta
  * @returns {(contextClass: any, propertyKey: string, descriptor: PropertyDescriptor) => any}
  * @constructor
  */
-const UsePolicy = function (policyId: string, failedResponseCode: number = 400, ...policyMeta: any[]) {
+const UsePolicy = function (policy: Function|string, failedResponseCode: number = 400, ...policyMeta: any[]) {
+    const policyId = typeof policy === "function" ? policy.constructor.name : policy;
+    //todo: add function registration
     return function (contextClass: any,
                      propertyKey: string,
                      descriptor: PropertyDescriptor) {
@@ -43,12 +45,13 @@ const UsePolicy = function (policyId: string, failedResponseCode: number = 400, 
         const next = descriptor.value;
 
         const contextPolicies = Reflect.getMetadata(POLICY_META_KEY, contextClass, propertyKey) || [];
+        const isOverridden = contextPolicies.length > 0;
         contextPolicies.push(policyId);
         policies.push.apply(policies, Array.from(new Set(contextPolicies)));
         Reflect.defineMetadata(POLICY_META_KEY, policies, contextClass, propertyKey);
-
-        descriptor.value = PolicyItem.setPolicyDescriptor(contextClass, propertyKey, next, failedResponseCode, ...policyMeta);
-
+        if(!isOverridden) {
+            descriptor.value = PolicyItem.setPolicyDescriptor(contextClass, propertyKey, next, failedResponseCode, ...policyMeta);
+        }
     }
 };
 
@@ -61,7 +64,7 @@ const UsePolicy = function (policyId: string, failedResponseCode: number = 400, 
  * @constructor
  */
 const ValidateSchemaPolicy = function (failedResponseCode: number = 400, ...policyMeta: TValidateSchemaMeta[]) {
-    return UsePolicy("ValidateSchema",failedResponseCode,...policyMeta);
+    return UsePolicy("ValidateSchemaUtil.ValidateSchema",failedResponseCode,...policyMeta);
 };
 
 

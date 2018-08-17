@@ -3,5 +3,7 @@ export type TComparableValue<T=any> = {
     valueType: T | string,
     regex?: string,
     min?: number,
-    max?: number
+    max?: number,
+    exclusiveMin?:number,
+    exclusiveMax?:number
 };

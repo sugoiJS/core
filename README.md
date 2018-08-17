@@ -4,11 +4,11 @@
 
 
 ## Introduction
-Sugoi is a minimal modular framework,
+SugoiJS™ is a minimal modular framework,
 
 which gives you the ability to use only what you need, fast.
 
-As all of the "Sugoi" modules, this module is stand alone and can act without other Sugoi modules.
+this is a standalone module that can be functional separately (as all of the SugoiJS™ modules).
 
 ## Installation
 
@@ -18,14 +18,15 @@ On your main application file import ReflectMetaData
 
 ## ORM
 
-Sugoi core module contain ready to extend ORM Models of two types:
+Sugoi core module contains ready to extend ORM Models of two types:
 
 ### 1. Connectable Model
 
-Models of this type have direct connection to the storage unit,
-most common usage is for TCP connection.
+Models of this type have direct connection to the storage unit.
 
-Example by the @sugoi/mongodb package implementation:
+Its most common usage is for TCP connection.
+
+Example (by the @sugoi/mongodb package implementation):
 
     import {Connection,ConnectableModel} from "@sugoi/core";
 
@@ -50,8 +51,9 @@ Example by the @sugoi/mongodb package implementation:
 
 ### 2. RESTFUL Model
 
-Models of this type does not have direct connection to the storage unit,
-communication done by single request which get closed as soon it completed.
+Models of this type don't have direct connection to the storage unit.
+
+The communication is done by a single request. The connection closes as soon as the request is completed.
 
 Common usage is restful requests.
 
@@ -68,7 +70,7 @@ Example:
 
 ### CRUD Implementation
 
-For support CRUD you able to implement your logic under each of the CRUD emitters:
+For CRUD support, you can implement your CRUD logic under each of the CRUD emitters:
 
 #### 1. SaveEmitter
 
@@ -81,6 +83,8 @@ For support CRUD you able to implement your logic under each of the CRUD emitter
             })
     }
 
+
+
 #### 2. FindEmitter
 
     protected static findEmitter(query: any, options = {}): Promise<any> {
@@ -92,6 +96,9 @@ For support CRUD you able to implement your logic under each of the CRUD emitter
             })
     }
 
+
+
+
 #### 3. UpdateEmitter
 
     public updateEmitter(options:any = {}): Promise<any> {
@@ -102,6 +109,8 @@ For support CRUD you able to implement your logic under each of the CRUD emitter
                 json: true
             })
     }
+
+
 
 #### 4. RemoveEmitter
 
@@ -117,7 +126,7 @@ For support CRUD you able to implement your logic under each of the CRUD emitter
 
 #### Lifecycle Hooks
 
-Sugoi ORM use predefined lifecycle hooks which can implemented by interfaces:
+SugoiJS ORM uses predefined lifecycle hooks that can be implemented by interfaces:
 
 1. IBeforeValidate
 2. IValidate
@@ -125,19 +134,19 @@ Sugoi ORM use predefined lifecycle hooks which can implemented by interfaces:
 4. IAfterSave \ IAfterUpdate
 
 
-![Sugoi logo](https://www.sugoijs.com/assets/lifecycle.png)
+![SugoiJS Lifecycle hooks](https://www.sugoijs.com/assets/lifecycle.png)
 
 ## Container
 
-Sugoi re-export [Inversify container class](https://github.com/inversify/InversifyJS/blob/master/wiki/container_api.md)
-for support singleton injectable services.
+SugoiJS re-exports [Inversify container class](https://github.com/inversify/InversifyJS/blob/master/wiki/container_api.md)
+for support singleton injectable (autowire) services.
 
-By using Containers you can achieve solutions for singleton service for request\application liftime.
+By using Containers you can achieve singleton services solutions for request\application liftime.
 
 
 ## Exceptions
 
-Sugoi provides base abstract exception(error) class which can be extend and use for exception handling
+SugoiJS provides base abstract exception(error) class which can be extended and used for exceptions handling
 
     SugoiError:{
         code:number;
@@ -145,7 +154,7 @@ Sugoi provides base abstract exception(error) class which can be extend and use 
         data:Array<any>;
     }
 
-Feel free to extend this class for identify your own error by:
+Feel free to extend this class to identify your own error by:
 
     switch(err.constructor.name){
         case "MySugoiError":

@@ -20,12 +20,10 @@ export class PolicyItem {
 
     public static setPolicyDescriptor(contextClass: any,
                                       propertyKey: string,
-                                      next: () => void,
+                                      next: (...args) => void,
                                       failedResponseCode: number,
                                       ...policyMeta: any[]) {
         return async function (...functionArgs: any[]) {
-            const that = this;
-
             const policies = Reflect.getMetadata(POLICY_META_KEY, contextClass, propertyKey) || [];
             const promises = policies.map(policyName => {
                 const policy = PolicyItem.get(policyName);
@@ -41,7 +39,7 @@ export class PolicyItem {
             });
             return await Promise.all(promises)
                 .then(() => {
-                    return next();
+                    return next(...functionArgs);
                 })
                 .catch((err) => {
                     return err;
