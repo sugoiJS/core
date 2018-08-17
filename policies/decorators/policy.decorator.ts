@@ -1,7 +1,9 @@
-import {PolicyItem} from "../classes/policy-item.class";
+import {PolicyItem, TPolicy} from "../classes/policy-item.class";
 import {EXCEPTIONS} from "../../constants/exceptions.constant";
 import {SugoiPolicyError} from "../exceptions/policy-error.exception";
 import {TValidateSchemaData, TValidateSchemaMeta} from "../interfaces/validate-schema-data.interface";
+import {ValidateSchemaUtil} from "../utils/validate-schema.util";
+import {StringUtils} from "../utils/string.util";
 
 export const POLICY_META_KEY = "POLICY";
 
@@ -33,8 +35,16 @@ const Policy = function (policyId?: string) {
  * @returns {(contextClass: any, propertyKey: string, descriptor: PropertyDescriptor) => any}
  * @constructor
  */
-const UsePolicy = function (policy: Function|string, failedResponseCode: number = 400, ...policyMeta: any[]) {
-    const policyId = typeof policy === "function" ? policy.constructor.name : policy;
+const UsePolicy = function (policy: TPolicy|string, failedResponseCode: number = 400, ...policyMeta: any[]) {
+    let policyId;
+    if(typeof policy === "function"){
+        policyId = policy.name || StringUtils.generateGuid();
+        if(!PolicyItem.has(policyId))
+            PolicyItem.add(new PolicyItem(policy,policyId));
+    }else {
+        policyId = policy;
+    }
+
     //todo: add function registration
     return function (contextClass: any,
                      propertyKey: string,
@@ -64,7 +74,7 @@ const UsePolicy = function (policy: Function|string, failedResponseCode: number 
  * @constructor
  */
 const ValidateSchemaPolicy = function (failedResponseCode: number = 400, ...policyMeta: TValidateSchemaMeta[]) {
-    return UsePolicy("ValidateSchemaUtil.ValidateSchema",failedResponseCode,...policyMeta);
+    return UsePolicy(ValidateSchemaUtil.ValidateSchema,failedResponseCode,...policyMeta);
 };
 
 

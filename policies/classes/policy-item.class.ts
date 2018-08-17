@@ -14,6 +14,10 @@ export class PolicyItem {
         return PolicyItem.policies.get(policyName);
     }
 
+    static has(policyName: string): boolean {
+        return PolicyItem.policies.has(policyName);
+    }
+
     static remove(policyName: string) {
         PolicyItem.policies.delete(policyName);
     }
@@ -47,8 +51,8 @@ export class PolicyItem {
         };
     }
 
-    constructor(guardianValidator: TPolicy, private name: string = guardianValidator.constructor.name) {
-        this.setPolicyValidator(guardianValidator);
+    constructor(policyValidator: TPolicy, private name: string = policyValidator.constructor.name) {
+        this.setPolicyValidator(policyValidator);
     }
 
     setPolicyValidator(guardianValidator: TPolicy) {
@@ -64,4 +68,4 @@ export class PolicyItem {
 }
 
 type TPolicyResults = true | any;
-export type TPolicy = (policyData:{functionArgs?: any[], policyMeta?: any[]})=>(Promise < TPolicyResults > | TPolicyResults);
+export type TPolicy = (policyData?:{functionArgs?: any[], policyMeta?: any[]})=>(Promise < TPolicyResults > | TPolicyResults);

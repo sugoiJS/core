@@ -29,10 +29,13 @@ export class PolicySchemaValidator<T=any> implements IPolicySchemaValidator {
                 break;
             }
             else if (Array.isArray(validateItem[key])) {
-                validateItem[key].every(item => this.check(item, schemaItem[key].valueType,validationResult).valid)
+                if (!schemaItem[key].arrayAllowed) {
+                    validationResult.valid = false;
+                } else
+                    validateItem[key].every(item => this.check(item, schemaItem[key].valueType, validationResult).valid)
             }
             else if (validateItem[key] && typeof validateItem[key] === "object") {
-                this.check(validateItem[key], schemaItem[key].valueType,validationResult);
+                this.check(validateItem[key], schemaItem[key].valueType, validationResult);
             }
             else {
                 validationResult.valid = this.checkValue(validateItem[key], schemaItem[key]);
@@ -51,18 +54,49 @@ export class PolicySchemaValidator<T=any> implements IPolicySchemaValidator {
         let valid = true;
         switch (schema.valueType as string) {
             case "number":
-                valid = !isNaN(value) && typeof value !== "boolean";
+                valid = PolicySchemaValidator.validateNumber(value,schema);
                 break;
             case "string":
-                valid = typeof value === "string";
+                valid = PolicySchemaValidator.validateString(value,schema);
                 break;
             case "boolean":
-                try {
-                    valid = typeof JSON.parse(value) === "boolean";
-                } catch (e) {
-                    valid = false;
-                }
+                valid = PolicySchemaValidator.validateBoolean(value,schema);
                 break;
+        }
+        return valid;
+    }
+
+    private static validateNumber(value,schema){
+        let valid = !isNaN(value) && typeof value !== "boolean";
+        value = parseInt(value);
+        if (valid && schema.exclusiveMax != undefined) {
+            valid = valid && value < schema.exclusiveMax;
+        }
+        if (valid && schema.max != undefined) {
+            valid = valid && value <= schema.max;
+        }
+        if (valid && schema.exclusiveMin != undefined) {
+            valid = valid && value > schema.exclusiveMin;
+        }
+        if (valid && schema.min != undefined) {
+            valid = valid && value > schema.min;
+        }
+        return valid;
+    }
+    private static validateString(value,schema){
+        let valid  = typeof value === "string";
+        if (!valid)
+            return valid;
+        const regex = new RegExp(schema.regex,schema.regexFlag || "");
+        valid = valid && regex.test(value);
+        return valid;
+    }
+    private static validateBoolean(value,schema){
+        let valid;
+        try {
+            valid = typeof JSON.parse(value) === "boolean";
+        } catch (e) {
+            valid = false;
         }
         return valid;
     }

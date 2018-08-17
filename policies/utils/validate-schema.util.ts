@@ -1,10 +1,8 @@
 import {PolicySchemaValidator} from "../classes/policy-schema-validator.class";
 import {TValidateSchemaData} from "../interfaces/validate-schema-data.interface";
-import {Policy} from "../decorators/policy.decorator";
 
 export class ValidateSchemaUtil {
 
-    @Policy("ValidateSchemaUtil.ValidateSchema")
     static ValidateSchema(policyData: TValidateSchemaData): boolean {
         let validationResult;
         for (let meta of policyData.policyMeta) {
