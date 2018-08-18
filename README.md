@@ -16,6 +16,11 @@ this is a standalone module that can be functional separately (as all of the Sug
 
 On your main application file import ReflectMetaData
 
+
+## Policy
+
+
+
 ## ORM
 
 Sugoi core module contains ready to extend ORM Models of two types:

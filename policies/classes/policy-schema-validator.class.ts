@@ -1,9 +1,11 @@
 import {IPolicySchemaValidator, IValidationResult} from "../interfaces/policy-schema-validator.interface";
-import {TComparableValue} from "../interfaces/compareable-value.interface";
+import {TComparableSchema} from "../interfaces/validate-schema-data.interface";
+import {IComparableValue} from "../interfaces/comparable-value.interface";
+import {ComparableTypes} from "../constants/comparable-types.enum";
 
 export class PolicySchemaValidator<T=any> implements IPolicySchemaValidator {
     constructor(public validateValue: T,
-                public schema: { [prop: string]: TComparableValue<T> }) {
+                public schema: TComparableSchema) {
     }
 
     public validate(): IValidationResult {
@@ -17,14 +19,15 @@ export class PolicySchemaValidator<T=any> implements IPolicySchemaValidator {
     }
 
 
-    private check(validateItem: any, schemaItem: { [prop: string]: TComparableValue }, validationResult: IValidationResult = {
+    private check(validateItem: any, schemaItem: TComparableSchema, validationResult: IValidationResult = {
         valid: true,
         invalidValue: null,
         expectedValue: null
     }): IValidationResult {
 
-        for (let key in schemaItem) {
-            if (validateItem[key] == undefined && schemaItem[key] && schemaItem[key].mandatory) {
+        const schemaKeys = Object.keys(schemaItem);
+        for (let key of schemaKeys) {
+            if (validateItem[key] == undefined && schemaItem[key] && schemaItem[key].mandatory !== false) {
                 validationResult.valid = false;
                 break;
             }
@@ -49,24 +52,24 @@ export class PolicySchemaValidator<T=any> implements IPolicySchemaValidator {
         return validationResult;
     }
 
-    private checkValue(value: any, schema: TComparableValue) {
+    private checkValue(value: any, schema: IComparableValue) {
         if (!schema) return false;
         let valid = true;
-        switch (schema.valueType as string) {
-            case "number":
-                valid = PolicySchemaValidator.validateNumber(value,schema);
+        switch ((<string>schema.valueType).toLowerCase()) {
+            case ComparableTypes.NUMBER:
+                valid = PolicySchemaValidator.validateNumber(value, schema);
                 break;
-            case "string":
-                valid = PolicySchemaValidator.validateString(value,schema);
+            case ComparableTypes.STRING:
+                valid = PolicySchemaValidator.validateString(value, schema);
                 break;
-            case "boolean":
-                valid = PolicySchemaValidator.validateBoolean(value,schema);
+            case ComparableTypes.BOOLEAN:
+                valid = PolicySchemaValidator.validateBoolean(value, schema);
                 break;
         }
         return valid;
     }
 
-    private static validateNumber(value,schema){
+    private static validateNumber(value, schema) {
         let valid = !isNaN(value) && typeof value !== "boolean";
         value = parseInt(value);
         if (valid && schema.exclusiveMax != undefined) {
@@ -83,15 +86,17 @@ export class PolicySchemaValidator<T=any> implements IPolicySchemaValidator {
         }
         return valid;
     }
-    private static validateString(value,schema){
-        let valid  = typeof value === "string";
+
+    private static validateString(value, schema) {
+        let valid = typeof value === "string";
         if (!valid)
             return valid;
-        const regex = new RegExp(schema.regex,schema.regexFlag || "");
+        const regex = new RegExp(schema.regex, schema.regexFlag || "");
         valid = valid && regex.test(value);
         return valid;
     }
-    private static validateBoolean(value,schema){
+
+    private static validateBoolean(value, schema) {
         let valid;
         try {
             valid = typeof JSON.parse(value) === "boolean";

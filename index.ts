@@ -1,9 +1,5 @@
 import 'reflect-metadata';
 
-import {Policy,UsePolicy,ValidateSchemaPolicy} from "./policies/decorators/policy.decorator";
-
-import {ValidateSchema, ValidateSchemaUtil} from "./policies/utils/validate-schema.util";
-
 export {EXCEPTIONS} from "./constants/exceptions.constant";
 
 export {SugoiError} from "./exceptions/sugoi-abstract.exception";
@@ -24,13 +20,7 @@ export {ConnectableModel} from "./models/connectable-model.abstract";
 
 export {CONNECTION_STATUS} from "./constants/connection-status.constant";
 
-export {Policy,UsePolicy,ValidateSchemaPolicy} from "./policies/decorators/policy.decorator";
-
-export {TPolicy} from "./policies/classes/policy-item.class";
-
-export {PolicySchemaValidator} from "./policies/classes/policy-schema-validator.class";
-
-export {ValidateSchema, ValidateSchemaUtil} from "./policies/utils/validate-schema.util";
+export * from "./policies"
 
 export * from 'reflect-metadata';
 

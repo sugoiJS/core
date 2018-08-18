@@ -1,4 +1,5 @@
-import {TComparableValue} from "./compareable-value.interface";
+import {Comparable} from "../classes/comparable.class";
 
-export type TValidateSchemaMeta = {argIndex:number,schema:{[prop:string]:TComparableValue},keyInArg?:string};
-export type TValidateSchemaData = {functionArgs?: any[], policyMeta?: TValidateSchemaMeta[]}
+export type TComparableSchema = Comparable | { [prop:string]: Comparable }
+export type TValidateSchemaMeta = { argIndex: number, schema: TComparableSchema, keyInArg?: string };
+export type TValidateSchemaData = { functionArgs?: any[], policyMeta?: TValidateSchemaMeta[] }

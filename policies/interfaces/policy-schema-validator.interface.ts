@@ -1,10 +1,11 @@
-import {TComparableValue} from "./compareable-value.interface";
+
+import {TComparableSchema} from "./validate-schema-data.interface";
 
 export interface IPolicySchemaValidator<T=any> {
     validate(): IValidationResult;
 
     validateValue: T;
-    schema: { [prop: string]: TComparableValue };
+    schema: TComparableSchema;
 }
 
 export interface IValidationResult {
