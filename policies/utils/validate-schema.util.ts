@@ -1,24 +1,34 @@
 import {PolicySchemaValidator} from "../classes/policy-schema-validator.class";
-import {TValidateSchemaData} from "../interfaces/validate-schema-data.interface";
+import {TComparableSchema, TValidateSchemaData} from "../interfaces/validate-schema-data.interface";
+import {IValidationResult} from "../interfaces/policy-schema-validator.interface";
+import {Policy} from "../decorators/policy.decorator";
 
 export class ValidateSchemaUtil {
 
-    static ValidateSchema(policyData: TValidateSchemaData): boolean {
+    @Policy()
+    static ValidateArgs(policyData: TValidateSchemaData): boolean {
         let validationResult;
         for (let meta of policyData.policyMeta) {
-            let value = policyData.functionArgs[meta.argIndex];
+            const index = meta.hasOwnProperty('argIndex') ? meta.argIndex : 0;
+            let value = policyData.functionArgs[index];
             if (meta.keyInArg) {
                 value = value && value[meta.keyInArg]
             }
-            let validator = new PolicySchemaValidator(value, meta.schema);
-            validationResult = validator.validate();
+            validationResult = ValidateSchemaUtil.ValidateSchema(value,meta.schema);
             if (!validationResult.valid) {
                 break;
             }
+
         }
         return validationResult.valid ? true : validationResult;
     }
+    @Policy()
+    static ValidateSchema(value:any,schema: TComparableSchema): IValidationResult {
+        const validator = new PolicySchemaValidator(value, schema);
+        return validator.validate();
+
+    }
 }
 
-const ValidateSchema = ValidateSchemaUtil.ValidateSchema;
-export {ValidateSchema};
+const ValidateArgs = ValidateSchemaUtil.ValidateArgs;
+export {ValidateArgs};

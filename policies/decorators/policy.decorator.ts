@@ -20,7 +20,7 @@ const Policy = function (policyId?: string) {
         if (typeof descriptor.value !== "function") {
             throw new SugoiPolicyError(EXCEPTIONS.INVALID_POLICY.message, EXCEPTIONS.INVALID_POLICY.code, propertyKey);
         }
-        policyId = policyId || `${policyClass.constructor.name}.${propertyKey}`;
+        policyId = policyId || `${policyClass.name}.${propertyKey}`;
         PolicyItem.add(new PolicyItem(descriptor.value.bind(policyClass), policyId));
     }
 };
@@ -45,7 +45,6 @@ const UsePolicy = function (policy: TPolicy|string, failedResponseCode: number =
         policyId = policy;
     }
 
-    //todo: add function registration
     return function (contextClass: any,
                      propertyKey: string,
                      descriptor: PropertyDescriptor) {
@@ -74,7 +73,7 @@ const UsePolicy = function (policy: TPolicy|string, failedResponseCode: number =
  * @constructor
  */
 const ValidateSchemaPolicy = function (failedResponseCode: number = 400, ...policyMeta: TValidateSchemaMeta[]) {
-    return UsePolicy(ValidateSchemaUtil.ValidateSchema,failedResponseCode,...policyMeta);
+    return UsePolicy('ValidateSchemaUtil.ValidateArgs',failedResponseCode,...policyMeta);
 };
 
 
