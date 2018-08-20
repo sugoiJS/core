@@ -53,7 +53,7 @@ This decorator declare the function guarded by policy.
 > policyMeta: TValidateSchemaMeta - Meta data for validation
 
     {
-        schema: {[prop:string]:Comparable|Comparable}, - Comperable schema
+        schema: {[prop:string]:ComparableSchema|ComparableSchema}, - Comperable schema
         argIndex?: number, - Function argument index - default is 0
         keyInArg?: string  - Key in argument
     }
@@ -71,8 +71,8 @@ Usage -
 
     @ValidateSchemaPolicy(400, {
             schema: {
-                "role": Comparable.ofType(
-                    {text: Comparable.ofType(ComparableTypes.STRING).setRegex("([A-Z])+", "i")}
+                "role": ComparableSchema.ofType(
+                    {text: ComparableSchema.ofType(SchemaTypes.STRING).setRegex("([A-Z])+", "i")}
                 )
             },
             argIndex: 0

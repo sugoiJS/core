@@ -1,6 +1,6 @@
-import {ComparableTypes} from "../constants/comparable-types.enum";
+import {SchemaTypes} from "../constants/schema-types.enum";
 
-export type ComparableValueType = ComparableTypes | { [prop: string]: IComparableValue };
+export type ComparableValueType = SchemaTypes | { [prop: string]: IComparableValue };
 export interface IComparableValue {
     valueType:  ComparableValueType;
     mandatory?: boolean;

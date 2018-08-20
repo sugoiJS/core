@@ -1,6 +1,6 @@
 import {ComparableValueType, IComparableValue} from "../interfaces/comparable-value.interface";
 
-export class Comparable implements IComparableValue {
+export class ComparableSchema implements IComparableValue {
     public valueType: ComparableValueType;
     public mandatory: boolean = false;
     public regex: string;
@@ -16,7 +16,7 @@ export class Comparable implements IComparableValue {
     }
 
     public static ofType(valueType: ComparableValueType) {
-        return new Comparable(valueType);
+        return new ComparableSchema(valueType);
     }
 
     public setMandatory(isMandatory: boolean) {

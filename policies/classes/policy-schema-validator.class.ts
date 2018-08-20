@@ -1,7 +1,7 @@
 import {IPolicySchemaValidator, IValidationResult} from "../interfaces/policy-schema-validator.interface";
 import {TComparableSchema} from "../interfaces/validate-schema-data.interface";
 import {IComparableValue} from "../interfaces/comparable-value.interface";
-import {ComparableTypes} from "../constants/comparable-types.enum";
+import {SchemaTypes} from "../constants/schema-types.enum";
 
 export class PolicySchemaValidator<T=any> implements IPolicySchemaValidator {
     constructor(public validateValue: T,
@@ -56,13 +56,13 @@ export class PolicySchemaValidator<T=any> implements IPolicySchemaValidator {
         if (!schema) return false;
         let valid = true;
         switch ((<string>schema.valueType).toLowerCase()) {
-            case ComparableTypes.NUMBER:
+            case SchemaTypes.NUMBER:
                 valid = PolicySchemaValidator.validateNumber(value, schema);
                 break;
-            case ComparableTypes.STRING:
+            case SchemaTypes.STRING:
                 valid = PolicySchemaValidator.validateString(value, schema);
                 break;
-            case ComparableTypes.BOOLEAN:
+            case SchemaTypes.BOOLEAN:
                 valid = PolicySchemaValidator.validateBoolean(value, schema);
                 break;
         }
