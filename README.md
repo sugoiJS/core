@@ -4,11 +4,11 @@
 
 
 ## Introduction
-SugoiJS™ is a minimal modular framework,
+SugoiJS is a minimal modular framework,
 
 which gives you the ability to use only what you need, fast.
 
-this is a standalone module that can be functional separately (as all of the SugoiJS™ modules).
+this is a standalone module that can be functional separately (as all of the SugoiJS modules).
 
 ## Installation
 
@@ -20,7 +20,7 @@ On your main application file import ReflectMetaData
 
 ## Policies (Guards)
 
-SugoiJS™ provides policy which can be use for guarding any function on the server.
+SugoiJS provides policy which can be use for guarding any function on the server.
 
 The Policies use by two simple steps:
 
@@ -113,7 +113,7 @@ When result is boolean `true` means the data is valid, all the other values will
 
 ## Container
 
-SugoiJS™ re-exports [Inversify container class](https://github.com/inversify/InversifyJS/blob/master/wiki/container_api.md)
+SugoiJS re-exports [Inversify container class](https://github.com/inversify/InversifyJS/blob/master/wiki/container_api.md)
 for support singleton injectable (autowire) services.
 
 By using Containers you can achieve singleton services solutions for request\application liftime.
@@ -121,7 +121,7 @@ By using Containers you can achieve singleton services solutions for request\app
 
 ## Exceptions
 
-SugoiJS™ provides base abstract exception(error) class which can be extended and used for exceptions handling
+SugoiJS provides base abstract exception(error) class which can be extended and used for exceptions handling
 
     SugoiError:{
         code:number;
