@@ -83,9 +83,33 @@ Usage -
 
 Policy can be any function of type TPolicy
 
->   TPolicy = (policyData?:{functionArgs?: any[], policyMeta?: any[]})=>(Promise < (true|any) > | (true|any))
+>   TPolicy = (policyData?:{functionArgs: any[], policyMeta: any[]})=>(Promise < (true|any) > | (true|any))
 
-When boolean `true` result means valid
+When result is boolean `true` means the data is valid, all the other values will be shown on the exception
+
+### Policy full example:
+
+    class Validators{
+
+        @Policy() //register this function as policy using the class name and function name, same as use @Policy("Validators.myNumberValidation")
+        static myNumberValidation(policyData:{functionArgs: any[], policyMeta: {argIndexToValidate:number,maxValue:number}[]}): true|any{
+            const myMeta = policyMeta[0];
+            //those are the meta data values which passed to the decorator itself while using @UsePolicy()
+            const argIndexToValidate = myMeta.argIndexToValidate;
+            const maxValue = myMeta.maxValue;
+
+            if(policyData.functionArgs[argIndexToValidate] < maxValue){
+                return true; //Is valid, continue to the function/next policy
+            }else{
+                return policyData.functionArgs[argToValidate]; //so we will be able to identify the issue on the exception
+            }
+        }
+    }
+
+    @UsePolicy("Validators.myNumberValidation",{argIndexToValidate:0,maxValue:5})
+    lowerThan5NumberLogger(myNumber){
+        console.log(`number is lower the 5! ${myNumber}`);
+    }
 
 ## Container
 

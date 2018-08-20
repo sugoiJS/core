@@ -29,15 +29,16 @@ export class PolicyItem {
                                       ...policyMeta: any[]) {
         return async function (...functionArgs: any[]) {
             const policies = Reflect.getMetadata(POLICY_META_KEY, contextClass, propertyKey) || [];
-            const promises = policies.map(policyName => {
-                const policy = PolicyItem.get(policyName);
+            const promises = policies.map(policyId => {
+                const policy = PolicyItem.get(policyId);
                 if (!policy) {
+                    console.info(`${policy} policy not found`);
                     return Promise.resolve();
                 }
                 return policy( {functionArgs: functionArgs, policyMeta: policyMeta})
-                    .then((res) => {
-                        if (res != true) {
-                            throw new SugoiPolicyError(EXCEPTIONS.POLICY_BLOCKED.message, failedResponseCode || EXCEPTIONS.POLICY_BLOCKED.code, [policyName, res])
+                    .then((validationResult) => {
+                        if (validationResult != true) {
+                            throw new SugoiPolicyError(EXCEPTIONS.POLICY_BLOCKED.message, failedResponseCode || EXCEPTIONS.POLICY_BLOCKED.code, {type:"policy",policyId, validationResult})
                         }
                     });
             });
