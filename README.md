@@ -14,9 +14,6 @@ this is a standalone module that can be functional separately (as all of the Sug
 
 > npm install --save @sugoi/core
 
-On your main application file import ReflectMetaData
-
-
 
 ## Policies (Guards)
 
