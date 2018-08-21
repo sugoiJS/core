@@ -11,7 +11,7 @@ export {ComparableSchema} from "./classes/comparable-schema.class";
 
 export {Policy, UsePolicy, ValidateSchemaPolicy} from "./decorators/policy.decorator";
 
-export {TPolicy} from "./classes/policy-item.class";
+export {TPolicy,TPolicyResults} from "./classes/policy-item.class";
 
 export {PolicySchemaValidator} from "./classes/policy-schema-validator.class";
 

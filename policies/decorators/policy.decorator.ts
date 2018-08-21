@@ -5,7 +5,8 @@ import {TValidateSchemaData, TValidateSchemaMeta} from "../interfaces/validate-s
 import {ValidateSchemaUtil} from "../utils/validate-schema.util";
 import {StringUtils} from "../utils/string.util";
 
-export const POLICY_META_KEY = "POLICY";
+export const POLICY_META_KEY = "POLICY_META";
+export const POLICY_KEY = "POLICY";
 
 /**
  * Register function as policy
@@ -35,13 +36,13 @@ const Policy = function (policyId?: string) {
  * @returns {(contextClass: any, propertyKey: string, descriptor: PropertyDescriptor) => any}
  * @constructor
  */
-const UsePolicy = function (policy: TPolicy|string, failedResponseCode: number = 400, ...policyMeta: any[]) {
+const UsePolicy = function (policy: TPolicy | string, failedResponseCode: number = 400, ...policyMeta: any[]) {
     let policyId;
-    if(typeof policy === "function"){
+    if (typeof policy === "function") {
         policyId = policy.name || StringUtils.generateGuid();
-        if(!PolicyItem.has(policyId))
-            PolicyItem.add(new PolicyItem(policy,policyId));
-    }else {
+        if (!PolicyItem.has(policyId))
+            PolicyItem.add(new PolicyItem(policy, policyId));
+    } else {
         policyId = policy;
     }
 
@@ -53,13 +54,15 @@ const UsePolicy = function (policy: TPolicy|string, failedResponseCode: number =
         const policies = [];
         const next = descriptor.value;
 
-        const contextPolicies = Reflect.getMetadata(POLICY_META_KEY, contextClass, propertyKey) || [];
+        const contextPolicies = Reflect.getMetadata(POLICY_KEY, contextClass, propertyKey) || [];
         const isOverridden = contextPolicies.length > 0;
         contextPolicies.push(policyId);
-        policies.push.apply(policies, Array.from(new Set(contextPolicies)));
-        Reflect.defineMetadata(POLICY_META_KEY, policies, contextClass, propertyKey);
-        if(!isOverridden) {
-            descriptor.value = PolicyItem.setPolicyDescriptor(contextClass, propertyKey, next, failedResponseCode, ...policyMeta);
+        policies.push.apply(policies, contextPolicies);
+        Reflect.defineMetadata(POLICY_KEY, policies, contextClass, propertyKey);
+        Reflect.defineMetadata(POLICY_META_KEY, policyMeta, contextClass, `${propertyKey}_${policyId}`);
+
+        if (!isOverridden) {
+            descriptor.value = PolicyItem.setPolicyDescriptor(contextClass, propertyKey, next, failedResponseCode);
         }
     }
 };
@@ -73,7 +76,7 @@ const UsePolicy = function (policy: TPolicy|string, failedResponseCode: number =
  * @constructor
  */
 const ValidateSchemaPolicy = function (failedResponseCode: number = 400, ...policyMeta: TValidateSchemaMeta[]) {
-    return UsePolicy('ValidateSchemaUtil.ValidateArgs',failedResponseCode,...policyMeta);
+    return UsePolicy('ValidateSchemaUtil.ValidateArgs', failedResponseCode, ...policyMeta);
 };
 
 

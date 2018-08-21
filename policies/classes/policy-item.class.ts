@@ -1,6 +1,6 @@
 import {EXCEPTIONS} from "../../constants/exceptions.constant";
 import {SugoiPolicyError} from "../exceptions/policy-error.exception";
-import {POLICY_META_KEY} from "../decorators/policy.decorator";
+import {POLICY_META_KEY, POLICY_KEY} from "../decorators/policy.decorator";
 
 export class PolicyItem {
     public policyValidator: any;
@@ -25,23 +25,25 @@ export class PolicyItem {
     public static setPolicyDescriptor(contextClass: any,
                                       propertyKey: string,
                                       next: (...args) => void,
-                                      failedResponseCode: number,
-                                      ...policyMeta: any[]) {
+                                      failedResponseCode: number) {
         return async function (...functionArgs: any[]) {
-            const policies = Reflect.getMetadata(POLICY_META_KEY, contextClass, propertyKey) || [];
-            const promises = policies.map(policyId => {
+            const policies = Reflect.getMetadata(POLICY_KEY, contextClass, propertyKey) || [];
+            const promises = [];
+            for (let policyId of policies){
                 const policy = PolicyItem.get(policyId);
                 if (!policy) {
                     console.info(`${policy} policy not found`);
                     return Promise.resolve();
                 }
-                return policy( {functionArgs: functionArgs, policyMeta: policyMeta})
+                const policyMeta = Reflect.getMetadata(POLICY_META_KEY, contextClass, `${propertyKey}_${policyId}`);
+                const promise = policy( {functionArgs: functionArgs, policyMeta: policyMeta})
                     .then((validationResult) => {
                         if (validationResult != true) {
                             throw new SugoiPolicyError(EXCEPTIONS.POLICY_BLOCKED.message, failedResponseCode || EXCEPTIONS.POLICY_BLOCKED.code, {type:"policy",policyId, validationResult})
                         }
                     });
-            });
+                promises.push(promise);
+            };
             return await Promise.all(promises)
                 .then(() => {
                     return next(...functionArgs);
@@ -68,5 +70,5 @@ export class PolicyItem {
 
 }
 
-type TPolicyResults = true | any;
+export type TPolicyResults = true | any;
 export type TPolicy = (policyData?:{functionArgs?: any[], policyMeta?: any[]})=>(Promise < TPolicyResults > | TPolicyResults);
