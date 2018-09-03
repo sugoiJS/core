@@ -33,6 +33,7 @@ export abstract class SugoiError {
     }
 
     public printError(){
-        console.error(`Error: ${this.code} - ${this.message} - ${this.data}`);
+        const payloadData = typeof this.data === "object" ? JSON.stringify(this.data) : this.data;
+        console.error(`Error: ${this.code} - ${this.message} - ${payloadData}`);
     }
 }

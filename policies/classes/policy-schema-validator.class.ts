@@ -27,8 +27,8 @@ export class PolicySchemaValidator<T=any> implements IPolicySchemaValidator {
 
         const schemaKeys = Object.keys(schemaItem);
         for (let key of schemaKeys) {
-            if (validateItem[key] == undefined && schemaItem[key] && schemaItem[key].mandatory !== false) {
-                validationResult.valid = false;
+            if (validateItem[key] == undefined && schemaItem[key]) {
+                validationResult.valid = schemaItem[key].mandatory === false;
                 break;
             }
             else if (Array.isArray(validateItem[key])) {
@@ -82,7 +82,7 @@ export class PolicySchemaValidator<T=any> implements IPolicySchemaValidator {
             valid = valid && value > schema.exclusiveMin;
         }
         if (valid && schema.min != undefined) {
-            valid = valid && value > schema.min;
+            valid = valid && value >= schema.min;
         }
         return valid;
     }
