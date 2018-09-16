@@ -26,7 +26,9 @@ export class PolicyItem {
                                       propertyKey: string,
                                       next: (...args) => void,
                                       failedResponseCode: number) {
-        return async function (...functionArgs: any[]) {
+        return async function (...applyArgs) {
+            const scope = applyArgs[0];
+            const functionArgs = applyArgs[1];
             const policies = Reflect.getMetadata(POLICY_KEY, contextClass, propertyKey) || [];
             const promises = [];
             for (let policyId of policies){
@@ -46,10 +48,13 @@ export class PolicyItem {
             };
             return await Promise.all(promises)
                 .then(() => {
-                    return next(...functionArgs);
+                    return next.call(scope,...functionArgs);
                 })
                 .catch((err) => {
-                    return err;
+                    if(err instanceof SugoiPolicyError)
+                        return err;
+                    else
+                        throw err;
                 })
         };
     }

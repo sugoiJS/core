@@ -1,6 +1,6 @@
 {
   "name": "@sugoi/core",
-  "version": "2.1.4",
+  "version": "2.2.1",
   "description": "SugoiJS core",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

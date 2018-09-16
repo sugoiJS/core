@@ -51,9 +51,9 @@ const UsePolicy = function (policy: TPolicy | string, failedResponseCode: number
                      descriptor: PropertyDescriptor) {
         propertyKey = !!propertyKey ? propertyKey : null;
 
-        const policies = [];
-        const next = descriptor.value;
 
+
+        const policies = [];
         const contextPolicies = Reflect.getMetadata(POLICY_KEY, contextClass, propertyKey) || [];
         const isOverridden = contextPolicies.length > 0;
         contextPolicies.push(policyId);
@@ -62,7 +62,8 @@ const UsePolicy = function (policy: TPolicy | string, failedResponseCode: number
         Reflect.defineMetadata(POLICY_META_KEY, policyMeta, contextClass, `${propertyKey}_${policyId}`);
 
         if (!isOverridden) {
-            descriptor.value = PolicyItem.setPolicyDescriptor(contextClass, propertyKey, next, failedResponseCode);
+            const next = descriptor.value;
+            descriptor.value.apply = PolicyItem.setPolicyDescriptor(contextClass, propertyKey, next, failedResponseCode);
         }
     }
 };
