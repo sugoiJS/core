@@ -14,6 +14,47 @@ this is a standalone module that can be functional separately (as all of the Sug
 
 > npm install --save @sugoi/core
 
+### tsconfig.json:
+
+Under your tsconfig - compilerOptions set:
+
+- `"target": "es5"`
+
+- `"emitDecoratorMetadata": true`
+
+- `"experimentalDecorators": true`
+
+- `"lib": ["es2015","dom"]`
+
+
+#### Template
+
+You are able to use the config template which was set for the @sugoi/demo application:
+
+    {
+      "compilerOptions": {
+        "baseUrl": "./src",
+        "allowJs": true,
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "lib": [
+          "es2015",
+          "dom"
+        ],
+        "typeRoots": [
+          "./node_modules/@types"
+        ],
+        "types": [
+          "body-parser",
+          "express",
+          "node"
+        ]
+      }
+    }
 
 ## Policies (Guards)
 
