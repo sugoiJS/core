@@ -41,7 +41,7 @@ export class PolicyItem {
                 const promise = policy( {functionArgs: functionArgs, policyMeta: policyMeta})
                     .then((validationResult) => {
                         if (validationResult != true) {
-                            throw new SugoiPolicyError(EXCEPTIONS.POLICY_BLOCKED.message, failedResponseCode || EXCEPTIONS.POLICY_BLOCKED.code, {type:"policy",policyId, validationResult})
+                            throw new SugoiPolicyError(EXCEPTIONS.POLICY_BLOCKED.message, failedResponseCode || EXCEPTIONS.POLICY_BLOCKED.code, {type:"policy",policyId:policyId, validationResult:validationResult})
                         }
                     });
                 promises.push(promise);
@@ -51,10 +51,7 @@ export class PolicyItem {
                     return next.call(scope,...functionArgs);
                 })
                 .catch((err) => {
-                    if(err instanceof SugoiPolicyError)
-                        return err;
-                    else
-                        throw err;
+                    throw err;
                 })
         };
     }

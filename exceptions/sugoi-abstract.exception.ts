@@ -16,6 +16,10 @@ export abstract class SugoiError {
         this.printError();
     }
 
+    public getData(){
+        return [...this.data]
+    }
+
     public getMessage(){
         return this.message;
     }
