@@ -4,6 +4,9 @@ import {
     decorate,
     optional,
     inject,
+    multiInject,
+    ContainerModule,
+    multiBindToService,
     interfaces,
     LazyServiceIdentifer
 } from "inversify";
@@ -23,6 +26,9 @@ export {
     Inject,
     Decorate,
     Optional,
+    multiInject,
+    multiBindToService,
+    ContainerModule,
     interfaces,
     LazyServiceIdentifer,
 }

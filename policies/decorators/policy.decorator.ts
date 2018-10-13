@@ -1,9 +1,11 @@
+'use strict'
 import {PolicyItem, TPolicy} from "../classes/policy-item.class";
 import {EXCEPTIONS} from "../../constants/exceptions.constant";
 import {SugoiPolicyError} from "../exceptions/policy-error.exception";
 import {TValidateSchemaData, TValidateSchemaMeta} from "../interfaces/validate-schema-data.interface";
 import {ValidateSchemaUtil} from "../utils/validate-schema.util";
 import {StringUtils} from "../utils/string.util";
+import getOwnPropertyDescriptor = Reflect.getOwnPropertyDescriptor;
 
 export const POLICY_META_KEY = "POLICY_META";
 export const POLICY_KEY = "POLICY";
@@ -47,26 +49,49 @@ const UsePolicy = function (policy: TPolicy | string, failedResponseCode: number
     }
 
     return function (contextClass: any,
-                     propertyKey: string,
-                     descriptor: PropertyDescriptor) {
-        propertyKey = !!propertyKey ? propertyKey : null;
-
-
-
-        const policies = [];
-        const contextPolicies = Reflect.getMetadata(POLICY_KEY, contextClass, propertyKey) || [];
-        const isOverridden = contextPolicies.length > 0;
-        contextPolicies.push(policyId);
-        policies.push.apply(policies, contextPolicies);
-        Reflect.defineMetadata(POLICY_KEY, policies, contextClass, propertyKey);
-        Reflect.defineMetadata(POLICY_META_KEY, policyMeta, contextClass, `${propertyKey}_${policyId}`);
-
-        if (!isOverridden) {
-            const next = descriptor.value;
-            descriptor.value.apply = PolicyItem.setPolicyDescriptor(contextClass, propertyKey, next, failedResponseCode);
+                     propertyKey?: string,
+                     descriptor?: PropertyDescriptor) {
+        if (propertyKey && descriptor) {
+            applyPolicy(policyId, contextClass, propertyKey, descriptor, policyMeta, failedResponseCode)
+        } else {
+            applyPolicyForClassLevel(policyId, contextClass, policyMeta, failedResponseCode);
         }
     }
 };
+
+function applyPolicyForClassLevel(policyId, contextClass, policyMeta, failedResponseCode) {
+    const functions = [];
+    functions.push.apply(functions, Object.getOwnPropertyNames(contextClass));
+    functions.forEach((functionName) => {
+        if (functionName === "constructor" || functionName === "prototype") return;
+        const descriptor = Object.getOwnPropertyDescriptor(contextClass, functionName);
+        if (descriptor && typeof descriptor.value == 'function') {
+            applyPolicy(policyId, contextClass, functionName, descriptor, policyMeta, failedResponseCode);
+        }
+    });
+    if (contextClass.prototype) {
+        applyPolicyForClassLevel(policyId, contextClass.prototype, policyMeta, failedResponseCode)
+    }
+
+}
+
+function applyPolicy(policyId, contextClass, propertyKey: string, descriptor: PropertyDescriptor, policyMeta, failedResponseCode) {
+    propertyKey = !!propertyKey ? propertyKey : null;
+
+
+    const policies = [];
+    const contextPolicies = Reflect.getMetadata(POLICY_KEY, contextClass, propertyKey) || [];
+    const isOverridden = contextPolicies.length > 0;
+    contextPolicies.push(policyId);
+    policies.push.apply(policies, contextPolicies);
+    Reflect.defineMetadata(POLICY_KEY, policies, contextClass, propertyKey);
+    Reflect.defineMetadata(POLICY_META_KEY, policyMeta, contextClass, `${propertyKey}_${policyId}`);
+
+    if (!isOverridden) {
+        const next = descriptor.value;
+        descriptor.value.apply = PolicyItem.setPolicyDescriptor(contextClass, propertyKey, next, failedResponseCode);
+    }
+}
 
 /**
  *  Predefined policy which check the arguments schema
