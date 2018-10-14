@@ -90,7 +90,7 @@ describe("test policy general", () => {
                     "validationResult": {
                         "expectedValue": {
                             "arrayAllowed": false,
-                            "mandatory": false,
+                            "mandatory": true,
                             "valueType": "string"
                         }, "invalidValue": true, "valid": false
                     }
@@ -105,7 +105,7 @@ describe("test policy general", () => {
                     "validationResult": {
                         "expectedValue": {
                             "arrayAllowed": false,
-                            "mandatory": false,
+                            "mandatory": true,
                             "valueType": "boolean"
                         }, "invalidValue": 1, "valid": false
                     }
@@ -120,7 +120,7 @@ describe("test policy general", () => {
                     "validationResult": {
                         "expectedValue": {
                             "arrayAllowed": false,
-                            "mandatory": false,
+                            "mandatory": true,
                             "valueType": "boolean"
                         }, "invalidValue": [true], "valid": false
                     }

@@ -11,8 +11,8 @@ const EntitySchema= {
         .setExclusiveMin(2)
         .setExclusiveMax(10)
         .setArrayAllowed(true),
-    id:ComparableSchema.ofType(SchemaTypes.STRING),
-    active:ComparableSchema.ofType(SchemaTypes.BOOLEAN)
+    id:ComparableSchema.ofType(SchemaTypes.STRING).setMandatory(true),
+    active:ComparableSchema.ofType(SchemaTypes.BOOLEAN).setMandatory(true)
 };
 
 @Injectable()
