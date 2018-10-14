@@ -33,6 +33,14 @@
   "author": "Orel Balilti",
   "license": "MIT",
   "homepage": "sugoijs.com",
+  "bugs": {
+    "url": "https://github.com/sugoiJS/core/issues",
+    "email": "oba.sugoi@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sugoiJS/core"
+  },
   "dependencies": {
     "inversify": "^4.11.1",
     "reflect-metadata": "^0.1.12"
