@@ -1,5 +1,8 @@
 import {Dummy} from "./classes/dummy.class";
 import {PolicyCheck} from "./classes/policy-check.class";
+import {NestedPolicyCheck} from "./classes/nested-policy-check.class";
+
+const entity = {id: true, num: 2, active: 1};
 
 describe("test policy general", () => {
     it("test instance policy", async () => {
@@ -41,21 +44,7 @@ describe("test policy general", () => {
             await dummy.verifyClassDecorator(prefix, prefix)
         } catch (err) {
             delete err.stack;
-            expect(err).toEqual({
-                "code": 400,
-                "data": [{
-                    "policyId": "ValidateSchemaUtil.ValidateArgs",
-                    "type": "policy",
-                    "validationResult": {
-                        "expectedValue": {
-                            "arrayAllowed": false,
-                            "mandatory": false,
-                            "valueType": "number"
-                        }, "invalidValue": prefix, "valid": false
-                    }
-                }],
-                "message": "Call blocked by resource policy"
-            });
+            expect(err).toEqual({"code": 400, "data": [{"policyId": "ValidateSchemaUtil.ValidateArgs", "type": "policy", "validationResult": {"expectedValue": {"arrayAllowed": false, "mandatory": false, "max": 100000000000000, "min": 0, "valueType": "number"}, "invalidValue": "test", "valid": false}}], "message": "Call blocked by resource policy"});
         }
         expect(await dummy.verifyClassDecorator(prefix, "2")).toBeTruthy();
         expect(dummy.value).toBe(prefix + 2);
@@ -130,7 +119,6 @@ describe("test policy general", () => {
 
         expect.assertions(7);
         const pc = new PolicyCheck();
-        const entity = {id: true, num: 2, active: 1};
 
         try {
             await pc.setEntity(entity);
@@ -176,5 +164,37 @@ describe("test policy general", () => {
         (<any>entity).num = [3, 9];
         await pc.setEntity(entity);
         expect(pc.entity).toEqual(entity);
+    });
+
+    it("test nested schema validator", async () => {
+        expect.assertions(3);
+        let en ={metaData:undefined};
+        const npc = new NestedPolicyCheck();
+        await npc.setEntity(en);
+        expect(npc.entity).toEqual(en);
+        en ={metaData:{timestamp: "test"}};
+        try {
+            await npc.setEntity(en);
+        } catch (err) {
+            delete err.stack;
+            expect(err).toEqual({
+                "code": 400,
+                "data": [{
+                    "policyId": "ValidateSchemaUtil.ValidateArgs",
+                    "type": "policy",
+                    "validationResult": {
+                        "expectedValue": {
+                            "arrayAllowed": false,
+                            "mandatory": false,
+                            "valueType": "number"
+                        }, "invalidValue": "test", "valid": false
+                    }
+                }],
+                "message": "Call blocked by resource policy"
+            });
+        }
+        (<any>en.metaData.timestamp) = new Date().getTime();
+        await npc.setEntity(en);
+        expect(npc.entity).toEqual(en);
     });
 });

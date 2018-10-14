@@ -27,16 +27,22 @@ export class PolicySchemaValidator<T=any> implements IPolicySchemaValidator {
     }): IValidationResult {
         validationResult.invalidValue = validateItem;
         validationResult.expectedValue = schemaItem;
-        if (validateItem == undefined && schemaItem) {
-            validationResult.valid = (<ComparableSchema>schemaItem).mandatory === false;
+        if (validateItem == undefined) {
+            validationResult.valid = !schemaItem || (<ComparableSchema>schemaItem).mandatory === false;
         }
         else if (schemaItem instanceof ComparableSchema) {
-            validationResult.valid = this.checkValue(validateItem, schemaItem);
+            if(typeof schemaItem.valueType !== "object")
+                validationResult.valid = this.checkValue(validateItem, schemaItem);
+            else
+                validationResult = this.check(validateItem, schemaItem.valueType as {[prop:string]:ComparableSchema},validationResult);
+
             return validationResult;
         } else {
             Object.keys(schemaItem).every(key=>{
                 validationResult.invalidValue = validateItem[key];
                 validationResult.expectedValue = schemaItem[key];
+                console.log(schemaItem[key])
+                console.log(validateItem[key])
                 if (Array.isArray(validateItem[key])) {
                     if (!schemaItem[key].arrayAllowed) {
                         validationResult.valid = false;
@@ -44,11 +50,8 @@ export class PolicySchemaValidator<T=any> implements IPolicySchemaValidator {
                         validationResult.valid = validateItem[key].every(item => this.check(item, schemaItem[key], validationResult).valid);
                     }
                 }
-                else if (validateItem[key] && typeof validateItem[key] === "object") {
-                    this.check(validateItem[key], schemaItem[key], validationResult);
-                }
                 else {
-                    validationResult.valid = this.checkValue(validateItem[key], schemaItem[key]);
+                    this.check(validateItem[key], schemaItem[key], validationResult);
                 }
                 return validationResult.valid;
             });

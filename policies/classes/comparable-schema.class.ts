@@ -2,14 +2,14 @@ import {ComparableValueType, IComparableValue} from "../interfaces/comparable-va
 
 export class ComparableSchema implements IComparableValue {
     public valueType: ComparableValueType;
-    public mandatory: boolean = false;
-    public regex: string;
-    public regexFlag: string;
-    public min: number;
-    public max: number;
-    public exclusiveMin: number;
-    public exclusiveMax: number;
-    public arrayAllowed: boolean = false;
+    public mandatory?: boolean = false;
+    public regex?: string;
+    public regexFlag?: string;
+    public min?: number;
+    public max?: number;
+    public exclusiveMin?: number;
+    public exclusiveMax?: number;
+    public arrayAllowed?: boolean = false;
 
     protected constructor(valueType: ComparableValueType) {
         this.valueType = valueType;
@@ -34,9 +34,13 @@ export class ComparableSchema implements IComparableValue {
         this.min = min;
         return this;
     }
-
     public setExclusiveMin(min: number) {
         this.exclusiveMin = min;
+        return this;
+    }
+
+    public setMax(max: number) {
+        this.max = max;
         return this;
     }
 
