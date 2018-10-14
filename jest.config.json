@@ -4,9 +4,14 @@
     "coverageDirectory": "dist/coverage",
 
     "transform": {
-        "^.+\\.tsx?$": "ts-jest"
+        "^.+\\.(ts|tsx)?$": "ts-jest"
     },
-
+    "globals":{
+        "ts-jest": {
+            "skipBabel": true,
+            "enableTsDiagnostics": false
+        }
+    },
     "moduleFileExtensions": [
         "js",
         "ts",

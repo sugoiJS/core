@@ -1,6 +1,6 @@
 import {EXCEPTIONS} from "../../constants/exceptions.constant";
 import {SugoiPolicyError} from "../exceptions/policy-error.exception";
-import {POLICY_META_KEY, POLICY_KEY} from "../decorators/policy.decorator";
+import {POLICY_META_KEY, POLICY_KEY, sugPolicyDelimiter} from "../decorators/policy.decorator";
 
 export class PolicyItem {
     public policyValidator: any;
@@ -27,28 +27,28 @@ export class PolicyItem {
                                       next: (...args) => void,
                                       failedResponseCode: number) {
         return async function (...applyArgs) {
-            const scope = applyArgs[0];
-            const functionArgs = applyArgs[1];
+            const scope = this;
             const policies = Reflect.getMetadata(POLICY_KEY, contextClass, propertyKey) || [];
             const promises = [];
             for (let policyId of policies){
-                const policy = PolicyItem.get(policyId);
+                policyId = policyId.split(sugPolicyDelimiter);
+                const policy = PolicyItem.get(policyId[0]);
                 if (!policy) {
                     console.info(`${policy} policy not found`);
                     return Promise.resolve();
                 }
-                const policyMeta = Reflect.getMetadata(POLICY_META_KEY, contextClass, `${propertyKey}_${policyId}`);
-                const promise = policy( {functionArgs: functionArgs, policyMeta: policyMeta})
+                const policyMeta = Reflect.getMetadata(POLICY_META_KEY, contextClass, `${propertyKey}_${policyId[0]}_${policyId[1]}`);
+                const promise = policy( {functionArgs: applyArgs, policyMeta: policyMeta})
                     .then((validationResult) => {
                         if (validationResult != true) {
-                            throw new SugoiPolicyError(EXCEPTIONS.POLICY_BLOCKED.message, failedResponseCode || EXCEPTIONS.POLICY_BLOCKED.code, {type:"policy",policyId:policyId, validationResult:validationResult})
+                            throw new SugoiPolicyError(EXCEPTIONS.POLICY_BLOCKED.message, failedResponseCode || EXCEPTIONS.POLICY_BLOCKED.code, {type:"policy",policyId:policyId[0], validationResult:validationResult})
                         }
                     });
                 promises.push(promise);
-            };
+            }
             return await Promise.all(promises)
                 .then(() => {
-                    return next.call(scope,...functionArgs);
+                    return next.apply(scope,applyArgs);
                 })
                 .catch((err) => {
                     throw err;

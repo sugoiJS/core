@@ -2,6 +2,7 @@ import {IPolicySchemaValidator, IValidationResult} from "../interfaces/policy-sc
 import {TComparableSchema} from "../interfaces/validate-schema-data.interface";
 import {IComparableValue} from "../interfaces/comparable-value.interface";
 import {SchemaTypes} from "../constants/schema-types.enum";
+import {ComparableSchema} from "./comparable-schema.class";
 
 export class PolicySchemaValidator<T=any> implements IPolicySchemaValidator {
     constructor(public validateValue: T,
@@ -24,33 +25,37 @@ export class PolicySchemaValidator<T=any> implements IPolicySchemaValidator {
         invalidValue: null,
         expectedValue: null
     }): IValidationResult {
-
-        const schemaKeys = Object.keys(schemaItem);
-        for (let key of schemaKeys) {
-            if (validateItem[key] == undefined && schemaItem[key]) {
-                validationResult.valid = schemaItem[key].mandatory === false;
-                break;
-            }
-            else if (Array.isArray(validateItem[key])) {
-                if (!schemaItem[key].arrayAllowed) {
-                    validationResult.valid = false;
-                } else
-                    validateItem[key].every(item => this.check(item, schemaItem[key].valueType, validationResult).valid)
-            }
-            else if (validateItem[key] && typeof validateItem[key] === "object") {
-                this.check(validateItem[key], schemaItem[key].valueType, validationResult);
-            }
-            else {
-                validationResult.valid = this.checkValue(validateItem[key], schemaItem[key]);
-            }
-            if (!validationResult.valid) {
+        validationResult.invalidValue = validateItem;
+        validationResult.expectedValue = schemaItem;
+        if (validateItem == undefined && schemaItem) {
+            validationResult.valid = (<ComparableSchema>schemaItem).mandatory === false;
+        }
+        else if (schemaItem instanceof ComparableSchema) {
+            validationResult.valid = this.checkValue(validateItem, schemaItem);
+            return validationResult;
+        } else {
+            Object.keys(schemaItem).every(key=>{
                 validationResult.invalidValue = validateItem[key];
                 validationResult.expectedValue = schemaItem[key];
-                break;
-            }
+                if (Array.isArray(validateItem[key])) {
+                    if (!schemaItem[key].arrayAllowed) {
+                        validationResult.valid = false;
+                    } else {
+                        validationResult.valid = validateItem[key].every(item => this.check(item, schemaItem[key], validationResult).valid);
+                    }
+                }
+                else if (validateItem[key] && typeof validateItem[key] === "object") {
+                    this.check(validateItem[key], schemaItem[key], validationResult);
+                }
+                else {
+                    validationResult.valid = this.checkValue(validateItem[key], schemaItem[key]);
+                }
+                return validationResult.valid;
+            });
         }
         return validationResult;
     }
+
 
     private checkValue(value: any, schema: IComparableValue) {
         if (!schema) return false;

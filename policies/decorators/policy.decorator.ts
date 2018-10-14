@@ -1,14 +1,13 @@
-'use strict'
 import {PolicyItem, TPolicy} from "../classes/policy-item.class";
 import {EXCEPTIONS} from "../../constants/exceptions.constant";
 import {SugoiPolicyError} from "../exceptions/policy-error.exception";
 import {TValidateSchemaData, TValidateSchemaMeta} from "../interfaces/validate-schema-data.interface";
 import {ValidateSchemaUtil} from "../utils/validate-schema.util";
 import {StringUtils} from "../utils/string.util";
-import getOwnPropertyDescriptor = Reflect.getOwnPropertyDescriptor;
 
 export const POLICY_META_KEY = "POLICY_META";
 export const POLICY_KEY = "POLICY";
+export const sugPolicyDelimiter = "|_S_|";
 
 /**
  * Register function as policy
@@ -40,6 +39,7 @@ const Policy = function (policyId?: string) {
  */
 const UsePolicy = function (policy: TPolicy | string, failedResponseCode: number = 400, ...policyMeta: any[]) {
     let policyId;
+    const policyMetaObject = {policyMeta,id:StringUtils.generateGuid()};
     if (typeof policy === "function") {
         policyId = policy.name || StringUtils.generateGuid();
         if (!PolicyItem.has(policyId))
@@ -52,9 +52,9 @@ const UsePolicy = function (policy: TPolicy | string, failedResponseCode: number
                      propertyKey?: string,
                      descriptor?: PropertyDescriptor) {
         if (propertyKey && descriptor) {
-            applyPolicy(policyId, contextClass, propertyKey, descriptor, policyMeta, failedResponseCode)
+            applyPolicy(policyId, contextClass, propertyKey, descriptor, policyMetaObject, failedResponseCode)
         } else {
-            applyPolicyForClassLevel(policyId, contextClass, policyMeta, failedResponseCode);
+            applyPolicyForClassLevel(policyId, contextClass, policyMetaObject, failedResponseCode);
         }
     }
 };
@@ -67,6 +67,7 @@ function applyPolicyForClassLevel(policyId, contextClass, policyMeta, failedResp
         const descriptor = Object.getOwnPropertyDescriptor(contextClass, functionName);
         if (descriptor && typeof descriptor.value == 'function') {
             applyPolicy(policyId, contextClass, functionName, descriptor, policyMeta, failedResponseCode);
+            Object.defineProperty(contextClass,functionName,descriptor);
         }
     });
     if (contextClass.prototype) {
@@ -77,19 +78,16 @@ function applyPolicyForClassLevel(policyId, contextClass, policyMeta, failedResp
 
 function applyPolicy(policyId, contextClass, propertyKey: string, descriptor: PropertyDescriptor, policyMeta, failedResponseCode) {
     propertyKey = !!propertyKey ? propertyKey : null;
-
-
     const policies = [];
     const contextPolicies = Reflect.getMetadata(POLICY_KEY, contextClass, propertyKey) || [];
     const isOverridden = contextPolicies.length > 0;
-    contextPolicies.push(policyId);
+    contextPolicies.push(`${policyId}${sugPolicyDelimiter}${policyMeta.id}`);
     policies.push.apply(policies, contextPolicies);
     Reflect.defineMetadata(POLICY_KEY, policies, contextClass, propertyKey);
-    Reflect.defineMetadata(POLICY_META_KEY, policyMeta, contextClass, `${propertyKey}_${policyId}`);
-
+    Reflect.defineMetadata(POLICY_META_KEY, policyMeta.policyMeta, contextClass, `${propertyKey}_${policyId}_${policyMeta.id}`);
     if (!isOverridden) {
         const next = descriptor.value;
-        descriptor.value.apply = PolicyItem.setPolicyDescriptor(contextClass, propertyKey, next, failedResponseCode);
+        descriptor.value = PolicyItem.setPolicyDescriptor(contextClass, propertyKey, next, failedResponseCode);
     }
 }
 

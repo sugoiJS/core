@@ -8,7 +8,6 @@ export {GenericException} from "./exceptions/generic.exception";
 
 export {ContainerService} from "./services/container.service";
 
-export {ContainerRepo} from "./classes/container-repo.class";
 
 export * from "./policies"
 
