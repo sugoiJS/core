@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for dist/policies/decorators/policy.decorator.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\..\index.html">All files</a> / <a href="index.html">dist/policies/decorators</a> policy.decorator.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">92.31% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>48/52</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">71.88% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>23/32</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>8/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">92.31% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>48/52</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const policy_item_class_1 = require("../classes/policy-item.class");
+const exceptions_constant_1 = require("../../constants/exceptions.constant");
+const policy_error_exception_1 = require("../exceptions/policy-error.exception");
+const string_util_1 = require("../utils/string.util");
+exports.POLICY_META_KEY = "POLICY_META";
+exports.POLICY_KEY = "POLICY";
+exports.sugPolicyDelimiter = "|_S_|";
+/**
+ * Register function as policy
+ * @param {string} policyId - optional, if not set {class name}.{function name} will be use
+ * @returns {(policyClass: any, propertyKey: string, descriptor: PropertyDescriptor) =&gt; any}
+ * @constructor
+ */
+const Policy = function (policyId) {
+    return function (policyClass, propertyKey, descriptor) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof descriptor.value !== "function") {
+<span class="cstat-no" title="statement not covered" >            throw new policy_error_exception_1.SugoiPolicyError(exceptions_constant_1.EXCEPTIONS.INVALID_POLICY.message, exceptions_constant_1.EXCEPTIONS.INVALID_POLICY.code, propertyKey);</span>
+        }
+        policyId = policyId || `${policyClass.name}.${propertyKey}`;
+        policy_item_class_1.PolicyItem.add(new policy_item_class_1.PolicyItem(descriptor.value.bind(policyClass), policyId));
+    };
+};
+exports.Policy = Policy;
+/**
+ * Apply policy on decorated function.
+ * The policy got selected by the policyId
+ *
+ * @param {string|Function} policy
+ * @param {number} failedResponseCode
+ * @param policyMeta
+ * @returns {(contextClass: any, propertyKey: string, descriptor: PropertyDescriptor) =&gt; any}
+ * @constructor
+ */
+const UsePolicy = function (policy, failedResponseCode = <span class="branch-0 cbranch-no" title="branch not covered" >400,</span> ...policyMeta) {
+    let policyId;
+    const policyMetaObject = { policyMeta, id: string_util_1.StringUtils.generateGuid() };
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof policy === "function") {
+<span class="cstat-no" title="statement not covered" >        policyId = policy.name || string_util_1.StringUtils.generateGuid();</span>
+<span class="cstat-no" title="statement not covered" >        if (!policy_item_class_1.PolicyItem.has(policyId))</span>
+<span class="cstat-no" title="statement not covered" >            policy_item_class_1.PolicyItem.add(new policy_item_class_1.PolicyItem(policy, policyId));</span>
+    }
+    else {
+        policyId = policy;
+    }
+    return function (contextClass, propertyKey, descriptor) {
+        if (propertyKey &amp;&amp; descriptor) {
+            applyPolicy(policyId, contextClass, propertyKey, descriptor, policyMetaObject, failedResponseCode);
+        }
+        else {
+            applyPolicyForClassLevel(policyId, contextClass, policyMetaObject, failedResponseCode);
+        }
+    };
+};
+exports.UsePolicy = UsePolicy;
+function applyPolicyForClassLevel(policyId, contextClass, policyMeta, failedResponseCode) {
+    const functions = [];
+    functions.push.apply(functions, Object.getOwnPropertyNames(contextClass));
+    functions.forEach((functionName) =&gt; {
+        if (functionName === "constructor" || functionName === "prototype")
+            return;
+        const descriptor = Object.getOwnPropertyDescriptor(contextClass, functionName);
+        if (descriptor &amp;&amp; typeof descriptor.value == 'function') {
+            applyPolicy(policyId, contextClass, functionName, descriptor, policyMeta, failedResponseCode);
+            Object.defineProperty(contextClass, functionName, descriptor);
+        }
+    });
+    if (contextClass.prototype) {
+        applyPolicyForClassLevel(policyId, contextClass.prototype, policyMeta, failedResponseCode);
+    }
+}
+function applyPolicy(policyId, contextClass, propertyKey, descriptor, policyMeta, failedResponseCode) {
+    propertyKey = !!propertyKey ? propertyKey : <span class="branch-1 cbranch-no" title="branch not covered" >null;</span>
+    const policies = [];
+    const contextPolicies = Reflect.getMetadata(exports.POLICY_KEY, contextClass, propertyKey) || [];
+    const isOverridden = contextPolicies.length &gt; 0;
+    contextPolicies.push(`${policyId}${exports.sugPolicyDelimiter}${policyMeta.id}`);
+    policies.push.apply(policies, contextPolicies);
+    Reflect.defineMetadata(exports.POLICY_KEY, policies, contextClass, propertyKey);
+    Reflect.defineMetadata(exports.POLICY_META_KEY, policyMeta.policyMeta, contextClass, `${propertyKey}_${policyId}_${policyMeta.id}`);
+    if (!isOverridden) {
+        const next = descriptor.value;
+        descriptor.value = policy_item_class_1.PolicyItem.setPolicyDescriptor(contextClass, propertyKey, next, failedResponseCode);
+    }
+}
+/**
+ *  Predefined policy which check the arguments schema
+ *
+ * @param {number} failedResponseCode
+ * @param {TValidateSchemaData} policyMeta
+ * @returns {(contextClass: any, propertyKey: string, descriptor: PropertyDescriptor) =&gt; any}
+ * @constructor
+ */
+const ValidateSchemaPolicy = function (failedResponseCode = <span class="branch-0 cbranch-no" title="branch not covered" >400,</span> ...policyMeta) {
+    return UsePolicy('ValidateSchemaUtil.ValidateArgs', failedResponseCode, ...policyMeta);
+};
+exports.ValidateSchemaPolicy = ValidateSchemaPolicy;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Oct 15 2018 23:46:27 GMT+0300 (Jerusalem Daylight Time)
+</div>
+</div>
+<script src="..\..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\..\sorter.js"></script>
+</body>
+</html>
