@@ -1,0 +1,57 @@
+{
+  "name": "@sugoi/core",
+  "version": "3.0.1",
+  "description": "SugoiJS core",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "jest --config=jest.config.js --coverage --detectOpenHandles",
+    "coverage": "jest --coverage --coverageReporters=text-lcov  --detectOpenHandles | curl -s https://codecov.io/bash | bash",
+    "docs": "..\\node_modules\\.bin\\typedoc --out ..\\dist\\docs\\core --json dist\\docs\\main.json --ignoreCompilerErrors --excludeNotExported --excludeProtected --excludePrivate --readme .\\README.md --mode file --hideGenerator --gitRevision '1.0.0' --externalPattern node_modules/* --excludeExternals ",
+    "build:publish": "npm run build && npm test",
+    "update:patch": "npm version patch && npm publish && npm run docs",
+    "update:minor": "npm version minor && npm publish && npm run docs",
+    "update:major": "npm version major && npm publish && npm run docs",
+    "build": "rmdir /S dist && tsc"
+  },
+  "keywords": [
+    "policy",
+    "guard",
+    "schemas",
+    "decorators",
+    "annotations",
+    "@sugoi",
+    "@sugoijs",
+    "sugoi",
+    "sugoijs",
+    "utils",
+    "typescript"
+  ],
+  "files": [
+    "dist/**/*"
+  ],
+  "author": "Orel Balilti",
+  "license": "MIT",
+  "homepage": "sugoijs.com",
+  "bugs": {
+    "url": "https://github.com/sugoiJS/core/issues",
+    "email": "oba.sugoi@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sugoiJS/core"
+  },
+  "dependencies": {
+    "inversify": "^4.11.1",
+    "reflect-metadata": "^0.1.12"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.2",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.10.1"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "./dist/coverage"
+  }
+}
