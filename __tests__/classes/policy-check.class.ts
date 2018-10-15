@@ -23,7 +23,6 @@ export class PolicyCheck {
 
     @ValidateSchemaPolicy(null,{schema:EntitySchema})
     setEntity(entity:IEntity) {
-        console.log(entity)
         this.entity = entity;
     }
 }

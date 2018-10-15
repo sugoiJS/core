@@ -41,8 +41,6 @@ export class PolicySchemaValidator<T=any> implements IPolicySchemaValidator {
             Object.keys(schemaItem).every(key=>{
                 validationResult.invalidValue = validateItem[key];
                 validationResult.expectedValue = schemaItem[key];
-                console.log(schemaItem[key])
-                console.log(validateItem[key])
                 if (Array.isArray(validateItem[key])) {
                     if (!schemaItem[key].arrayAllowed) {
                         validationResult.valid = false;
