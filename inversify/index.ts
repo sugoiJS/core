@@ -8,11 +8,13 @@ import {
     ContainerModule,
     multiBindToService,
     interfaces,
-    LazyServiceIdentifer
+    LazyServiceIdentifer,
+    AsyncContainerModule
 } from "inversify";
 
 const Injectable = injectable;
 const Inject = inject;
+const MultiInject = multiInject;
 const Decorate = decorate;
 const Optional = optional;
 
@@ -31,4 +33,5 @@ export {
     ContainerModule,
     interfaces,
     LazyServiceIdentifer,
+    AsyncContainerModule
 }
