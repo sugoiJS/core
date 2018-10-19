@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class StringUtils {
+    static generateGuid() {
+        function uidGenerator() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+                .toString(16)
+                .substring(1);
+        }
+        return uidGenerator() + uidGenerator() + '-' + uidGenerator() + '-' + uidGenerator() + '-' +
+            uidGenerator() + '-' + uidGenerator() + uidGenerator() + uidGenerator();
+    }
+}
+exports.StringUtils = StringUtils;
