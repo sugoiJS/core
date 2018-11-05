@@ -1,0 +1,5911 @@
+{
+	"id": 0,
+	"name": "@sugoi/core",
+	"kind": 0,
+	"flags": {},
+	"children": [
+		{
+			"id": 81,
+			"name": "SchemaTypes",
+			"kind": 4,
+			"kindString": "Enumeration",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 84,
+					"name": "BOOLEAN",
+					"kind": 16,
+					"kindString": "Enumeration member",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/constants/schema-types.enum.ts",
+							"line": 4,
+							"character": 11
+						}
+					],
+					"defaultValue": "\"boolean\""
+				},
+				{
+					"id": 82,
+					"name": "NUMBER",
+					"kind": 16,
+					"kindString": "Enumeration member",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/constants/schema-types.enum.ts",
+							"line": 2,
+							"character": 10
+						}
+					],
+					"defaultValue": "\"number\""
+				},
+				{
+					"id": 83,
+					"name": "STRING",
+					"kind": 16,
+					"kindString": "Enumeration member",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/constants/schema-types.enum.ts",
+							"line": 3,
+							"character": 10
+						}
+					],
+					"defaultValue": "\"string\""
+				}
+			],
+			"groups": [
+				{
+					"title": "Enumeration members",
+					"kind": 16,
+					"children": [
+						84,
+						82,
+						83
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "policies/constants/schema-types.enum.ts",
+					"line": 1,
+					"character": 23
+				}
+			]
+		},
+		{
+			"id": 99,
+			"name": "ComparableSchema",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 108,
+					"name": "arrayAllowed",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/classes/comparable-schema.class.ts",
+							"line": 12,
+							"character": 23
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					},
+					"defaultValue": "false",
+					"implementationOf": {
+						"type": "reference",
+						"name": "IComparableValue.arrayAllowed",
+						"id": 94
+					}
+				},
+				{
+					"id": 107,
+					"name": "exclusiveMax",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/classes/comparable-schema.class.ts",
+							"line": 11,
+							"character": 23
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IComparableValue.exclusiveMax",
+						"id": 93
+					}
+				},
+				{
+					"id": 106,
+					"name": "exclusiveMin",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/classes/comparable-schema.class.ts",
+							"line": 10,
+							"character": 23
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IComparableValue.exclusiveMin",
+						"id": 92
+					}
+				},
+				{
+					"id": 101,
+					"name": "mandatory",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/classes/comparable-schema.class.ts",
+							"line": 5,
+							"character": 20
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					},
+					"defaultValue": "false",
+					"implementationOf": {
+						"type": "reference",
+						"name": "IComparableValue.mandatory",
+						"id": 87
+					}
+				},
+				{
+					"id": 105,
+					"name": "max",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/classes/comparable-schema.class.ts",
+							"line": 9,
+							"character": 14
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IComparableValue.max",
+						"id": 91
+					}
+				},
+				{
+					"id": 104,
+					"name": "min",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/classes/comparable-schema.class.ts",
+							"line": 8,
+							"character": 14
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IComparableValue.min",
+						"id": 90
+					}
+				},
+				{
+					"id": 102,
+					"name": "regex",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/classes/comparable-schema.class.ts",
+							"line": 6,
+							"character": 16
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IComparableValue.regex",
+						"id": 88
+					}
+				},
+				{
+					"id": 103,
+					"name": "regexFlag",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/classes/comparable-schema.class.ts",
+							"line": 7,
+							"character": 20
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IComparableValue.regexFlag",
+						"id": 89
+					}
+				},
+				{
+					"id": 100,
+					"name": "valueType",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/classes/comparable-schema.class.ts",
+							"line": 4,
+							"character": 20
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "ComparableValueType",
+						"id": 95
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IComparableValue.valueType",
+						"id": 86
+					}
+				},
+				{
+					"id": 131,
+					"name": "setArrayAllowed",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 132,
+							"name": "setArrayAllowed",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 133,
+									"name": "isAllowed",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "boolean"
+									}
+								}
+							],
+							"type": {
+								"type": "unknown",
+								"name": "this"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "policies/classes/comparable-schema.class.ts",
+							"line": 52,
+							"character": 26
+						}
+					]
+				},
+				{
+					"id": 128,
+					"name": "setExclusiveMax",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 129,
+							"name": "setExclusiveMax",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 130,
+									"name": "max",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "unknown",
+								"name": "this"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "policies/classes/comparable-schema.class.ts",
+							"line": 47,
+							"character": 26
+						}
+					]
+				},
+				{
+					"id": 122,
+					"name": "setExclusiveMin",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 123,
+							"name": "setExclusiveMin",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 124,
+									"name": "min",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "unknown",
+								"name": "this"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "policies/classes/comparable-schema.class.ts",
+							"line": 37,
+							"character": 26
+						}
+					]
+				},
+				{
+					"id": 112,
+					"name": "setMandatory",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 113,
+							"name": "setMandatory",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 114,
+									"name": "isMandatory",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "boolean"
+									}
+								}
+							],
+							"type": {
+								"type": "unknown",
+								"name": "this"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "policies/classes/comparable-schema.class.ts",
+							"line": 22,
+							"character": 23
+						}
+					]
+				},
+				{
+					"id": 125,
+					"name": "setMax",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 126,
+							"name": "setMax",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 127,
+									"name": "max",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "unknown",
+								"name": "this"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "policies/classes/comparable-schema.class.ts",
+							"line": 42,
+							"character": 17
+						}
+					]
+				},
+				{
+					"id": 119,
+					"name": "setMin",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 120,
+							"name": "setMin",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 121,
+									"name": "min",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "unknown",
+								"name": "this"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "policies/classes/comparable-schema.class.ts",
+							"line": 33,
+							"character": 17
+						}
+					]
+				},
+				{
+					"id": 115,
+					"name": "setRegex",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 116,
+							"name": "setRegex",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 117,
+									"name": "regexString",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 118,
+									"name": "regexFlag",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isOptional": true
+									},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "unknown",
+								"name": "this"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "policies/classes/comparable-schema.class.ts",
+							"line": 27,
+							"character": 19
+						}
+					]
+				},
+				{
+					"id": 109,
+					"name": "ofType",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isStatic": true,
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 110,
+							"name": "ofType",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 111,
+									"name": "valueType",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "ComparableValueType",
+										"id": 95
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "ComparableSchema",
+								"id": 99
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "policies/classes/comparable-schema.class.ts",
+							"line": 18,
+							"character": 24
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						108,
+						107,
+						106,
+						101,
+						105,
+						104,
+						102,
+						103,
+						100
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						131,
+						128,
+						122,
+						112,
+						125,
+						119,
+						115,
+						109
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "policies/classes/comparable-schema.class.ts",
+					"line": 3,
+					"character": 29
+				}
+			],
+			"implementedTypes": [
+				{
+					"type": "reference",
+					"name": "IComparableValue",
+					"id": 85
+				}
+			]
+		},
+		{
+			"id": 65,
+			"name": "ContainerService",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 66,
+					"name": "container",
+					"kind": 262144,
+					"kindString": "Accessor",
+					"flags": {
+						"isStatic": true,
+						"isExported": true
+					},
+					"getSignature": {
+						"id": 67,
+						"name": "__get",
+						"kind": 524288,
+						"kindString": "Get signature",
+						"flags": {},
+						"type": {
+							"type": "reference",
+							"name": "Container"
+						}
+					},
+					"sources": [
+						{
+							"fileName": "services/container.service.ts",
+							"line": 6,
+							"character": 24
+						}
+					]
+				},
+				{
+					"id": 68,
+					"name": "initContainer",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isStatic": true,
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 69,
+							"name": "initContainer",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 70,
+									"name": "config",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "ContainerOptions"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Container"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "services/container.service.ts",
+							"line": 10,
+							"character": 31
+						}
+					]
+				},
+				{
+					"id": 74,
+					"name": "inject",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isStatic": true,
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 75,
+							"name": "inject",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"typeParameter": [
+								{
+									"id": 76,
+									"name": "T",
+									"kind": 131072,
+									"kindString": "Type parameter",
+									"flags": {}
+								}
+							],
+							"parameters": [
+								{
+									"id": 77,
+									"name": "Class",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "interfaces.ServiceIdentifier",
+										"typeArguments": [
+											{
+												"type": "typeParameter",
+												"name": "T"
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "typeParameter",
+								"name": "T"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "services/container.service.ts",
+							"line": 25,
+							"character": 24
+						}
+					]
+				},
+				{
+					"id": 71,
+					"name": "register",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isStatic": true,
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 72,
+							"name": "register",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 73,
+									"name": "repos",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isRest": true
+									},
+									"type": {
+										"type": "reference",
+										"name": "Array",
+										"typeArguments": [
+											{
+												"type": "intrinsic",
+												"name": "any"
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Container"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "services/container.service.ts",
+							"line": 17,
+							"character": 26
+						}
+					]
+				},
+				{
+					"id": 78,
+					"name": "unregister",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isStatic": true,
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 79,
+							"name": "unregister",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 80,
+									"name": "identifier",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "interfaces.ServiceIdentifier",
+										"typeArguments": [
+											{
+												"type": "intrinsic",
+												"name": "any"
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "services/container.service.ts",
+							"line": 30,
+							"character": 28
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Accessors",
+					"kind": 262144,
+					"children": [
+						66
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						68,
+						74,
+						71,
+						78
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "services/container.service.ts",
+					"line": 3,
+					"character": 29
+				}
+			]
+		},
+		{
+			"id": 260,
+			"name": "Dummy",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {
+				"isExported": true
+			},
+			"decorators": [
+				{
+					"name": "Iterable",
+					"type": {
+						"type": "reference",
+						"name": "Iterable",
+						"id": 239
+					},
+					"arguments": {}
+				},
+				{
+					"name": "ValidateSchemaPolicy",
+					"type": {
+						"type": "reference",
+						"name": "ValidateSchemaPolicy"
+					},
+					"arguments": {
+						"failedResponseCode": "400",
+						"policyMeta": "{\r\n    schema: ComparableSchema.ofType(SchemaTypes.NUMBER).setMin(0).setMax(100000000000000),\r\n    argIndex:1\r\n}"
+					}
+				}
+			],
+			"children": [
+				{
+					"id": 262,
+					"name": "valid",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "__tests__/classes/dummy.class.ts",
+							"line": 15,
+							"character": 9
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					},
+					"defaultValue": "true"
+				},
+				{
+					"id": 261,
+					"name": "value",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "__tests__/classes/dummy.class.ts",
+							"line": 14,
+							"character": 9
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "any"
+					}
+				},
+				{
+					"id": 263,
+					"name": "verify",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"decorators": [
+						{
+							"name": "ValidateSchemaPolicy",
+							"type": {
+								"type": "reference",
+								"name": "ValidateSchemaPolicy"
+							},
+							"arguments": {
+								"failedResponseCode": "400",
+								"policyMeta": "{\r\n        schema: ComparableSchema.ofType(SchemaTypes.STRING)\r\n            .setRegex(\"([a-z])\")\r\n    }"
+							}
+						}
+					],
+					"signatures": [
+						{
+							"id": 264,
+							"name": "verify",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 265,
+									"name": "str",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "__tests__/classes/dummy.class.ts",
+							"line": 20,
+							"character": 17
+						}
+					]
+				},
+				{
+					"id": 266,
+					"name": "verifyClassDecorator",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 267,
+							"name": "verifyClassDecorator",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 268,
+									"name": "num",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								},
+								{
+									"id": 269,
+									"name": "num2",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "__tests__/classes/dummy.class.ts",
+							"line": 25,
+							"character": 31
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						262,
+						261
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						263,
+						266
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "__tests__/classes/dummy.class.ts",
+					"line": 13,
+					"character": 18
+				}
+			]
+		},
+		{
+			"id": 44,
+			"name": "GenericException",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 45,
+					"name": "constructor",
+					"kind": 512,
+					"kindString": "Constructor",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 46,
+							"name": "new GenericException",
+							"kind": 16384,
+							"kindString": "Constructor signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 47,
+									"name": "message",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 48,
+									"name": "code",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 49,
+									"name": "data",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									},
+									"defaultValue": " []"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "GenericException",
+								"id": 44
+							},
+							"overwrites": {
+								"type": "reference",
+								"name": "SugoiError.__constructor",
+								"id": 27
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/generic.exception.ts",
+							"line": 3,
+							"character": 50
+						}
+					],
+					"overwrites": {
+						"type": "reference",
+						"name": "SugoiError.__constructor",
+						"id": 27
+					}
+				},
+				{
+					"id": 50,
+					"name": "code",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 2,
+							"character": 15
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.code",
+						"id": 24
+					}
+				},
+				{
+					"id": 51,
+					"name": "message",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 3,
+							"character": 18
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.message",
+						"id": 25
+					}
+				},
+				{
+					"id": 52,
+					"name": "stack",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 4,
+							"character": 16
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.stack",
+						"id": 26
+					}
+				},
+				{
+					"id": 57,
+					"name": "getCode",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 58,
+							"name": "getCode",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "SugoiError.getCode",
+								"id": 36
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 27,
+							"character": 18
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.getCode",
+						"id": 36
+					}
+				},
+				{
+					"id": 53,
+					"name": "getData",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 54,
+							"name": "getData",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "intrinsic",
+									"name": "any"
+								}
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "SugoiError.getData",
+								"id": 32
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 19,
+							"character": 18
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.getData",
+						"id": 32
+					}
+				},
+				{
+					"id": 55,
+					"name": "getMessage",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 56,
+							"name": "getMessage",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "SugoiError.getMessage",
+								"id": 34
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 23,
+							"character": 21
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.getMessage",
+						"id": 34
+					}
+				},
+				{
+					"id": 59,
+					"name": "getStack",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 60,
+							"name": "getStack",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "SugoiError.getStack",
+								"id": 38
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 31,
+							"character": 19
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.getStack",
+						"id": 38
+					}
+				},
+				{
+					"id": 63,
+					"name": "printError",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 64,
+							"name": "printError",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "SugoiError.printError",
+								"id": 42
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 39,
+							"character": 21
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.printError",
+						"id": 42
+					}
+				},
+				{
+					"id": 61,
+					"name": "printStack",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 62,
+							"name": "printStack",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "SugoiError.printStack",
+								"id": 40
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 35,
+							"character": 21
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.printStack",
+						"id": 40
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Constructors",
+					"kind": 512,
+					"children": [
+						45
+					]
+				},
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						50,
+						51,
+						52
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						57,
+						53,
+						55,
+						59,
+						63,
+						61
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "exceptions/generic.exception.ts",
+					"line": 3,
+					"character": 29
+				}
+			],
+			"extendedTypes": [
+				{
+					"type": "reference",
+					"name": "SugoiError",
+					"id": 23
+				}
+			],
+			"extendedBy": [
+				{
+					"type": "reference",
+					"name": "myError",
+					"id": 270
+				}
+			]
+		},
+		{
+			"id": 292,
+			"name": "NestedPolicyCheck",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {
+				"isExported": true
+			},
+			"decorators": [
+				{
+					"name": "Injectable",
+					"type": {
+						"type": "reference",
+						"name": "Injectable"
+					},
+					"arguments": {}
+				}
+			],
+			"children": [
+				{
+					"id": 293,
+					"name": "entity",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "__tests__/classes/nested-policy-check.class.ts",
+							"line": 14,
+							"character": 17
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "IEntity"
+					}
+				},
+				{
+					"id": 294,
+					"name": "setEntity",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"decorators": [
+						{
+							"name": "ValidateSchemaPolicy",
+							"type": {
+								"type": "reference",
+								"name": "ValidateSchemaPolicy"
+							},
+							"arguments": {
+								"failedResponseCode": "null",
+								"policyMeta": "{schema: EntitySchema}"
+							}
+						}
+					],
+					"signatures": [
+						{
+							"id": 295,
+							"name": "setEntity",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 296,
+									"name": "entity",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "IEntity"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "__tests__/classes/nested-policy-check.class.ts",
+							"line": 18,
+							"character": 13
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						293
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						294
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "__tests__/classes/nested-policy-check.class.ts",
+					"line": 12,
+					"character": 30
+				}
+			]
+		},
+		{
+			"id": 252,
+			"name": "PolicyCheck",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {
+				"isExported": true
+			},
+			"decorators": [
+				{
+					"name": "Injectable",
+					"type": {
+						"type": "reference",
+						"name": "Injectable"
+					},
+					"arguments": {}
+				}
+			],
+			"children": [
+				{
+					"id": 254,
+					"name": "entity",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "__tests__/classes/policy-check.class.ts",
+							"line": 22,
+							"character": 17
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "IEntity",
+						"id": 248
+					}
+				},
+				{
+					"id": 253,
+					"name": "verifyData",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "__tests__/classes/policy-check.class.ts",
+							"line": 21,
+							"character": 21
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"defaultValue": " new Date().getTime()"
+				},
+				{
+					"id": 258,
+					"name": "myName",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"decorators": [
+						{
+							"name": "Deprecated",
+							"type": {
+								"type": "reference",
+								"name": "Deprecated",
+								"id": 236
+							},
+							"arguments": {}
+						}
+					],
+					"signatures": [
+						{
+							"id": 259,
+							"name": "myName",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "__tests__/classes/policy-check.class.ts",
+							"line": 30,
+							"character": 10
+						}
+					]
+				},
+				{
+					"id": 255,
+					"name": "setEntity",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"decorators": [
+						{
+							"name": "ValidateSchemaPolicy",
+							"type": {
+								"type": "reference",
+								"name": "ValidateSchemaPolicy"
+							},
+							"arguments": {
+								"failedResponseCode": "null",
+								"policyMeta": "{schema:EntitySchema}"
+							}
+						}
+					],
+					"signatures": [
+						{
+							"id": 256,
+							"name": "setEntity",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 257,
+									"name": "entity",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "IEntity",
+										"id": 248
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "__tests__/classes/policy-check.class.ts",
+							"line": 26,
+							"character": 13
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						254,
+						253
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						258,
+						255
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "__tests__/classes/policy-check.class.ts",
+					"line": 20,
+					"character": 24
+				}
+			]
+		},
+		{
+			"id": 183,
+			"name": "PolicyItem",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 206,
+					"name": "constructor",
+					"kind": 512,
+					"kindString": "Constructor",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 207,
+							"name": "new PolicyItem",
+							"kind": 16384,
+							"kindString": "Constructor signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 208,
+									"name": "policyValidator",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "TPolicy",
+										"id": 214
+									}
+								},
+								{
+									"id": 209,
+									"name": "name",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									},
+									"defaultValue": " policyValidator.constructor.name"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "PolicyItem",
+								"id": 183
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "policies/classes/policy-item.class.ts",
+							"line": 57,
+							"character": 5
+						}
+					]
+				},
+				{
+					"id": 184,
+					"name": "policyValidator",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/classes/policy-item.class.ts",
+							"line": 6,
+							"character": 26
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "any"
+					}
+				},
+				{
+					"id": 210,
+					"name": "setPolicyValidator",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 211,
+							"name": "setPolicyValidator",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 212,
+									"name": "guardianValidator",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "TPolicy",
+										"id": 214
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "policies/classes/policy-item.class.ts",
+							"line": 63,
+							"character": 22
+						}
+					]
+				},
+				{
+					"id": 185,
+					"name": "add",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isStatic": true,
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 186,
+							"name": "add",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 187,
+									"name": "policy",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "PolicyItem",
+										"id": 183
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "policies/classes/policy-item.class.ts",
+							"line": 9,
+							"character": 14
+						}
+					]
+				},
+				{
+					"id": 188,
+					"name": "get",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isStatic": true,
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 189,
+							"name": "get",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 190,
+									"name": "policyName",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "TPolicy",
+								"id": 214
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "policies/classes/policy-item.class.ts",
+							"line": 13,
+							"character": 14
+						}
+					]
+				},
+				{
+					"id": 191,
+					"name": "has",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isStatic": true,
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 192,
+							"name": "has",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 193,
+									"name": "policyName",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "policies/classes/policy-item.class.ts",
+							"line": 17,
+							"character": 14
+						}
+					]
+				},
+				{
+					"id": 194,
+					"name": "remove",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isStatic": true,
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 195,
+							"name": "remove",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 196,
+									"name": "policyName",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "policies/classes/policy-item.class.ts",
+							"line": 21,
+							"character": 17
+						}
+					]
+				},
+				{
+					"id": 197,
+					"name": "setPolicyDescriptor",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isStatic": true,
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 198,
+							"name": "setPolicyDescriptor",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 199,
+									"name": "contextClass",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								},
+								{
+									"id": 200,
+									"name": "propertyKey",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 201,
+									"name": "next",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 202,
+											"name": "__type",
+											"kind": 65536,
+											"kindString": "Type literal",
+											"flags": {},
+											"signatures": [
+												{
+													"id": 203,
+													"name": "__call",
+													"kind": 4096,
+													"kindString": "Call signature",
+													"flags": {},
+													"parameters": [
+														{
+															"id": 204,
+															"name": "args",
+															"kind": 32768,
+															"kindString": "Parameter",
+															"flags": {
+																"isRest": true
+															},
+															"type": {
+																"type": "array",
+																"elementType": {
+																	"type": "intrinsic",
+																	"name": "any"
+																}
+															}
+														}
+													],
+													"type": {
+														"type": "intrinsic",
+														"name": "void"
+													}
+												}
+											],
+											"sources": [
+												{
+													"fileName": "policies/classes/policy-item.class.ts",
+													"line": 27,
+													"character": 43
+												}
+											]
+										}
+									}
+								},
+								{
+									"id": 205,
+									"name": "failedResponseCode",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "(Anonymous function)"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "policies/classes/policy-item.class.ts",
+							"line": 25,
+							"character": 37
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Constructors",
+					"kind": 512,
+					"children": [
+						206
+					]
+				},
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						184
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						210,
+						185,
+						188,
+						191,
+						194,
+						197
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "policies/classes/policy-item.class.ts",
+					"line": 5,
+					"character": 23
+				}
+			]
+		},
+		{
+			"id": 152,
+			"name": "PolicySchemaValidator",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {
+				"isExported": true
+			},
+			"typeParameter": [
+				{
+					"id": 153,
+					"name": "T",
+					"kind": 131072,
+					"kindString": "Type parameter",
+					"flags": {}
+				}
+			],
+			"children": [
+				{
+					"id": 154,
+					"name": "constructor",
+					"kind": 512,
+					"kindString": "Constructor",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 157,
+							"name": "new PolicySchemaValidator",
+							"kind": 16384,
+							"kindString": "Constructor signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 158,
+									"name": "validateValue",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "typeParameter",
+										"name": "T"
+									}
+								},
+								{
+									"id": 159,
+									"name": "schema",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "TComparableSchema",
+										"id": 134
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "PolicySchemaValidator",
+								"id": 152
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "policies/classes/policy-schema-validator.class.ts",
+							"line": 7,
+							"character": 77
+						}
+					]
+				},
+				{
+					"id": 156,
+					"name": "schema",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isConstructorProperty": true,
+						"isExported": true,
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/classes/policy-schema-validator.class.ts",
+							"line": 9,
+							"character": 29
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "TComparableSchema",
+						"id": 134
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IPolicySchemaValidator.schema",
+						"id": 147
+					}
+				},
+				{
+					"id": 155,
+					"name": "validateValue",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isConstructorProperty": true,
+						"isExported": true,
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/classes/policy-schema-validator.class.ts",
+							"line": 8,
+							"character": 36
+						}
+					],
+					"type": {
+						"type": "typeParameter",
+						"name": "T"
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IPolicySchemaValidator.validateValue",
+						"id": 146
+					}
+				},
+				{
+					"id": 160,
+					"name": "validate",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 161,
+							"name": "validate",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "IValidationResult",
+								"id": 148
+							},
+							"implementationOf": {
+								"type": "reference",
+								"name": "IPolicySchemaValidator.validate",
+								"id": 145
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "policies/classes/policy-schema-validator.class.ts",
+							"line": 12,
+							"character": 19
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"name": "IPolicySchemaValidator.validate",
+						"id": 144
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Constructors",
+					"kind": 512,
+					"children": [
+						154
+					]
+				},
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						156,
+						155
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						160
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "policies/classes/policy-schema-validator.class.ts",
+					"line": 7,
+					"character": 34
+				}
+			],
+			"implementedTypes": [
+				{
+					"type": "reference",
+					"name": "IPolicySchemaValidator",
+					"id": 142
+				}
+			]
+		},
+		{
+			"id": 1,
+			"name": "StringUtils",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 2,
+					"name": "generateGuid",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isStatic": true,
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 3,
+							"name": "generateGuid",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "policies/utils/string.util.ts",
+							"line": 2,
+							"character": 24
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						2
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "policies/utils/string.util.ts",
+					"line": 1,
+					"character": 24
+				}
+			]
+		},
+		{
+			"id": 23,
+			"name": "SugoiError",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {
+				"isExported": true,
+				"isAbstract": true
+			},
+			"children": [
+				{
+					"id": 27,
+					"name": "constructor",
+					"kind": 512,
+					"kindString": "Constructor",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 28,
+							"name": "new SugoiError",
+							"kind": 16384,
+							"kindString": "Constructor signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 29,
+									"name": "message",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 30,
+									"name": "code",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 31,
+									"name": "data",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									},
+									"defaultValue": " []"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "SugoiError",
+								"id": 23
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 6,
+							"character": 29
+						}
+					]
+				},
+				{
+					"id": 24,
+					"name": "code",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 2,
+							"character": 15
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				{
+					"id": 25,
+					"name": "message",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 3,
+							"character": 18
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 26,
+					"name": "stack",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 4,
+							"character": 16
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 36,
+					"name": "getCode",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 37,
+							"name": "getCode",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 27,
+							"character": 18
+						}
+					]
+				},
+				{
+					"id": 32,
+					"name": "getData",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 33,
+							"name": "getData",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "intrinsic",
+									"name": "any"
+								}
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 19,
+							"character": 18
+						}
+					]
+				},
+				{
+					"id": 34,
+					"name": "getMessage",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 35,
+							"name": "getMessage",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 23,
+							"character": 21
+						}
+					]
+				},
+				{
+					"id": 38,
+					"name": "getStack",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 39,
+							"name": "getStack",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 31,
+							"character": 19
+						}
+					]
+				},
+				{
+					"id": 42,
+					"name": "printError",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 43,
+							"name": "printError",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 39,
+							"character": 21
+						}
+					]
+				},
+				{
+					"id": 40,
+					"name": "printStack",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 41,
+							"name": "printStack",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 35,
+							"character": 21
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Constructors",
+					"kind": 512,
+					"children": [
+						27
+					]
+				},
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						24,
+						25,
+						26
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						36,
+						32,
+						34,
+						38,
+						42,
+						40
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "exceptions/sugoi-abstract.exception.ts",
+					"line": 1,
+					"character": 32
+				}
+			],
+			"extendedBy": [
+				{
+					"type": "reference",
+					"name": "GenericException",
+					"id": 44
+				},
+				{
+					"type": "reference",
+					"name": "SugoiPolicyError",
+					"id": 162
+				}
+			]
+		},
+		{
+			"id": 162,
+			"name": "SugoiPolicyError",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 166,
+					"name": "constructor",
+					"kind": 512,
+					"kindString": "Constructor",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 167,
+							"name": "new SugoiPolicyError",
+							"kind": 16384,
+							"kindString": "Constructor signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 168,
+									"name": "message",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 169,
+									"name": "code",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 170,
+									"name": "data",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									},
+									"defaultValue": " []"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "SugoiPolicyError",
+								"id": 162
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "SugoiError.__constructor",
+								"id": 27
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 6,
+							"character": 29
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.__constructor",
+						"id": 27
+					}
+				},
+				{
+					"id": 163,
+					"name": "code",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 2,
+							"character": 15
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.code",
+						"id": 24
+					}
+				},
+				{
+					"id": 164,
+					"name": "message",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 3,
+							"character": 18
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.message",
+						"id": 25
+					}
+				},
+				{
+					"id": 165,
+					"name": "stack",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 4,
+							"character": 16
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.stack",
+						"id": 26
+					}
+				},
+				{
+					"id": 175,
+					"name": "getCode",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 176,
+							"name": "getCode",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "SugoiError.getCode",
+								"id": 36
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 27,
+							"character": 18
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.getCode",
+						"id": 36
+					}
+				},
+				{
+					"id": 171,
+					"name": "getData",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 172,
+							"name": "getData",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "intrinsic",
+									"name": "any"
+								}
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "SugoiError.getData",
+								"id": 32
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 19,
+							"character": 18
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.getData",
+						"id": 32
+					}
+				},
+				{
+					"id": 173,
+					"name": "getMessage",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 174,
+							"name": "getMessage",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "SugoiError.getMessage",
+								"id": 34
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 23,
+							"character": 21
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.getMessage",
+						"id": 34
+					}
+				},
+				{
+					"id": 177,
+					"name": "getStack",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 178,
+							"name": "getStack",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "SugoiError.getStack",
+								"id": 38
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 31,
+							"character": 19
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.getStack",
+						"id": 38
+					}
+				},
+				{
+					"id": 181,
+					"name": "printError",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 182,
+							"name": "printError",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "SugoiError.printError",
+								"id": 42
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 39,
+							"character": 21
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.printError",
+						"id": 42
+					}
+				},
+				{
+					"id": 179,
+					"name": "printStack",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 180,
+							"name": "printStack",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "SugoiError.printStack",
+								"id": 40
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 35,
+							"character": 21
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.printStack",
+						"id": 40
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Constructors",
+					"kind": 512,
+					"children": [
+						166
+					]
+				},
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						163,
+						164,
+						165
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						175,
+						171,
+						173,
+						177,
+						181,
+						179
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "policies/exceptions/policy-error.exception.ts",
+					"line": 3,
+					"character": 29
+				}
+			],
+			"extendedTypes": [
+				{
+					"type": "reference",
+					"name": "SugoiError",
+					"id": 23
+				}
+			]
+		},
+		{
+			"id": 222,
+			"name": "ValidateSchemaUtil",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 223,
+					"name": "ValidateArgs",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isStatic": true,
+						"isExported": true
+					},
+					"decorators": [
+						{
+							"name": "Policy",
+							"type": {
+								"type": "reference",
+								"name": "Policy"
+							},
+							"arguments": {}
+						}
+					],
+					"signatures": [
+						{
+							"id": 224,
+							"name": "ValidateArgs",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 225,
+									"name": "policyData",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "TValidateSchemaData",
+										"id": 140
+									}
+								}
+							],
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "intrinsic",
+										"name": "boolean"
+									},
+									{
+										"type": "reference",
+										"name": "IValidationResult",
+										"id": 148
+									}
+								]
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "policies/utils/validate-schema.util.ts",
+							"line": 9,
+							"character": 23
+						}
+					]
+				},
+				{
+					"id": 226,
+					"name": "ValidateSchema",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isStatic": true,
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 227,
+							"name": "ValidateSchema",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 228,
+									"name": "value",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								},
+								{
+									"id": 229,
+									"name": "schema",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "TComparableSchema",
+										"id": 134
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IValidationResult",
+								"id": 148
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "policies/utils/validate-schema.util.ts",
+							"line": 28,
+							"character": 25
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						223,
+						226
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "policies/utils/validate-schema.util.ts",
+					"line": 6,
+					"character": 31
+				}
+			]
+		},
+		{
+			"id": 270,
+			"name": "myError",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 271,
+					"name": "constructor",
+					"kind": 512,
+					"kindString": "Constructor",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 272,
+							"name": "new myError",
+							"kind": 16384,
+							"kindString": "Constructor signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 273,
+									"name": "message",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									}
+								},
+								{
+									"id": 274,
+									"name": "code",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									}
+								},
+								{
+									"id": 275,
+									"name": "data",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									},
+									"defaultValue": " []"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "myError",
+								"id": 270
+							},
+							"overwrites": {
+								"type": "reference",
+								"name": "SugoiError.__constructor",
+								"id": 27
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "GenericException.__constructor",
+								"id": 45
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/generic.exception.ts",
+							"line": 3,
+							"character": 50
+						}
+					],
+					"overwrites": {
+						"type": "reference",
+						"name": "SugoiError.__constructor",
+						"id": 27
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "GenericException.__constructor",
+						"id": 45
+					}
+				},
+				{
+					"id": 276,
+					"name": "code",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 2,
+							"character": 15
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.code",
+						"id": 24
+					}
+				},
+				{
+					"id": 277,
+					"name": "message",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 3,
+							"character": 18
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.message",
+						"id": 25
+					}
+				},
+				{
+					"id": 278,
+					"name": "stack",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 4,
+							"character": 16
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.stack",
+						"id": 26
+					}
+				},
+				{
+					"id": 283,
+					"name": "getCode",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 284,
+							"name": "getCode",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "SugoiError.getCode",
+								"id": 36
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 27,
+							"character": 18
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.getCode",
+						"id": 36
+					}
+				},
+				{
+					"id": 279,
+					"name": "getData",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 280,
+							"name": "getData",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "intrinsic",
+									"name": "any"
+								}
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "SugoiError.getData",
+								"id": 32
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 19,
+							"character": 18
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.getData",
+						"id": 32
+					}
+				},
+				{
+					"id": 281,
+					"name": "getMessage",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 282,
+							"name": "getMessage",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "SugoiError.getMessage",
+								"id": 34
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 23,
+							"character": 21
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.getMessage",
+						"id": 34
+					}
+				},
+				{
+					"id": 285,
+					"name": "getStack",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 286,
+							"name": "getStack",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "SugoiError.getStack",
+								"id": 38
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 31,
+							"character": 19
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.getStack",
+						"id": 38
+					}
+				},
+				{
+					"id": 289,
+					"name": "printError",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 290,
+							"name": "printError",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "SugoiError.printError",
+								"id": 42
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 39,
+							"character": 21
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.printError",
+						"id": 42
+					}
+				},
+				{
+					"id": 287,
+					"name": "printStack",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true,
+						"isPublic": true
+					},
+					"signatures": [
+						{
+							"id": 288,
+							"name": "printStack",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "SugoiError.printStack",
+								"id": 40
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "exceptions/sugoi-abstract.exception.ts",
+							"line": 35,
+							"character": 21
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "SugoiError.printStack",
+						"id": 40
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Constructors",
+					"kind": 512,
+					"children": [
+						271
+					]
+				},
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						276,
+						277,
+						278
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						283,
+						279,
+						281,
+						285,
+						289,
+						287
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "__tests__/exceptions.test.ts",
+					"line": 4,
+					"character": 20
+				}
+			],
+			"extendedTypes": [
+				{
+					"type": "reference",
+					"name": "GenericException",
+					"id": 44
+				}
+			]
+		},
+		{
+			"id": 85,
+			"name": "IComparableValue",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 94,
+					"name": "arrayAllowed",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/interfaces/comparable-value.interface.ts",
+							"line": 13,
+							"character": 16
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				},
+				{
+					"id": 93,
+					"name": "exclusiveMax",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/interfaces/comparable-value.interface.ts",
+							"line": 12,
+							"character": 16
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				{
+					"id": 92,
+					"name": "exclusiveMin",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/interfaces/comparable-value.interface.ts",
+							"line": 11,
+							"character": 16
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				{
+					"id": 87,
+					"name": "mandatory",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/interfaces/comparable-value.interface.ts",
+							"line": 6,
+							"character": 13
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				},
+				{
+					"id": 91,
+					"name": "max",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/interfaces/comparable-value.interface.ts",
+							"line": 10,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				{
+					"id": 90,
+					"name": "min",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/interfaces/comparable-value.interface.ts",
+							"line": 9,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				{
+					"id": 88,
+					"name": "regex",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/interfaces/comparable-value.interface.ts",
+							"line": 7,
+							"character": 9
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 89,
+					"name": "regexFlag",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/interfaces/comparable-value.interface.ts",
+							"line": 8,
+							"character": 13
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 86,
+					"name": "valueType",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/interfaces/comparable-value.interface.ts",
+							"line": 5,
+							"character": 13
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "ComparableValueType",
+						"id": 95
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						94,
+						93,
+						92,
+						87,
+						91,
+						90,
+						88,
+						89,
+						86
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "policies/interfaces/comparable-value.interface.ts",
+					"line": 4,
+					"character": 33
+				}
+			],
+			"implementedBy": [
+				{
+					"type": "reference",
+					"name": "ComparableSchema",
+					"id": 99
+				}
+			]
+		},
+		{
+			"id": 248,
+			"name": "IEntity",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 251,
+					"name": "active",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "__tests__/classes/policy-check.class.ts",
+							"line": 7,
+							"character": 10
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "any"
+					}
+				},
+				{
+					"id": 249,
+					"name": "id",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "__tests__/classes/policy-check.class.ts",
+							"line": 5,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "any"
+					}
+				},
+				{
+					"id": 291,
+					"name": "metaData",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "__tests__/classes/nested-policy-check.class.ts",
+							"line": 4,
+							"character": 12
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "any"
+					}
+				},
+				{
+					"id": 250,
+					"name": "num",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "__tests__/classes/policy-check.class.ts",
+							"line": 6,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "any"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						251,
+						249,
+						291,
+						250
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "__tests__/classes/policy-check.class.ts",
+					"line": 4,
+					"character": 24
+				},
+				{
+					"fileName": "__tests__/classes/nested-policy-check.class.ts",
+					"line": 3,
+					"character": 24
+				}
+			]
+		},
+		{
+			"id": 4,
+			"name": "IExceptionConstant",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 5,
+					"name": "code",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "interfaces/exception-constant.interface.ts",
+							"line": 2,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				{
+					"id": 6,
+					"name": "message",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "interfaces/exception-constant.interface.ts",
+							"line": 3,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						5,
+						6
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "interfaces/exception-constant.interface.ts",
+					"line": 1,
+					"character": 35
+				}
+			]
+		},
+		{
+			"id": 142,
+			"name": "IPolicySchemaValidator",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"typeParameter": [
+				{
+					"id": 143,
+					"name": "T",
+					"kind": 131072,
+					"kindString": "Type parameter",
+					"flags": {}
+				}
+			],
+			"children": [
+				{
+					"id": 147,
+					"name": "schema",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/interfaces/policy-schema-validator.interface.ts",
+							"line": 8,
+							"character": 10
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "TComparableSchema",
+						"id": 134
+					}
+				},
+				{
+					"id": 146,
+					"name": "validateValue",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/interfaces/policy-schema-validator.interface.ts",
+							"line": 7,
+							"character": 17
+						}
+					],
+					"type": {
+						"type": "typeParameter",
+						"name": "T"
+					}
+				},
+				{
+					"id": 144,
+					"name": "validate",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 145,
+							"name": "validate",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "IValidationResult",
+								"id": 148
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "policies/interfaces/policy-schema-validator.interface.ts",
+							"line": 5,
+							"character": 12
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						147,
+						146
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						144
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "policies/interfaces/policy-schema-validator.interface.ts",
+					"line": 4,
+					"character": 39
+				}
+			],
+			"implementedBy": [
+				{
+					"type": "reference",
+					"name": "PolicySchemaValidator",
+					"id": 152
+				}
+			]
+		},
+		{
+			"id": 148,
+			"name": "IValidationResult",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 151,
+					"name": "expectedValue",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/interfaces/policy-schema-validator.interface.ts",
+							"line": 14,
+							"character": 17
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "any"
+					}
+				},
+				{
+					"id": 150,
+					"name": "invalidValue",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/interfaces/policy-schema-validator.interface.ts",
+							"line": 13,
+							"character": 16
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "any"
+					}
+				},
+				{
+					"id": 149,
+					"name": "valid",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "policies/interfaces/policy-schema-validator.interface.ts",
+							"line": 12,
+							"character": 9
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						151,
+						150,
+						149
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "policies/interfaces/policy-schema-validator.interface.ts",
+					"line": 11,
+					"character": 34
+				}
+			]
+		},
+		{
+			"id": 241,
+			"name": "Iiterable",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 242,
+					"name": "__@iterator",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "interfaces/iterable.interface.ts",
+							"line": 3,
+							"character": 21
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 243,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 244,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"type": {
+										"type": "intrinsic",
+										"name": "any"
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "interfaces/iterable.interface.ts",
+									"line": 3,
+									"character": 22
+								}
+							]
+						}
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						242
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "interfaces/iterable.interface.ts",
+					"line": 2,
+					"character": 26
+				}
+			]
+		},
+		{
+			"id": 95,
+			"name": "ComparableValueType",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "policies/interfaces/comparable-value.interface.ts",
+					"line": 3,
+					"character": 31
+				}
+			],
+			"type": {
+				"type": "union",
+				"types": [
+					{
+						"type": "reference",
+						"name": "SchemaTypes",
+						"id": 81
+					},
+					{
+						"type": "reflection",
+						"declaration": {
+							"id": 96,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"indexSignature": {
+								"id": 97,
+								"name": "__index",
+								"kind": 8192,
+								"kindString": "Index signature",
+								"flags": {},
+								"parameters": [
+									{
+										"id": 98,
+										"name": "prop",
+										"kind": 32768,
+										"kindString": "Parameter",
+										"flags": {},
+										"type": {
+											"type": "intrinsic",
+											"name": "string"
+										}
+									}
+								],
+								"type": {
+									"type": "reference",
+									"name": "IComparableValue",
+									"id": 85
+								}
+							},
+							"sources": [
+								{
+									"fileName": "policies/interfaces/comparable-value.interface.ts",
+									"line": 3,
+									"character": 47
+								}
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"id": 134,
+			"name": "TComparableSchema",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "policies/interfaces/validate-schema-data.interface.ts",
+					"line": 4,
+					"character": 29
+				}
+			],
+			"type": {
+				"type": "union",
+				"types": [
+					{
+						"type": "reference",
+						"name": "ComparableSchema",
+						"id": 99
+					},
+					{
+						"type": "reflection",
+						"declaration": {
+							"id": 135,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"indexSignature": {
+								"id": 136,
+								"name": "__index",
+								"kind": 8192,
+								"kindString": "Index signature",
+								"flags": {},
+								"parameters": [
+									{
+										"id": 137,
+										"name": "prop",
+										"kind": 32768,
+										"kindString": "Parameter",
+										"flags": {},
+										"type": {
+											"type": "intrinsic",
+											"name": "string"
+										}
+									}
+								],
+								"type": {
+									"type": "reference",
+									"name": "ComparableSchema",
+									"id": 99
+								}
+							},
+							"sources": [
+								{
+									"fileName": "policies/interfaces/validate-schema-data.interface.ts",
+									"line": 4,
+									"character": 50
+								}
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"id": 245,
+			"name": "TNewable",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {
+				"isExported": true
+			},
+			"typeParameter": [
+				{
+					"id": 246,
+					"name": "T",
+					"kind": 131072,
+					"kindString": "Type parameter",
+					"flags": {}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "interfaces/newable.interface.ts",
+					"line": 1,
+					"character": 20
+				}
+			],
+			"type": {
+				"type": "reflection",
+				"declaration": {
+					"id": 247,
+					"name": "__type",
+					"kind": 65536,
+					"kindString": "Type literal",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "interfaces/newable.interface.ts",
+							"line": 1,
+							"character": 29
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": 214,
+			"name": "TPolicy",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "policies/classes/policy-item.class.ts",
+					"line": 76,
+					"character": 19
+				}
+			],
+			"type": {
+				"type": "reflection",
+				"declaration": {
+					"id": 215,
+					"name": "__type",
+					"kind": 65536,
+					"kindString": "Type literal",
+					"flags": {},
+					"signatures": [
+						{
+							"id": 216,
+							"name": "__call",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 217,
+									"name": "policyData",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isOptional": true
+									},
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 218,
+											"name": "__type",
+											"kind": 65536,
+											"kindString": "Type literal",
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "policies/classes/policy-item.class.ts",
+													"line": 76,
+													"character": 35
+												}
+											]
+										}
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "any"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "policies/classes/policy-item.class.ts",
+							"line": 76,
+							"character": 21
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": 213,
+			"name": "TPolicyResults",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "policies/classes/policy-item.class.ts",
+					"line": 75,
+					"character": 26
+				}
+			],
+			"type": {
+				"type": "union",
+				"types": [
+					{
+						"type": "intrinsic",
+						"name": "true"
+					},
+					{
+						"type": "intrinsic",
+						"name": "any"
+					}
+				]
+			}
+		},
+		{
+			"id": 140,
+			"name": "TValidateSchemaData",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "policies/interfaces/validate-schema-data.interface.ts",
+					"line": 6,
+					"character": 31
+				}
+			],
+			"type": {
+				"type": "reflection",
+				"declaration": {
+					"id": 141,
+					"name": "__type",
+					"kind": 65536,
+					"kindString": "Type literal",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "policies/interfaces/validate-schema-data.interface.ts",
+							"line": 6,
+							"character": 33
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": 138,
+			"name": "TValidateSchemaMeta",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {
+				"isExported": true
+			},
+			"sources": [
+				{
+					"fileName": "policies/interfaces/validate-schema-data.interface.ts",
+					"line": 5,
+					"character": 31
+				}
+			],
+			"type": {
+				"type": "reflection",
+				"declaration": {
+					"id": 139,
+					"name": "__type",
+					"kind": 65536,
+					"kindString": "Type literal",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "policies/interfaces/validate-schema-data.interface.ts",
+							"line": 5,
+							"character": 33
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": 220,
+			"name": "POLICY_KEY",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isExported": true,
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "policies/decorators/policy.decorator.ts",
+					"line": 9,
+					"character": 23
+				}
+			],
+			"type": {
+				"type": "stringLiteral",
+				"value": "POLICY"
+			},
+			"defaultValue": "\"POLICY\""
+		},
+		{
+			"id": 219,
+			"name": "POLICY_META_KEY",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isExported": true,
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "policies/decorators/policy.decorator.ts",
+					"line": 8,
+					"character": 28
+				}
+			],
+			"type": {
+				"type": "stringLiteral",
+				"value": "POLICY_META"
+			},
+			"defaultValue": "\"POLICY_META\""
+		},
+		{
+			"id": 221,
+			"name": "sugPolicyDelimiter",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {
+				"isExported": true,
+				"isConst": true
+			},
+			"sources": [
+				{
+					"fileName": "policies/decorators/policy.decorator.ts",
+					"line": 10,
+					"character": 31
+				}
+			],
+			"type": {
+				"type": "stringLiteral",
+				"value": "|_S_|"
+			},
+			"defaultValue": "\"|_S_|\""
+		},
+		{
+			"id": 236,
+			"name": "Deprecated",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"decorates": [
+				{
+					"type": "reference",
+					"name": "myName",
+					"id": 258
+				}
+			],
+			"signatures": [
+				{
+					"id": 237,
+					"name": "Deprecated",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 238,
+							"name": "msg",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							},
+							"defaultValue": "\"%s.%s is deprecated\""
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "(Anonymous function)"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "decorators/deprecated.decorator.ts",
+					"line": 1,
+					"character": 26
+				}
+			]
+		},
+		{
+			"id": 239,
+			"name": "Iterable",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"decorates": [
+				{
+					"type": "reference",
+					"name": "Dummy",
+					"id": 260
+				}
+			],
+			"signatures": [
+				{
+					"id": 240,
+					"name": "Iterable",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"type": {
+						"type": "reference",
+						"name": "(Anonymous function)"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "decorators/iterable.decorator.ts",
+					"line": 3,
+					"character": 24
+				}
+			]
+		},
+		{
+			"id": 230,
+			"name": "clone",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 231,
+					"name": "clone",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"typeParameter": [
+						{
+							"id": 232,
+							"name": "T",
+							"kind": 131072,
+							"kindString": "Type parameter",
+							"flags": {}
+						}
+					],
+					"parameters": [
+						{
+							"id": 233,
+							"name": "classIns",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "any"
+							}
+						},
+						{
+							"id": 234,
+							"name": "data",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "any"
+							}
+						},
+						{
+							"id": 235,
+							"name": "applyConstructor",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							},
+							"defaultValue": "false"
+						}
+					],
+					"type": {
+						"type": "unknown",
+						"name": "T"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "utils/object.utils.ts",
+					"line": 1,
+					"character": 21
+				}
+			]
+		},
+		{
+			"id": 7,
+			"name": "EXCEPTIONS",
+			"kind": 2097152,
+			"kindString": "Object literal",
+			"flags": {
+				"isExported": true,
+				"isConst": true
+			},
+			"children": [
+				{
+					"id": 8,
+					"name": "INVALID",
+					"kind": 2097152,
+					"kindString": "Object literal",
+					"flags": {
+						"isExported": true
+					},
+					"children": [
+						{
+							"id": 9,
+							"name": "code",
+							"kind": 32,
+							"kindString": "Variable",
+							"flags": {
+								"isExported": true
+							},
+							"sources": [
+								{
+									"fileName": "constants/exceptions.constant.ts",
+									"line": 4,
+									"character": 18
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							},
+							"defaultValue": "4000"
+						},
+						{
+							"id": 10,
+							"name": "message",
+							"kind": 32,
+							"kindString": "Variable",
+							"flags": {
+								"isExported": true
+							},
+							"sources": [
+								{
+									"fileName": "constants/exceptions.constant.ts",
+									"line": 4,
+									"character": 33
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							},
+							"defaultValue": "\"INVALID\""
+						}
+					],
+					"groups": [
+						{
+							"title": "Variables",
+							"kind": 32,
+							"children": [
+								9,
+								10
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "constants/exceptions.constant.ts",
+							"line": 4,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "object"
+					}
+				},
+				{
+					"id": 17,
+					"name": "INVALID_POLICY",
+					"kind": 2097152,
+					"kindString": "Object literal",
+					"flags": {
+						"isExported": true
+					},
+					"children": [
+						{
+							"id": 18,
+							"name": "code",
+							"kind": 32,
+							"kindString": "Variable",
+							"flags": {
+								"isExported": true
+							},
+							"sources": [
+								{
+									"fileName": "constants/exceptions.constant.ts",
+									"line": 7,
+									"character": 25
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							},
+							"defaultValue": "500"
+						},
+						{
+							"id": 19,
+							"name": "message",
+							"kind": 32,
+							"kindString": "Variable",
+							"flags": {
+								"isExported": true
+							},
+							"sources": [
+								{
+									"fileName": "constants/exceptions.constant.ts",
+									"line": 7,
+									"character": 38
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							},
+							"defaultValue": "\"Decorate Policy use on property which is not a function\""
+						}
+					],
+					"groups": [
+						{
+							"title": "Variables",
+							"kind": 32,
+							"children": [
+								18,
+								19
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "constants/exceptions.constant.ts",
+							"line": 7,
+							"character": 18
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "object"
+					}
+				},
+				{
+					"id": 11,
+					"name": "NOT_IMPLEMENTED",
+					"kind": 2097152,
+					"kindString": "Object literal",
+					"flags": {
+						"isExported": true
+					},
+					"children": [
+						{
+							"id": 12,
+							"name": "code",
+							"kind": 32,
+							"kindString": "Variable",
+							"flags": {
+								"isExported": true
+							},
+							"sources": [
+								{
+									"fileName": "constants/exceptions.constant.ts",
+									"line": 5,
+									"character": 26
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							},
+							"defaultValue": "4001"
+						},
+						{
+							"id": 13,
+							"name": "message",
+							"kind": 32,
+							"kindString": "Variable",
+							"flags": {
+								"isExported": true
+							},
+							"sources": [
+								{
+									"fileName": "constants/exceptions.constant.ts",
+									"line": 5,
+									"character": 41
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							},
+							"defaultValue": "\"NOT_IMPLEMENTED\""
+						}
+					],
+					"groups": [
+						{
+							"title": "Variables",
+							"kind": 32,
+							"children": [
+								12,
+								13
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "constants/exceptions.constant.ts",
+							"line": 5,
+							"character": 19
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "object"
+					}
+				},
+				{
+					"id": 14,
+					"name": "POLICY_BLOCKED",
+					"kind": 2097152,
+					"kindString": "Object literal",
+					"flags": {
+						"isExported": true
+					},
+					"children": [
+						{
+							"id": 15,
+							"name": "code",
+							"kind": 32,
+							"kindString": "Variable",
+							"flags": {
+								"isExported": true
+							},
+							"sources": [
+								{
+									"fileName": "constants/exceptions.constant.ts",
+									"line": 6,
+									"character": 25
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							},
+							"defaultValue": "400"
+						},
+						{
+							"id": 16,
+							"name": "message",
+							"kind": 32,
+							"kindString": "Variable",
+							"flags": {
+								"isExported": true
+							},
+							"sources": [
+								{
+									"fileName": "constants/exceptions.constant.ts",
+									"line": 6,
+									"character": 38
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							},
+							"defaultValue": "\"Call blocked by resource policy\""
+						}
+					],
+					"groups": [
+						{
+							"title": "Variables",
+							"kind": 32,
+							"children": [
+								15,
+								16
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "constants/exceptions.constant.ts",
+							"line": 6,
+							"character": 18
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "object"
+					}
+				},
+				{
+					"id": 20,
+					"name": "REDECLARATION_ERROR",
+					"kind": 2097152,
+					"kindString": "Object literal",
+					"flags": {
+						"isExported": true
+					},
+					"children": [
+						{
+							"id": 21,
+							"name": "code",
+							"kind": 32,
+							"kindString": "Variable",
+							"flags": {
+								"isExported": true
+							},
+							"sources": [
+								{
+									"fileName": "constants/exceptions.constant.ts",
+									"line": 8,
+									"character": 30
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							},
+							"defaultValue": "4000"
+						},
+						{
+							"id": 22,
+							"name": "message",
+							"kind": 32,
+							"kindString": "Variable",
+							"flags": {
+								"isExported": true
+							},
+							"sources": [
+								{
+									"fileName": "constants/exceptions.constant.ts",
+									"line": 8,
+									"character": 44
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							},
+							"defaultValue": "\"Trying to redeclare finalized property\""
+						}
+					],
+					"groups": [
+						{
+							"title": "Variables",
+							"kind": 32,
+							"children": [
+								21,
+								22
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "constants/exceptions.constant.ts",
+							"line": 8,
+							"character": 23
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "object"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Object literals",
+					"kind": 2097152,
+					"children": [
+						8,
+						17,
+						11,
+						14,
+						20
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "constants/exceptions.constant.ts",
+					"line": 3,
+					"character": 23
+				}
+			],
+			"type": {
+				"type": "intrinsic",
+				"name": "object"
+			}
+		}
+	],
+	"groups": [
+		{
+			"title": "Enumerations",
+			"kind": 4,
+			"children": [
+				81
+			]
+		},
+		{
+			"title": "Classes",
+			"kind": 128,
+			"children": [
+				99,
+				65,
+				260,
+				44,
+				292,
+				252,
+				183,
+				152,
+				1,
+				23,
+				162,
+				222,
+				270
+			]
+		},
+		{
+			"title": "Interfaces",
+			"kind": 256,
+			"children": [
+				85,
+				248,
+				4,
+				142,
+				148,
+				241
+			]
+		},
+		{
+			"title": "Type aliases",
+			"kind": 4194304,
+			"children": [
+				95,
+				134,
+				245,
+				214,
+				213,
+				140,
+				138
+			]
+		},
+		{
+			"title": "Variables",
+			"kind": 32,
+			"children": [
+				220,
+				219,
+				221
+			]
+		},
+		{
+			"title": "Functions",
+			"kind": 64,
+			"children": [
+				236,
+				239,
+				230
+			]
+		},
+		{
+			"title": "Object literals",
+			"kind": 2097152,
+			"children": [
+				7
+			]
+		}
+	]
+}
