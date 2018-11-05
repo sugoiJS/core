@@ -26,7 +26,7 @@ export class PolicyItem {
                                       propertyKey: string,
                                       next: (...args) => void,
                                       failedResponseCode: number) {
-        return async function (...applyArgs) {
+        return function (...applyArgs) {
             const scope = this;
             const policies = Reflect.getMetadata(POLICY_KEY, contextClass, propertyKey) || [];
             const promises = [];
@@ -46,7 +46,7 @@ export class PolicyItem {
                     });
                 promises.push(promise);
             }
-            return await Promise.all(promises)
+            return Promise.all(promises)
                 .then(() => {
                     return next.apply(scope,applyArgs);
                 })

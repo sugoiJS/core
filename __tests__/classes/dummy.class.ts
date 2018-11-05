@@ -3,7 +3,9 @@ import {
     SchemaTypes,
     ValidateSchemaPolicy
 } from "../../index"
+import {Iterable} from "../../decorators/iterable.decorator";
 
+@Iterable()
 @ValidateSchemaPolicy(400, {
     schema: ComparableSchema.ofType(SchemaTypes.NUMBER).setMin(0).setMax(100000000000000),
     argIndex:1
@@ -24,4 +26,5 @@ export class Dummy {
         this.value = num + num2;
         return this.valid;
     }
+
 }

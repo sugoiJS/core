@@ -44,7 +44,23 @@ describe("test policy general", () => {
             await dummy.verifyClassDecorator(prefix, prefix)
         } catch (err) {
             delete err.stack;
-            expect(err).toEqual({"code": 400, "data": [{"policyId": "ValidateSchemaUtil.ValidateArgs", "type": "policy", "validationResult": {"expectedValue": {"arrayAllowed": false, "mandatory": false, "max": 100000000000000, "min": 0, "valueType": "number"}, "invalidValue": "test", "valid": false}}], "message": "Call blocked by resource policy"});
+            expect(err).toEqual({
+                "code": 400,
+                "data": [{
+                    "policyId": "ValidateSchemaUtil.ValidateArgs",
+                    "type": "policy",
+                    "validationResult": {
+                        "expectedValue": {
+                            "arrayAllowed": false,
+                            "mandatory": false,
+                            "max": 100000000000000,
+                            "min": 0,
+                            "valueType": "number"
+                        }, "invalidValue": "test", "valid": false
+                    }
+                }],
+                "message": "Call blocked by resource policy"
+            });
         }
         expect(await dummy.verifyClassDecorator(prefix, "2")).toBeTruthy();
         expect(dummy.value).toBe(prefix + 2);
@@ -117,9 +133,9 @@ describe("test policy general", () => {
                 "message": "Call blocked by resource policy"
             };
 
-        expect.assertions(7);
+        expect.assertions(8);
         const pc = new PolicyCheck();
-
+        expect(pc.myName()).toEqual("Check");
         try {
             await pc.setEntity(entity);
         } catch (err) {
@@ -168,11 +184,11 @@ describe("test policy general", () => {
 
     it("test nested schema validator", async () => {
         expect.assertions(3);
-        let en ={metaData:undefined};
+        let en = {metaData: undefined};
         const npc = new NestedPolicyCheck();
         await npc.setEntity(en);
         expect(npc.entity).toEqual(en);
-        en ={metaData:{timestamp: "test"}};
+        en = {metaData: {timestamp: "test"}};
         try {
             await npc.setEntity(en);
         } catch (err) {
@@ -197,4 +213,5 @@ describe("test policy general", () => {
         await npc.setEntity(en);
         expect(npc.entity).toEqual(en);
     });
+
 });

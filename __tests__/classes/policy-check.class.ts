@@ -1,4 +1,5 @@
 import {Injectable,SchemaTypes,ComparableSchema,ValidateSchemaPolicy} from "../../index";
+import {Deprecated} from "../../decorators/deprecated.decorator";
 
 export interface IEntity{
     id: any,
@@ -24,5 +25,9 @@ export class PolicyCheck {
     @ValidateSchemaPolicy(null,{schema:EntitySchema})
     setEntity(entity:IEntity) {
         this.entity = entity;
+    }
+    @Deprecated()
+    myName(){
+        return "Check";
     }
 }

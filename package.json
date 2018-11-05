@@ -42,11 +42,11 @@
     "url": "https://github.com/sugoiJS/core"
   },
   "dependencies": {
-    "inversify": "^4.11.1",
+    "inversify": "^5.0.1",
     "reflect-metadata": "^0.1.12"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.2",
+    "@types/jest": "^23.3.9",
     "jest": "^23.6.0",
     "ts-jest": "^23.10.1"
   },

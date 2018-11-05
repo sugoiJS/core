@@ -1,0 +1,76 @@
+import {cast, clone, StringUtils} from "../index";
+import {PolicyCheck} from "./classes/policy-check.class";
+
+describe("test utils", () => {
+
+    it("Test stringUtils.guid", () => {
+        const amount = 1000;
+        const ids = [];
+        for (let i = 0; i < 1000; i++) {
+            ids.push(StringUtils.generateGuid())
+        }
+        expect(new Set(ids).size).toEqual(amount);
+    });
+
+    it("Test clone without construct", async () => {
+        expect.assertions(4);
+        const pc = cast<PolicyCheck>(PolicyCheck, {test: 1});
+        expect(pc.myName()).toBe("Check");
+        expect(pc['test']).toBe(1);
+        expect(pc.verifyData).toBeUndefined();
+        try {
+            await pc.setEntity({} as any)
+        } catch (err) {
+            delete err.stack;
+            expect(err).toEqual({
+                "code": 400,
+                "data": [{
+                    "policyId": "ValidateSchemaUtil.ValidateArgs",
+                    "type": "policy",
+                    "validationResult": {
+                        "expectedValue": {
+                            "arrayAllowed": false,
+                            "mandatory": true,
+                            "valueType": "string"
+                        },
+                        "invalidValue": undefined,
+                        "valid": false
+                    }
+                }],
+                "message": "Call blocked by resource policy"
+            })
+        }
+    });
+
+    it("Test clone with construct", async () => {
+        expect.assertions(4);
+        const pc = clone<PolicyCheck>(PolicyCheck, {test: 1},true);
+        expect(pc.myName()).toBe("Check");
+        expect(pc['test']).toBe(1);
+        expect(pc.verifyData).toBeDefined();
+        try {
+            await pc.setEntity({} as any)
+        } catch (err) {
+            delete err.stack;
+            expect(err).toEqual({
+                "code": 400,
+                "data": [{
+                    "policyId": "ValidateSchemaUtil.ValidateArgs",
+                    "type": "policy",
+                    "validationResult": {
+                        "expectedValue": {
+                            "arrayAllowed": false,
+                            "mandatory": true,
+                            "valueType": "string"
+                        },
+                        "invalidValue": undefined,
+                        "valid": false
+                    }
+                }],
+                "message": "Call blocked by resource policy"
+            })
+        }
+    });
+
+
+});
