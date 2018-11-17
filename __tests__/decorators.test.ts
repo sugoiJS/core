@@ -11,4 +11,9 @@ describe("test decorators general", () => {
         expect(values.length).toEqual(3);
         expect(values).toEqual((<any>Object).values(entity));
     })
+
+    it("test final decorator",()=>{
+
+    })
+
 });
