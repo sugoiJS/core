@@ -27,8 +27,8 @@ export class PolicySchemaValidator<T=any> implements IPolicySchemaValidator {
     }): IValidationResult {
         validationResult.invalidValue = validateItem;
         validationResult.expectedValue = schemaItem;
-        if (validateItem == undefined) {
-            validationResult.valid = !schemaItem || (<ComparableSchema>schemaItem).mandatory === false;
+        if (validateItem == null) {
+            validationResult.valid = !schemaItem || (<ComparableSchema>schemaItem).mandatory !== true;
         }
         else if (schemaItem instanceof ComparableSchema) {
             if(typeof schemaItem.valueType !== "object")

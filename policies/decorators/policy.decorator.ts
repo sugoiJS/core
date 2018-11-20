@@ -11,11 +11,13 @@ export const sugPolicyDelimiter = "|_S_|";
 
 /**
  * Register function as policy
- * @param {string} policyId - optional, if not set {class name}.{function name} will be use
+ * @param {Policy|string} policyId - optional, if not set {class name}.{function name} will be use
  * @returns {(policyClass: any, propertyKey: string, descriptor: PropertyDescriptor) => any}
  * @constructor
  */
-const Policy = function (policyId?: string) {
+function Policy();
+function Policy(policyId: string)
+function Policy(policyId?: string) {
     return function (policyClass: any,
                      propertyKey: string,
                      descriptor: PropertyDescriptor) {
@@ -37,7 +39,10 @@ const Policy = function (policyId?: string) {
  * @returns {(contextClass: any, propertyKey: string, descriptor: PropertyDescriptor) => any}
  * @constructor
  */
-const UsePolicy = function (policy: TPolicy | string, failedResponseCode: number = 400, ...policyMeta: any[]) {
+function UsePolicy (policy: TPolicy | string);
+function UsePolicy (policy: TPolicy | string, failedResponseCode: number);
+function UsePolicy (policy: TPolicy | string, failedResponseCode: number, ...policyMeta: any[]);
+function UsePolicy (policy: TPolicy | string, failedResponseCode: number = 400, ...policyMeta: any[]) {
     let policyId;
     const policyMetaObject = {policyMeta,id:StringUtils.generateGuid()};
     if (typeof policy === "function") {
