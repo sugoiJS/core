@@ -2,6 +2,9 @@
 
 ![Sugoi logo](https://www.sugoijs.com/assets/logo_inverse.png)
 
+[![npm version](https://badge.fury.io/js/%40sugoi%2Fcore.svg)](https://badge.fury.io/js/%40sugoi%2Fcore)
+[![Build Status](https://travis-ci.org/sugoiJS/core.svg?branch=master)](https://travis-ci.org/sugoiJS/core)
+[![codecov](https://codecov.io/gh/sugoiJS/core/branch/master/graph/badge.svg)](https://codecov.io/gh/sugoiJS/core)
 
 ## Introduction
 SugoiJS is a minimal modular framework,
