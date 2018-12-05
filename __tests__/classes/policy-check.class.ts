@@ -26,7 +26,7 @@ export class PolicyCheck {
     setEntity(entity:IEntity) {
         this.entity = entity;
     }
-    @Deprecated()
+    @Deprecated(false)
     myName(){
         return "Check";
     }
