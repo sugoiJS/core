@@ -13,5 +13,5 @@ export {TPolicy, TPolicyResults} from "./classes/policy-item.class";
 
 export {PolicySchemaValidator} from "./classes/policy-schema-validator.class";
 
-export {ValidateSchemaPolicy, Policy, UsePolicy} from "./decorators/policy.decorator";
+export {ValidateSchemaPolicy,ValidateSchemaPolicySync, Policy, UsePolicy,UsePolicySync} from "./decorators/policy.decorator";
 

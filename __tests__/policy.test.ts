@@ -214,4 +214,37 @@ describe("test policy general", () => {
         expect(npc.entity).toEqual(en);
     });
 
+
+    it("test nested schema validatorSync", async () => {
+        expect.assertions(3);
+        let en = {metaData: undefined};
+        const npc = new NestedPolicyCheck();
+        npc.setEntitySync(en);
+        expect(npc.entity).toEqual(en);
+        en = {metaData: {timestamp: "test"}};
+        try {
+            npc.setEntitySync(en);
+        } catch (err) {
+            delete err.stack;
+            expect(err).toEqual({
+                "code": 400,
+                "data": [{
+                    "policyId": "ValidateSchemaUtil.ValidateArgs",
+                    "type": "policy",
+                    "validationResult": {
+                        "expectedValue": {
+                            "arrayAllowed": false,
+                            "mandatory": false,
+                            "valueType": "number"
+                        }, "invalidValue": "test", "valid": false
+                    }
+                }],
+                "message": "Call blocked by resource policy"
+            });
+        }
+        (<any>en.metaData.timestamp) = new Date().getTime();
+        npc.setEntitySync(en);
+        expect(npc.entity).toEqual(en);
+    });
+
 });

@@ -39,14 +39,25 @@ function Policy(policyId?: string) {
  * @returns {(contextClass: any, propertyKey: string, descriptor: PropertyDescriptor) => any}
  * @constructor
  */
-function UsePolicy (policy: TPolicy | string);
-function UsePolicy (policy: TPolicy | string, failedResponseCode: number);
-function UsePolicy (policy: TPolicy | string, failedResponseCode: number, ...policyMeta: any[]);
-function UsePolicy (policy: TPolicy | string, failedResponseCode: number = 400, ...policyMeta: any[]) {
+function UsePolicy(policy: TPolicy | string);
+function UsePolicy(policy: TPolicy | string, failedResponseCode: number);
+function UsePolicy(policy: TPolicy | string, failedResponseCode: number, ...policyMeta: any[]);
+function UsePolicy(policy: TPolicy | string, failedResponseCode: number = 400, ...policyMeta: any[]) {
+    return UsePolicyApply(policy, failedResponseCode, true ,...policyMeta);
+}
+
+function UsePolicySync(policy: TPolicy | string);
+function UsePolicySync(policy: TPolicy | string, failedResponseCode: number);
+function UsePolicySync(policy: TPolicy | string, failedResponseCode: number, ...policyMeta: any[]);
+function UsePolicySync(policy: TPolicy | string, failedResponseCode: number = 400, ...policyMeta: any[]) {
+    return UsePolicyApply(policy, failedResponseCode,false, ...policyMeta);
+}
+
+function UsePolicyApply(policy: TPolicy | string, failedResponseCode: number,async:boolean, ...policyMeta: any[]) {
     let policyId;
-    const policyMetaObject = {policyMeta,id:StringUtils.generateGuid()};
+    const policyMetaObject = {policyMeta, id: StringUtils.generateGuid()};
     if (typeof policy === "function") {
-        policyId = policy.name || StringUtils.generateGuid();
+        policyId = policy.name || PolicyItem.PolicyCounter++;
         if (!PolicyItem.has(policyId))
             PolicyItem.add(new PolicyItem(policy, policyId));
     } else {
@@ -57,14 +68,14 @@ function UsePolicy (policy: TPolicy | string, failedResponseCode: number = 400, 
                      propertyKey?: string,
                      descriptor?: PropertyDescriptor) {
         if (propertyKey && descriptor) {
-            applyPolicy(policyId, contextClass, propertyKey, descriptor, policyMetaObject, failedResponseCode)
+            applyPolicy(policyId, contextClass, propertyKey, descriptor, policyMetaObject, failedResponseCode,async)
         } else {
-            applyPolicyForClassLevel(policyId, contextClass, policyMetaObject, failedResponseCode);
+            applyPolicyForClassLevel(policyId, contextClass, policyMetaObject, failedResponseCode,async);
         }
     }
-};
+}
 
-function applyPolicyForClassLevel(policyId, contextClass, policyMeta, failedResponseCode) {
+function applyPolicyForClassLevel(policyId, contextClass, policyMeta, failedResponseCode, async?: boolean) {
     const functions = [];
     functions.push.apply(functions, Object.getOwnPropertyNames(contextClass));
     functions.forEach((functionName) => {
@@ -72,27 +83,28 @@ function applyPolicyForClassLevel(policyId, contextClass, policyMeta, failedResp
         const descriptor = Object.getOwnPropertyDescriptor(contextClass, functionName);
         if (descriptor && typeof descriptor.value == 'function') {
             applyPolicy(policyId, contextClass, functionName, descriptor, policyMeta, failedResponseCode);
-            Object.defineProperty(contextClass,functionName,descriptor);
+            Object.defineProperty(contextClass, functionName, descriptor);
         }
     });
     if (contextClass.prototype) {
-        applyPolicyForClassLevel(policyId, contextClass.prototype, policyMeta, failedResponseCode)
+        applyPolicyForClassLevel(policyId, contextClass.prototype, policyMeta, failedResponseCode, async)
     }
 
 }
 
-function applyPolicy(policyId, contextClass, propertyKey: string, descriptor: PropertyDescriptor, policyMeta, failedResponseCode) {
+function applyPolicy(policyId, contextClass, propertyKey: string, descriptor: PropertyDescriptor, policyMeta, failedResponseCode, async?: boolean) {
     propertyKey = !!propertyKey ? propertyKey : null;
-    const policies = [];
+
     const contextPolicies = Reflect.getMetadata(POLICY_KEY, contextClass, propertyKey) || [];
     const isOverridden = contextPolicies.length > 0;
     contextPolicies.push(`${policyId}${sugPolicyDelimiter}${policyMeta.id}`);
-    policies.push.apply(policies, contextPolicies);
-    Reflect.defineMetadata(POLICY_KEY, policies, contextClass, propertyKey);
+
+    Reflect.defineMetadata(POLICY_KEY, contextPolicies, contextClass, propertyKey);
     Reflect.defineMetadata(POLICY_META_KEY, policyMeta.policyMeta, contextClass, `${propertyKey}_${policyId}_${policyMeta.id}`);
+
     if (!isOverridden) {
         const next = descriptor.value;
-        descriptor.value = PolicyItem.setPolicyDescriptor(contextClass, propertyKey, next, failedResponseCode);
+        descriptor.value = PolicyItem.setPolicyDescriptor(contextClass, propertyKey, next, failedResponseCode, async);
     }
 }
 
@@ -108,5 +120,9 @@ const ValidateSchemaPolicy = function (failedResponseCode: number = 400, ...poli
     return UsePolicy('ValidateSchemaUtil.ValidateArgs', failedResponseCode, ...policyMeta);
 };
 
+const ValidateSchemaPolicySync = function (failedResponseCode: number = 400, ...policyMeta: TValidateSchemaMeta[]) {
+    return UsePolicySync('ValidateSchemaUtil.ValidateArgs', failedResponseCode, ...policyMeta);
+};
 
-export {Policy, UsePolicy, ValidateSchemaPolicy}
+
+export {Policy, UsePolicy,UsePolicySync, ValidateSchemaPolicy,ValidateSchemaPolicySync}

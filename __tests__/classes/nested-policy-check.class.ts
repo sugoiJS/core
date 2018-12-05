@@ -1,4 +1,5 @@
 import {Injectable, SchemaTypes, ComparableSchema, ValidateSchemaPolicy} from "../../index";
+import {ValidateSchemaPolicySync} from "../../policies/decorators/policy.decorator";
 
 export interface IEntity {
     metaData?: any,
@@ -16,6 +17,11 @@ export class NestedPolicyCheck {
 
     @ValidateSchemaPolicy(null, {schema: EntitySchema})
     setEntity(entity: IEntity) {
+        this.entity = entity;
+    }
+
+    @ValidateSchemaPolicySync(null, {schema: EntitySchema})
+    setEntitySync(entity: IEntity) {
         this.entity = entity;
     }
 }

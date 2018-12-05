@@ -1,6 +1,7 @@
 # @Sugoi\core
 
-![Sugoi logo](https://www.sugoijs.com/assets/logo_inverse.png)
+![Sugoi logo](https://sugoijs.com/assets/logo_inverse.png)
+
 
 [![npm version](https://badge.fury.io/js/%40sugoi%2Fcore.svg)](https://badge.fury.io/js/%40sugoi%2Fcore)
 [![Build Status](https://travis-ci.org/sugoiJS/core.svg?branch=master)](https://travis-ci.org/sugoiJS/core)

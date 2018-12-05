@@ -3,6 +3,7 @@ import {SugoiPolicyError} from "../exceptions/policy-error.exception";
 import {POLICY_META_KEY, POLICY_KEY, sugPolicyDelimiter} from "../decorators/policy.decorator";
 
 export class PolicyItem {
+    public static PolicyCounter: number = 1;
     public policyValidator: any;
     private static policies: Map<string, TPolicy> = new Map();
 
@@ -12,6 +13,7 @@ export class PolicyItem {
 
     static get(policyName: string): TPolicy {
         return PolicyItem.policies.get(policyName);
+
     }
 
     static has(policyName: string): boolean {
@@ -25,35 +27,88 @@ export class PolicyItem {
     public static setPolicyDescriptor(contextClass: any,
                                       propertyKey: string,
                                       next: (...args) => void,
-                                      failedResponseCode: number) {
+                                      failedResponseCode: number,
+                                      async: boolean = true) {
         return function (...applyArgs) {
-            const scope = this;
+            const that = this;
             const policies = Reflect.getMetadata(POLICY_KEY, contextClass, propertyKey) || [];
-            const promises = [];
-            for (let policyId of policies){
-                policyId = policyId.split(sugPolicyDelimiter);
-                const policy = PolicyItem.get(policyId[0]);
-                if (!policy) {
-                    console.info(`${policy} policy not found`);
-                    return Promise.resolve();
-                }
-                const policyMeta = Reflect.getMetadata(POLICY_META_KEY, contextClass, `${propertyKey}_${policyId[0]}_${policyId[1]}`);
-                const promise = policy( {functionArgs: applyArgs, policyMeta: policyMeta})
-                    .then((validationResult) => {
-                        if (validationResult != true) {
-                            throw new SugoiPolicyError(EXCEPTIONS.POLICY_BLOCKED.message, failedResponseCode || EXCEPTIONS.POLICY_BLOCKED.code, {type:"policy",policyId:policyId[0], validationResult:validationResult})
-                        }
-                    });
-                promises.push(promise);
+
+            if (async) {
+                return PolicyItem.applyAsyncPolicy(policies, contextClass, propertyKey, applyArgs, failedResponseCode)
+                    .then(() => {
+                        return next.apply(that, applyArgs);
+                    })
+                    .catch((err) => {
+                        throw err;
+                    })
+            } else {
+                PolicyItem.applySyncPolicy(policies, contextClass, propertyKey, applyArgs, failedResponseCode);
+                return next.apply(that, applyArgs);
             }
-            return Promise.all(promises)
-                .then(() => {
-                    return next.apply(scope,applyArgs);
-                })
-                .catch((err) => {
-                    throw err;
-                })
+
         };
+    }
+
+    static applyAsyncPolicy(policies: Array<string>,
+                            contextClass: any,
+                            propertyName: string,
+                            applyArgs: Array<any>,
+                            failedResponseCode?: number) {
+        const promises = [];
+        for (let policyId of policies) {
+            let policyIdArr = policyId.split(sugPolicyDelimiter);
+            const policy = PolicyItem.get(policyIdArr[0]);
+            if (!policy) {
+                console.info(`${policy} policy not found`);
+                return Promise.resolve([true]);
+            }
+            const policyMeta = Reflect.getMetadata(POLICY_META_KEY,
+                contextClass, `${propertyName}_${policyIdArr[0]}_${policyIdArr[1]}`);
+            let result = (<Promise<boolean>>policy({functionArgs: applyArgs, policyMeta: policyMeta}));
+            if (!(result instanceof Promise)) {
+                result = Promise.resolve(result);
+            }
+            const promise = result.then((validationResult) => {
+                if (validationResult !== true) {
+                    throw new SugoiPolicyError(EXCEPTIONS.POLICY_BLOCKED.message, failedResponseCode || EXCEPTIONS.POLICY_BLOCKED.code, {
+                        type: "policy",
+                        policyId: policyIdArr[0],
+                        validationResult: validationResult
+                    })
+                }
+                return true;
+            });
+            promises.push(promise);
+        }
+        return Promise.all(promises);
+    }
+
+
+    static applySyncPolicy(policies: Array<string>,
+                           contextClass: any,
+                           propertyName: string,
+                           applyArgs: Array<any>,
+                           failedResponseCode?: number) {
+        for (let policyId of policies) {
+            let policyIdArr = policyId.split(sugPolicyDelimiter);
+            const policy = PolicyItem.get(policyIdArr[0]);
+            if (!policy) {
+                console.info(`${policy} policy not found`);
+                return true;
+            }
+            const policyMeta = Reflect.getMetadata(POLICY_META_KEY,
+                contextClass, `${propertyName}_${policyIdArr[0]}_${policyIdArr[1]}`);
+            const validationResult = policy({functionArgs: applyArgs, policyMeta: policyMeta});
+            if (validationResult != true) {
+                throw new SugoiPolicyError(EXCEPTIONS.POLICY_BLOCKED.message, failedResponseCode || EXCEPTIONS.POLICY_BLOCKED.code, {
+                    type: "policy",
+                    policyId: policyIdArr[0],
+                    validationResult: validationResult
+                })
+            }
+
+        }
+        return true;
     }
 
     constructor(policyValidator: TPolicy, private name: string = policyValidator.constructor.name) {
@@ -61,16 +116,11 @@ export class PolicyItem {
     }
 
     setPolicyValidator(guardianValidator: TPolicy) {
-        this.policyValidator = (arg) => {
-            const result = guardianValidator(arg);
-            if (result instanceof Promise)
-                return result;
-            else
-                return Promise.resolve(result);
-        }
+        this.policyValidator = (arg) => guardianValidator(arg);
     }
 
 }
 
 export type TPolicyResults = true | any;
-export type TPolicy = (policyData?:{functionArgs?: any[], policyMeta?: any[]})=>(Promise < TPolicyResults > | TPolicyResults);
+export type TPolicyPayload = { functionArgs?: any[], policyMeta?: any[] };
+export type TPolicy = (policyData?: TPolicyPayload) => (Promise<TPolicyResults> | TPolicyResults);
