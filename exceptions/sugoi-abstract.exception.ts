@@ -5,7 +5,7 @@ export abstract class SugoiError {
 
     private data: any[] = [];
 
-    constructor(message: string, code: number, data: any = []) {
+    constructor(message: string, code: number, data: any = [],verbose:boolean=true) {
         this.message = message;
         this.code = code;
         if (!Array.isArray(data)){
@@ -13,7 +13,9 @@ export abstract class SugoiError {
         }
         this.data.push.apply(this.data, data);
         this.stack = new Error(message).stack;
-        this.printError();
+        if(verbose) {
+            this.printError();
+        }
     }
 
     public getData(){
