@@ -9,10 +9,13 @@ import {
     multiBindToService,
     interfaces,
     LazyServiceIdentifer,
-    AsyncContainerModule
+    AsyncContainerModule,
+    postConstruct
+
 } from "inversify";
 
 const Injectable = injectable;
+const PostConstruct = postConstruct;
 const Inject = inject;
 const MultiInject = multiInject;
 const Decorate = decorate;
@@ -24,6 +27,8 @@ export {
     decorate,
     optional,
     inject,
+    postConstruct,
+    PostConstruct,
     Injectable,
     Inject,
     Decorate,
