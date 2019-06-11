@@ -105,6 +105,7 @@ function applyPolicy(policyId, contextClass, propertyKey: string, descriptor: Pr
     if (!isOverridden) {
         const next = descriptor.value;
         descriptor.value = PolicyItem.setPolicyDescriptor(contextClass, propertyKey, next, failedResponseCode, async);
+        Object.defineProperty(contextClass, propertyKey, descriptor)
     }
 }
 

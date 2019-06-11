@@ -1,7 +1,7 @@
 import {ComparableValueType, IComparableValue} from "../interfaces/comparable-value.interface";
 
 export class ComparableSchema implements IComparableValue {
-    public valueType: ComparableValueType;
+    public valueType: Array<ComparableValueType>;
     public mandatory?: boolean = false;
     public regex?: string;
     public regexFlag?: string;
@@ -9,13 +9,15 @@ export class ComparableSchema implements IComparableValue {
     public max?: number;
     public exclusiveMin?: number;
     public exclusiveMax?: number;
-    public arrayAllowed?: boolean = false;
+    public arrayAllowed: boolean = false;
+    public forceArray: boolean = false;
 
-    protected constructor(valueType: ComparableValueType) {
+
+    protected constructor(valueType: Array<ComparableValueType>) {
         this.valueType = valueType;
     }
 
-    public static ofType(valueType: ComparableValueType) {
+    public static ofType(...valueType: Array<ComparableValueType>) {
         return new ComparableSchema(valueType);
     }
 
@@ -51,6 +53,17 @@ export class ComparableSchema implements IComparableValue {
 
     public setArrayAllowed(isAllowed: boolean) {
         this.arrayAllowed = isAllowed;
+        if(!this.arrayAllowed) {
+            this.forceArray = false;
+        }
+        return this;
+    }
+
+    public setForceArray(force: boolean) {
+        this.forceArray = force;
+        if(this.forceArray) {
+            this.arrayAllowed = true;
+        }
         return this;
     }
 

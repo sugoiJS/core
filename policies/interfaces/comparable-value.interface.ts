@@ -1,8 +1,8 @@
-import {SchemaTypes} from "../constants/schema-types.enum";
+import {SchemaTypes} from "..";
 
 export type ComparableValueType = SchemaTypes | { [prop: string]: IComparableValue };
 export interface IComparableValue {
-    valueType:  ComparableValueType;
+    valueType:  Array<ComparableValueType>;
     mandatory?: boolean;
     regex?: string;
     regexFlag?: string;
@@ -11,5 +11,6 @@ export interface IComparableValue {
     exclusiveMin?: number;
     exclusiveMax?: number;
     arrayAllowed?: boolean;
+    forceArray?: boolean;
 };
 

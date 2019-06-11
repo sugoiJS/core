@@ -4,8 +4,8 @@ import {POLICY_META_KEY, POLICY_KEY, sugPolicyDelimiter} from "../decorators/pol
 
 export class PolicyItem {
     public static PolicyCounter: number = 1;
-    public policyValidator: any;
     private static policies: Map<string, TPolicy> = new Map();
+    public policyValidator: any;
 
     static add(policy: PolicyItem) {
         PolicyItem.policies.set(policy.name, policy.policyValidator);
