@@ -17,6 +17,7 @@
   "keywords": [
     "policy",
     "guard",
+    "filter",
     "schemas",
     "decorators",
     "annotations",
@@ -43,12 +44,14 @@
   },
   "dependencies": {
     "inversify": "^5.0.1",
-    "reflect-metadata": "^0.1.12"
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.9",
-    "jest": "^23.6.0",
-    "ts-jest": "^23.10.1"
+    "@hapi/joi": "^15.0.3",
+    "@types/jest": "^24.0.13",
+    "ajv": "^6.10.0",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2"
   },
   "jest": {
     "collectCoverage": true,
