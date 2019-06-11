@@ -5,7 +5,7 @@ export interface IEntity {
     metaData?: any,
 };
 
-const EntitySchema = {
+export const EntitySchema = {
     metaData: ComparableSchema.ofType({timestamp: ComparableSchema.ofType(SchemaTypes.NUMBER)})
 };
 

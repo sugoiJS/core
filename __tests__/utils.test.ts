@@ -1,4 +1,4 @@
-import {cast, clone, StringUtils} from "../index";
+import {cast, clone, ComparableSchema, SchemaTypes, StringUtils} from "../index";
 import {PolicyCheck} from "./classes/policy-check.class";
 
 describe("test utils", () => {
@@ -28,11 +28,7 @@ describe("test utils", () => {
                     "policyId": "ValidateSchemaUtil.ValidateArgs",
                     "type": "policy",
                     "validationResult": {
-                        "expectedValue": {
-                            "arrayAllowed": false,
-                            "mandatory": true,
-                            "valueType": "string"
-                        },
+                        "expectedValue": ComparableSchema.ofType(SchemaTypes.STRING).setArrayAllowed(false).setMandatory(true),
                         "invalidValue": undefined,
                         "valid": false
                     }
@@ -58,11 +54,7 @@ describe("test utils", () => {
                     "policyId": "ValidateSchemaUtil.ValidateArgs",
                     "type": "policy",
                     "validationResult": {
-                        "expectedValue": {
-                            "arrayAllowed": false,
-                            "mandatory": true,
-                            "valueType": "string"
-                        },
+                        "expectedValue": ComparableSchema.ofType(SchemaTypes.STRING).setMandatory(true),
                         "invalidValue": undefined,
                         "valid": false
                     }
