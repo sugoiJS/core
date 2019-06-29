@@ -1,3 +1,9 @@
+#### 4.0.1 (2019-06-29)
+
+##### Fix
+
+* configuration handling fixed ([02c83c2d](https://github.com/sugoiJS/core/commit/02c83c2db4f7d67d8becefe6e0a2a9ec44ea25a5))
+
 ## 4.0.0 (2019-06-22)
 
 ##### New Features
