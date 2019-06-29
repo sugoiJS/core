@@ -12,7 +12,7 @@
     "update:patch": "npm version patch && npm publish && npm run docs",
     "update:minor": "npm version minor && npm publish && npm run docs",
     "update:major": "npm version major && npm publish && npm run docs",
-    "build": "rmdir /S dist && tsc"
+    "build": "rimraf dist && tsc"
   },
   "keywords": [
     "policy",
@@ -51,6 +51,7 @@
     "@types/jest": "^24.0.13",
     "ajv": "^6.10.0",
     "jest": "^24.8.0",
+    "rimraf": "^2.6.3",
     "ts-jest": "^24.0.2"
   },
   "jest": {
