@@ -1,9 +1,9 @@
 class ConfigurationHandler{
     private static __configurations = {};
 
-    static getConfiguration(type?: ConfigurationTypes, fallbackConfiguration?: any){
+    static getConfiguration<T = any>(type?: ConfigurationTypes | string, fallbackConfiguration?: any): T{
         if(!type){
-            return this.__configurations;
+            return this.__configurations as any;
         }
         return this.__configurations[type] || fallbackConfiguration;
     }
@@ -13,8 +13,8 @@ class ConfigurationHandler{
     }
 }
 
-export function getConfiguration(type?: ConfigurationTypes, fallbackConfiguration?: any){
-   return ConfigurationHandler.getConfiguration(type, fallbackConfiguration);
+export function getConfiguration<T = any>(type?: ConfigurationTypes | string, fallbackConfiguration?: any){
+   return ConfigurationHandler.getConfiguration<T>(type, fallbackConfiguration);
 }
 
 export function setConfiguration(configuration: any){
