@@ -1,4 +1,9 @@
-#### 4.0.3 (2019-07-06)
+#### 4.0.4 (2019-07-19)
+
+##### Bug Fixes
+
+* **category:**  type support for string for configuration util ([2cc635d8](https://github.com/sugoiJS/core/commit/2cc635d81ad97722154dfe7efb2aced95e548057))
+
 
 #### 4.0.1 (2019-06-29)
 
