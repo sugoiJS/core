@@ -31,7 +31,7 @@ export class PolicySchemaValidator<T=any> implements IPolicySchemaValidator {
         if(schemaItem && schemaItem.isJoi){
             name = 'joi';
         }else{
-            name = schemaItem.name || schemaItem.constructor.name;
+            name = schemaItem.name || schemaItem.constructor.name || '';
         }
         switch (name.toLowerCase()) {
             case 'ajv':

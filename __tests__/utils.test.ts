@@ -1,4 +1,4 @@
-import {cast, clone, ComparableSchema, SchemaTypes, StringUtils} from "../index";
+import {cast, clone, ComparableSchema, SchemaTypes, StringUtils, setConfiguration, getConfiguration} from "../index";
 import {PolicyCheck} from "./classes/policy-check.class";
 
 describe("test utils", () => {
@@ -63,6 +63,13 @@ describe("test utils", () => {
             })
         }
     });
+
+    it('Test configuration',()=>{
+        const name = 'OBONE';
+        setConfiguration({test: {myName: name}})
+        expect(getConfiguration<{myName: string}>('test').myName).toEqual(name);
+        expect(getConfiguration().test).toBeTruthy();
+    })
 
 
 });
