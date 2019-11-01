@@ -33,10 +33,10 @@ export class PolicySchemaValidator<T=any> implements IPolicySchemaValidator {
         }else{
             name = schemaItem.name || schemaItem.constructor.name || '';
             name = typeof name === 'string'
-                ? name
+                ? name.toLowerCase()
                 : '';
         }
-        switch (name.toLowerCase()) {
+        switch (name) {
             case 'ajv':
             case 'validate':
                 valid = schemaItem(validateItem);

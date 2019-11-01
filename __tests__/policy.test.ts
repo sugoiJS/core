@@ -5,7 +5,7 @@ import {DummyAjv} from "./classes/dummy-ajv.class";
 import {DummyJoi} from "./classes/dummy-joi.class";
 import {SchemaTypes, ComparableSchema} from "../policies";
 
-const entity = {id: true, num: 2, active: 1};
+const entity: any = {id: true, num: 2, active: 1};
 
 describe("test policy general", () => {
     it("test instance policy", async () => {
@@ -106,6 +106,8 @@ describe("test policy general", () => {
     });
 
     it("test schema validator", async () => {
+        expect.assertions(11);        
+
         const numberError = {
                 "code": 400,
                 "data": [{
@@ -133,6 +135,21 @@ describe("test policy general", () => {
                 }],
                 "message": "Call blocked by resource policy"
             },
+
+            nameError = {
+                "code": 400,
+                "data": [{
+                    "policyId": "ValidateSchemaUtil.ValidateArgs",
+                    "type": "policy",
+                    "validationResult": {
+                        "expectedValue": ComparableSchema.ofType(SchemaTypes.STRING, SchemaTypes.BOOLEAN).setMandatory(true),
+                        "invalidValue": undefined, 
+                        "valid": false
+                    }
+                }],
+                "message": "Call blocked by resource policy"
+            },
+
             booleanError = {
                 "code": 400,
                 "data": [{
@@ -156,7 +173,6 @@ describe("test policy general", () => {
                 "message": "Call blocked by resource policy"
             };
 
-        expect.assertions(8);
         const pc = new PolicyCheck();
         expect(pc.myName()).toEqual("Check");
         try {
@@ -198,8 +214,36 @@ describe("test policy general", () => {
             expect(err).toEqual(booleanArrayError);
         }
         (<any>entity).active = true;
+        
+        try {
+            console.log('name check')
+            await pc.setEntity(entity);
+        } 
+        catch(err){
+            delete err.stack;
+            expect(err).toEqual(nameError);
+        }
+
+        entity.name = 22;
+        try{
+            await pc.setEntity(entity);
+        } 
+        catch(err){
+            delete err.stack;
+            nameError.data[0].validationResult.invalidValue = 22;
+            expect(err).toEqual(nameError);
+        }
+
+        entity.name = true
         await pc.setEntity(entity);
         expect(pc.entity).toEqual(entity);
+
+
+        entity.name = 'true'
+        await pc.setEntity(entity);
+        expect(pc.entity).toEqual(entity);
+
+
         (<any>entity).num = [3, 9];
         await pc.setEntity(entity);
         expect(pc.entity).toEqual(entity);

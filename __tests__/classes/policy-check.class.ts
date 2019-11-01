@@ -4,7 +4,8 @@ import {Deprecated} from "../../decorators/deprecated.decorator";
 export interface IEntity{
     id: any,
     num: any,
-    active: any
+    active: any,
+    name: boolean | string
 };
 
 const EntitySchema= {
@@ -13,7 +14,8 @@ const EntitySchema= {
         .setExclusiveMax(10)
         .setArrayAllowed(true),
     id:ComparableSchema.ofType(SchemaTypes.STRING).setMandatory(true),
-    active:ComparableSchema.ofType(SchemaTypes.BOOLEAN).setMandatory(true)
+    active:ComparableSchema.ofType(SchemaTypes.BOOLEAN).setMandatory(true),
+    name:ComparableSchema.ofType(SchemaTypes.STRING,SchemaTypes.BOOLEAN).setMandatory(true)
 };
 
 @Injectable()
